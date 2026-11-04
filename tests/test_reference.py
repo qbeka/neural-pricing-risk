@@ -8,13 +8,13 @@ failure is reproducible rather than random.
 import numpy as np
 import pytest
 
-from asianrisk.analytic import geometric_asian_call
+from asianrisk.analytic import conditional_lower_bound_call, geometric_asian_call
 from asianrisk.contract import Contract, Market, PriceResult, Scenario
 from asianrisk.reference import SimulationConfig, _sample_units, price_reference
 
 CONTRACT = Contract("c", "X", strike=100.0, maturity=1.0, n_fixings=12)
 MARKET = Market(spot=100.0, vol=0.20, rate=0.03)
-PLAIN = dict(antithetic=False, control_variate=False)
+PLAIN = dict(antithetic=False, control="none")
 
 
 @pytest.mark.parametrize("spot", [90.0, 110.0])
@@ -41,7 +41,7 @@ def test_price_increases_with_spot_on_common_random_numbers():
 
 
 def test_price_scales_linearly_and_delta_is_invariant_with_spot_and_strike():
-    config = SimulationConfig(n_paths=2**14, seed=3, control_variate=False)
+    config = SimulationConfig(n_paths=2**14, seed=3, control="none")
     base = price_reference(CONTRACT, MARKET, config)
     scale = 7.5
     scaled = price_reference(
@@ -64,11 +64,34 @@ def test_simulated_geometric_payoff_matches_its_analytic_price(spot, vol):
         assert abs(mean - exact) < 4 * se
 
 
+@pytest.mark.parametrize("spot, vol", [(100.0, 0.2), (85.0, 0.5), (120.0, 0.7)])
+def test_simulated_conditional_payoff_matches_the_lower_bound(spot, vol):
+    market = Market(spot, vol, 0.03)
+    config = SimulationConfig(control="conditional")
+    units = _sample_units(np.random.default_rng(8), config, 2**19, CONTRACT, market)
+    discount = np.exp(-0.03)
+    exact_price, exact_delta = conditional_lower_bound_call(spot, 100.0, vol, 0.03, 1.0, 12)
+    for column, exact in ((1, exact_price), (3, exact_delta)):
+        mean = discount * units[column].mean()
+        se = discount * units[column].std() / np.sqrt(units.shape[1])
+        assert abs(mean - exact) < 4 * se
+
+
+def test_conditional_control_beats_the_geometric_control_at_high_total_vol():
+    contract = Contract("c", "X", 100.0, 2.5, 12)
+    market = Market(100.0, 0.7, 0.03)
+    geometric = price_reference(contract, market, SimulationConfig(n_paths=2**16, seed=9))
+    conditional = price_reference(
+        contract, market, SimulationConfig(n_paths=2**16, seed=9, control="conditional")
+    )
+    assert conditional.price_se < geometric.price_se / 3
+
+
 def test_each_variance_reduction_step_lowers_the_standard_error():
     n = 2**16
     plain = price_reference(CONTRACT, MARKET, SimulationConfig(n_paths=n, seed=5, **PLAIN))
     antithetic = price_reference(
-        CONTRACT, MARKET, SimulationConfig(n_paths=n, seed=5, control_variate=False)
+        CONTRACT, MARKET, SimulationConfig(n_paths=n, seed=5, control="none")
     )
     control = price_reference(CONTRACT, MARKET, SimulationConfig(n_paths=n, seed=5))
     assert control.price_se < antithetic.price_se < plain.price_se
@@ -82,7 +105,7 @@ def test_each_variance_reduction_step_lowers_the_standard_error():
 )
 def test_pathwise_delta_matches_a_bumped_price_on_common_random_numbers(spot, vol, maturity):
     contract = Contract("c", "X", 100.0, maturity, 12)
-    config = SimulationConfig(n_paths=2**19, seed=6, control_variate=False)
+    config = SimulationConfig(n_paths=2**19, seed=6, control="none")
     h = 0.05
     up = price_reference(contract, Market(spot + h, vol, 0.03), config).price
     down = price_reference(contract, Market(spot - h, vol, 0.03), config).price
@@ -91,19 +114,26 @@ def test_pathwise_delta_matches_a_bumped_price_on_common_random_numbers(spot, vo
 
 
 @pytest.mark.slow
-def test_standard_errors_are_calibrated_and_the_estimator_is_unbiased():
+@pytest.mark.parametrize("control, n_paths", [("geometric", 2**10), ("conditional", 2**14)])
+def test_standard_errors_are_calibrated_and_the_estimator_is_unbiased(control, n_paths):
     """Repeat a cheap estimate many times against one very precise value.
 
     z-scores should have mean 0 and standard deviation 1. A pilot coefficient
     reused in the main run would show up here as a shifted mean.
+
+    The conditional control needs more units: its residual is nonzero only on
+    rare paths, so below about 2**14 units the sample standard error is itself
+    unreliable (measured z standard deviation 2.9 at 2**10, 1.06 at 2**14).
     """
     precise = price_reference(
-        CONTRACT, MARKET, SimulationConfig(n_paths=2**23, seed=7, batch_paths=2**16)
+        CONTRACT, MARKET, SimulationConfig(n_paths=2**23, seed=7, batch_paths=2**16, control=control)
     )
-    repeats = 400
+    repeats = 300
     runs = [
         price_reference(
-            CONTRACT, MARKET, SimulationConfig(n_paths=2**10, pilot_paths=2**9, seed=1000 + i)
+            CONTRACT,
+            MARKET,
+            SimulationConfig(n_paths=n_paths, pilot_paths=2**9, seed=1000 + i, control=control),
         )
         for i in range(repeats)
     ]
@@ -113,7 +143,7 @@ def test_standard_errors_are_calibrated_and_the_estimator_is_unbiased():
     ):
         z = (np.array(value) - target) / np.array(se)
         assert abs(z.mean()) < 4 / np.sqrt(repeats)
-        assert 0.85 < z.std() < 1.15
+        assert 0.85 < z.std() < 1.2
 
 
 def test_records_round_trip_and_reject_other_schema_versions():

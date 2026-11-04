@@ -84,6 +84,24 @@ def moment_matched_call(spot, strike, vol, rate, maturity, n_fixings: int):
     return price, dprice_dforward * forward / spot
 
 
+def conditional_terms(vol, rate, maturity, n_fixings: int):
+    """Terms of E[A | Z = z] / S = mean_i exp(log_weights_i + loadings_i z).
+
+    Z is the standardized mean of W_ti, `b_i = Cov(W_ti, Z)`, loadings are
+    vol * b_i and log_weights are r t_i - loadings^2 / 2. Also returns the
+    standard deviation of mean(W_ti), which turns simulated normals into Z.
+    """
+    vol, maturity = np.broadcast_arrays(np.asarray(vol, dtype=float), np.asarray(maturity, dtype=float))
+    n = n_fixings
+    index = np.arange(1, n + 1)
+    z_stdev = np.sqrt(maturity * (n + 1) * (2 * n + 1) / (6 * n**2))
+    # Cov(W_ti, mean W) = T / n^2 * (sum_{j <= i} j + i (n - i))
+    b = (maturity[..., None] / n**2) * (index * (index + 1) / 2 + index * (n - index))
+    loadings = vol[..., None] * b / z_stdev[..., None]
+    log_weights = rate * _fixing_times(maturity, n) - 0.5 * loadings**2
+    return loadings, log_weights, z_stdev
+
+
 def conditional_lower_bound_call(spot, strike, vol, rate, maturity, n_fixings: int):
     """Lower bound from conditioning on the geometric average (Curran; Rogers-Shi).
 
@@ -101,15 +119,8 @@ def conditional_lower_bound_call(spot, strike, vol, rate, maturity, n_fixings: i
         *(np.asarray(a, dtype=float) for a in (spot, strike, vol, maturity))
     )
     n = n_fixings
-    index = np.arange(1, n + 1)
-    times = _fixing_times(maturity, n)
-    z_stdev = np.sqrt(maturity * (n + 1) * (2 * n + 1) / (6 * n**2))
-    # Cov(W_ti, mean W) = T / n^2 * (sum_{j <= i} j + i (n - i))
-    b = (maturity[..., None] / n**2) * (index * (index + 1) / 2 + index * (n - index))
-    b = b / z_stdev[..., None]
-    loadings = vol[..., None] * b
-    growth = np.exp(rate * times)
-    log_weights = rate * times - 0.5 * loadings**2
+    loadings, log_weights, _ = conditional_terms(vol, rate, maturity, n)
+    growth = np.exp(rate * _fixing_times(maturity, n))
 
     # Solve ln(mean_i exp(log_w_i + loading_i z)) = ln(K / S) by Newton. The left
     # side is convex and increasing, so Newton settles quickly from a linear guess.
