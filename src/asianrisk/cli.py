@@ -3,6 +3,7 @@
 import argparse
 import hashlib
 import json
+import tempfile
 from pathlib import Path
 
 from asianrisk.analytic import conditional_lower_bound_call, moment_matched_call
@@ -146,6 +147,27 @@ def demo(args) -> None:
     print(f"wrote {args.target}")
 
 
+def smoke(args) -> None:
+    """Run every stage on a tiny config in a scratch directory. Takes a few minutes."""
+    with tempfile.TemporaryDirectory() as scratch:
+        root = Path(scratch)
+        shared = dict(config="configs/smoke.json", out=str(root), books=str(root / "books"))
+        freeze_path = root / "freeze.json"
+        run_dir = root / "run"
+        fit(argparse.Namespace(**shared))
+        tune(argparse.Namespace(**shared))
+        freeze(argparse.Namespace(
+            **shared, statement="configs/freeze_statement.json", freeze=str(freeze_path)
+        ))
+        evaluate(argparse.Namespace(**shared, freeze=str(freeze_path), run=str(run_dir)))
+        report(argparse.Namespace(run=str(run_dir)))
+        demo(argparse.Namespace(run=str(run_dir), target=str(root / "site" / "index.html")))
+        page = root / "site" / "index.html"
+        if "__DATA__" in page.read_text():
+            raise SystemExit("demo page was not filled in")
+    print("smoke run passed")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(prog="asianrisk", description=__doc__)
     commands = parser.add_subparsers(required=True)
@@ -203,6 +225,9 @@ def main() -> None:
     demo_command.add_argument("--run", default="results/run")
     demo_command.add_argument("--target", default="site/index.html")
     demo_command.set_defaults(handler=demo)
+
+    smoke_command = commands.add_parser("smoke", help="run every stage on a tiny config")
+    smoke_command.set_defaults(handler=smoke)
 
     args = parser.parse_args()
     args.handler(args)
