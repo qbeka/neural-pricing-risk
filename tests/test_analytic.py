@@ -73,6 +73,18 @@ def test_zero_vol_limit_is_the_discounted_intrinsic_value(formula, spot):
     assert price == pytest.approx(expected, abs=1e-10)
 
 
+@pytest.mark.parametrize("strike, rate", [(101.0, 0.05), (100.0, 0.05), (99.0, -0.05)])
+def test_lower_bound_at_zero_vol_uses_the_forward_not_the_spot(strike, rate):
+    """Regression: the zero-vol branch took its sign from ln(K / S) and ignored growth."""
+    times = np.arange(1, 13) / 12
+    average = 100.0 * np.exp(rate * times).mean()
+    expected = np.exp(-rate) * max(average - strike, 0.0)
+    expected_delta = np.exp(-rate) * average / 100.0 if average > strike else 0.0
+    price, delta = conditional_lower_bound_call(100.0, strike, 0.0, rate, 1.0, 12)
+    assert price == pytest.approx(expected, abs=1e-10)
+    assert delta == pytest.approx(expected_delta, abs=1e-10)
+
+
 def test_arrays_give_the_same_answers_as_scalars():
     spot = np.array([90.0, 100.0, 120.0])
     vol = np.array([0.1, 0.2, 0.6])

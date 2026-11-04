@@ -1,7 +1,8 @@
 """Closed-form results for the contract family in `contract.py`.
 
-Every function takes scalars or broadcastable NumPy arrays and returns
-(price, delta) with discounting to today. Maturity must be positive.
+Spot, strike, vol and maturity may be scalars or broadcastable NumPy arrays.
+Rate and n_fixings are scalars. Every pricing function returns (price, delta)
+with discounting to today. Maturity must be positive.
 """
 
 import numpy as np
@@ -125,8 +126,11 @@ def conditional_lower_bound_call(spot, strike, vol, rate, maturity, n_fixings: i
     # Solve ln(mean_i exp(log_w_i + loading_i z)) = ln(K / S) by Newton. The left
     # side is convex and increasing, so Newton settles quickly from a linear guess.
     log_target = np.log(strike / spot)
+    # With zero vol the left side does not depend on z and the answer is deterministic.
+    log_forward_ratio = np.log(growth.mean(axis=-1))
+    out_of_money_at_zero_vol = log_target >= log_forward_ratio
     with np.errstate(divide="ignore", invalid="ignore"):
-        z = np.nan_to_num(log_target / loadings[..., -1], nan=0.0)
+        z = np.nan_to_num((log_target - log_forward_ratio) / loadings[..., -1], nan=0.0)
         for _ in range(50):
             exponents = log_weights + loadings * z[..., None]
             top = exponents.max(axis=-1, keepdims=True)
@@ -138,6 +142,7 @@ def conditional_lower_bound_call(spot, strike, vol, rate, maturity, n_fixings: i
             z = z - step
             if np.max(np.abs(np.nan_to_num(step, posinf=0.0, neginf=0.0))) < 1e-12:
                 break
+    z = np.where(vol > 0, z, np.where(out_of_money_at_zero_vol, np.inf, -np.inf))
 
     discount = np.exp(-rate * maturity)
     delta = discount * np.mean(growth * ndtr(loadings - z[..., None]), axis=-1)
