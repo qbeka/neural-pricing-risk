@@ -410,7 +410,7 @@ def variance_reduction_panel(config) -> list[dict]:
             base_cost = base_cost or cost
             rows.append({
                 "spot": spot, "vol": vol, "maturity": maturity, "estimator": name,
-                "price_se_bp_of_strike": result.price_se, "delta_se": result.delta_se,
+                "strike": 100.0, "price_se": result.price_se, "delta_se": result.delta_se,
                 "seconds": result.runtime_seconds, "efficiency_gain_vs_plain": base_cost / cost,
             })
     return rows

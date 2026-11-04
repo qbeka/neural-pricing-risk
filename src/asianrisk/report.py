@@ -14,7 +14,8 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Reference palette, first three categorical slots, one per method family.
+# Reference palette, first three categorical slots, one per method family. Validated
+# all-pairs for color vision deficiency. Marker shape carries identity as well.
 FAMILY_COLORS = {"simulation": "#2a78d6", "non-neural fast": "#eb6834", "neural": "#1baf7a"}
 FAMILY_MARKERS = {"simulation": "s", "non-neural fast": "o", "neural": "^"}
 TEXT_PRIMARY = "#0b0b0b"
