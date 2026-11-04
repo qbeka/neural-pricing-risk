@@ -18,6 +18,8 @@ from pathlib import Path
 import numpy as np
 import torch
 
+from asianrisk.analytic import geometric_asian_call, moment_matched_call
+from asianrisk.contract import Contract, Market
 from asianrisk.domain import load_domain
 from asianrisk.fastmc import PathEngine
 from asianrisk.labels import generate_labels, load_dataset
@@ -25,6 +27,7 @@ from asianrisk.methods import load_network
 from asianrisk.metrics import BASIS_POINT, error_summary
 from asianrisk.pipeline import book_reference, build_rules, fast_methods
 from asianrisk.portfolio import all_requests, load_book, shock_grid
+from asianrisk.reference import SimulationConfig, price_reference
 
 SEALED_SETS = ("test", "stress_near_expiry", "stress_kink")
 TIMING_REPEATS = 5
@@ -385,6 +388,114 @@ def upfront_costs(config, out) -> dict:
     return costs
 
 
+def variance_reduction_panel(config) -> list[dict]:
+    """Standard error and cost of each estimator on a fixed panel of contracts."""
+    panel = [(100.0, 0.20, 1.0), (100.0, 0.60, 1.0), (100.0, 0.70, 2.5), (140.0, 0.70, 2.5)]
+    estimators = (
+        ("plain", dict(antithetic=False, control="none")),
+        ("antithetic", dict(antithetic=True, control="none")),
+        ("geometric_control", dict(antithetic=True, control="geometric")),
+        ("conditional_control", dict(antithetic=True, control="conditional")),
+    )
+    rows = []
+    for spot, vol, maturity in panel:
+        contract = Contract("panel", "X", 100.0, maturity, config["n_fixings"])
+        market = Market(spot, vol, config["rate"])
+        base_cost = None
+        for name, settings in estimators:
+            result = price_reference(
+                contract, market, SimulationConfig(n_paths=2**17, seed=31, **settings)
+            )
+            cost = result.runtime_seconds * result.price_se**2
+            base_cost = base_cost or cost
+            rows.append({
+                "spot": spot, "vol": vol, "maturity": maturity, "estimator": name,
+                "price_se_bp_of_strike": result.price_se, "delta_se": result.delta_se,
+                "seconds": result.runtime_seconds, "efficiency_gain_vs_plain": base_cost / cost,
+            })
+    return rows
+
+
+def quantlib_panel(config, contracts: int, log2_ours: int, log2_theirs: int) -> dict:
+    """Agreement with QuantLib on random contracts, with independent seeds."""
+    try:
+        from asianrisk.crosscheck import (
+            quantlib_arithmetic_mc,
+            quantlib_geometric_price,
+            quantlib_turnbull_wakeman,
+        )
+    except ImportError:
+        return {"skipped": "QuantLib is not installed"}
+    rng = np.random.default_rng(77)
+    n = config["n_fixings"]
+    rows = []
+    for index in range(contracts):
+        # A whole number of days between fixings, as QuantLib dates require.
+        maturity = n * int(rng.integers(3, 76)) / 360.0
+        contract = Contract("panel", "X", 100.0, maturity, n)
+        market = Market(
+            float(np.round(100.0 * np.exp(rng.uniform(-0.3, 0.3)), 2)),
+            float(np.round(rng.uniform(0.1, 0.6), 3)), config["rate"],
+        )
+        ours = price_reference(
+            contract, market,
+            SimulationConfig(n_paths=2**log2_ours, control="conditional", seed=(88, index)),
+        )
+        theirs, theirs_se = quantlib_arithmetic_mc(
+            contract, market, 2**log2_theirs, seed=900 + index, variance_reduced=True
+        )
+        geometric, _ = geometric_asian_call(
+            market.spot, 100.0, market.vol, market.rate, maturity, n
+        )
+        moment, _ = moment_matched_call(market.spot, 100.0, market.vol, market.rate, maturity, n)
+        rows.append({
+            "spot": market.spot, "vol": market.vol, "maturity": maturity,
+            "ours": ours.price, "ours_se": ours.price_se, "quantlib": theirs,
+            "quantlib_se": theirs_se, "z": (ours.price - theirs) / float(np.hypot(ours.price_se, theirs_se)),
+            "geometric_gap": abs(float(geometric) - quantlib_geometric_price(contract, market)),
+            "moment_gap": abs(float(moment) - quantlib_turnbull_wakeman(contract, market)),
+        })
+    z = np.array([row["z"] for row in rows])
+    return {
+        "contracts": contracts,
+        "max_abs_z": float(np.max(np.abs(z))),
+        "within_2_se": float(np.mean(np.abs(z) < 2.0)),
+        "rms_z": float(np.sqrt(np.mean(z**2))),
+        "max_geometric_gap": max(row["geometric_gap"] for row in rows),
+        "max_moment_gap": max(row["moment_gap"] for row in rows),
+        "rows": rows,
+    }
+
+
+def reuse_speedup(config, log2_units, requests=64) -> dict:
+    """Time for many spots at one (vol, T), with and without the reuse in fastmc."""
+    engine = _engine(config, log2_units, 41)
+    x = np.linspace(-0.3, 0.3, requests)
+    points = np.column_stack([x, np.full(requests, 0.3), np.full(requests, 1.0)])
+    _, shared_seconds = _timed(lambda: engine.price(points))
+    _, direct_seconds = _timed(lambda: engine.price_without_sorting(points), repeats=1)
+    return {
+        "requests": requests, "log2_units": log2_units,
+        "direct_seconds": direct_seconds, "shared_seconds": shared_seconds,
+        "speedup": direct_seconds / shared_seconds,
+    }
+
+
+def surface_lines(config, log2_units, n_vols=13, n_spots=161, maturity=1.0) -> dict:
+    """Recorded time value curves, one per vol. The demo draws its hairlines from these."""
+    engine = _engine(config, log2_units, 61)
+    x = np.linspace(-0.45, 0.45, n_spots)
+    vols = np.linspace(0.08, 0.70, n_vols)
+    rate, n = config["rate"], config["n_fixings"]
+    average_growth = np.exp(rate * maturity * np.arange(1, n + 1) / n).mean()
+    intrinsic = np.exp(-rate * maturity) * np.maximum(np.exp(x) * average_growth - 1.0, 0.0)
+    lines = []
+    for vol in vols:
+        points = np.column_stack([x, np.full(n_spots, vol), np.full(n_spots, maturity)])
+        lines.append(np.round(engine.price(points)["price"] - intrinsic, 6).tolist())
+    return {"log_moneyness": x.tolist(), "vols": vols.tolist(), "maturity": maturity, "time_value": lines}
+
+
 def evaluate_differential(config, out) -> list[dict]:
     """Sealed error of the price-only and delta-supervised arms at each budget."""
     domain = load_domain(config)
@@ -418,6 +529,13 @@ def run_sealed_evaluation(config, config_path, out, books_dir, run_dir, freeze) 
         (raw / f"{name}.json").write_text(json.dumps(payload, indent=1) + "\n")
         print(f"{time.perf_counter() - started:8.1f}s wrote {name}", flush=True)
 
+    checks = config["engineering_checks"]
+    write("variance_reduction", variance_reduction_panel(config))
+    write("quantlib_panel", quantlib_panel(
+        config, checks["quantlib_contracts"], checks["log2_ours"], checks["log2_quantlib"]
+    ))
+    write("reuse_speedup", reuse_speedup(config, log2_units))
+    write("surface_lines", surface_lines(config, log2_units))
     write("label_noise", label_noise_check(config, out))
     write("upfront", upfront_costs(config, out))
     write("differential", evaluate_differential(config, out))

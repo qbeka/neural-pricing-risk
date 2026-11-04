@@ -196,5 +196,10 @@
     "batch_size": 512,
     "width": 64,
     "depth": 3
+  },
+  "engineering_checks": {
+    "quantlib_contracts": 24,
+    "log2_ours": 20,
+    "log2_quantlib": 19
   }
 }

@@ -43,12 +43,18 @@ def quantlib_geometric_price(contract: Contract, market: Market) -> float:
     return option.NPV()
 
 
-def quantlib_arithmetic_mc(contract: Contract, market: Market, n_paths: int, seed: int):
-    """Plain QuantLib Monte Carlo, returning price and standard error."""
+def quantlib_arithmetic_mc(
+    contract: Contract, market: Market, n_paths: int, seed: int, variance_reduced: bool = False
+):
+    """QuantLib Monte Carlo, returning price and standard error.
+
+    `variance_reduced` turns on QuantLib's own antithetic and geometric control.
+    """
     option, process = _option_and_process(contract, market, ql.Average.Arithmetic)
     option.setPricingEngine(
         ql.MCDiscreteArithmeticAPEngine(
-            process, "pseudorandom", requiredSamples=n_paths, seed=seed
+            process, "pseudorandom", requiredSamples=n_paths, seed=seed,
+            antitheticVariate=variance_reduced, controlVariate=variance_reduced,
         )
     )
     return option.NPV(), option.errorEstimate()
