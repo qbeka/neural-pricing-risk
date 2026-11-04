@@ -9,11 +9,17 @@ A request is accepted only if both hold:
 
 For a bin with n calibration points, the score is the larger of the price and
 delta errors as a fraction of tolerance, and the bin is accepted when the order
-statistic of rank ceil((n + 1) * coverage) is at most 1. For a new point
-exchangeable with that bin's calibration points, this gives at least `coverage`
-probability of being within tolerance. A bin too small to have that rank is
-rejected. The statement is about ordinary traffic. It says nothing about stress
-regions or a book that concentrates in a hard corner of a bin.
+statistic of rank ceil((n + 1) * coverage) is at most 1. A bin too small to have
+that rank is rejected.
+
+What this guarantees, and what it does not. For a new point exchangeable with the
+bin's calibration points, P(bin accepted and point outside tolerance) is at most
+1 - coverage. That is a joint statement. It is not a promise of `coverage` among
+accepted points, because acceptance selects bins whose calibration sample looked
+good: with a true miss rate of 3% in every bin, the accepted bins still miss 3%.
+So the rule is a screen, and accepted-case error must be measured on held-out
+data. Nothing here covers stress regions or a book that concentrates in a hard
+corner of a bin.
 """
 
 from dataclasses import dataclass
@@ -55,6 +61,9 @@ def calibrate_rule(
         np.abs(price - reference_price) / (tolerance.price_bp * BASIS_POINT),
         np.abs(delta - reference_delta) / tolerance.delta,
     )
+    # Unsupported points must not vote for a bin that ordinary traffic will use.
+    supported = domain.supported(points, rate)
+    points, score = points[supported], score[supported]
     cells = np.clip((domain.to_unit(points) * bins).astype(np.int64), 0, bins - 1)
     flat = cells[:, 0] * bins**2 + cells[:, 1] * bins + cells[:, 2]
     accepted = np.zeros(bins**3, dtype=bool)

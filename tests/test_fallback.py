@@ -63,8 +63,20 @@ def test_bad_bins_are_isolated():
     assert accepted[query[:, 1] < 0.5].mean() > 0.9
 
 
-def test_coverage_holds_on_noise_with_bin_level_heterogeneity():
-    """Fresh draws from the same error law land within tolerance at the stated rate."""
+def test_unsupported_calibration_points_cannot_rescue_a_bin():
+    """Regression: out-of-box points were clipped into edge bins and outvoted real misses."""
+    points = _ordinary_points(40000, 5)
+    errors = np.full(len(points), 5e-4)
+    outside = np.tile([[0.9, 0.2, 1.0]], (4000, 1))
+    all_points = np.concatenate([points, outside])
+    all_errors = np.concatenate([errors, np.zeros(len(outside))])
+    zeros = np.zeros(len(all_points))
+    rule = calibrate_rule(DOMAIN, RATE, all_points, all_errors, zeros, zeros, zeros, TOLERANCE)
+    assert not rule.accepted_bins.any()
+
+
+def test_joint_miss_rate_stays_below_one_minus_coverage():
+    """P(accepted and outside tolerance) is what the rule bounds, on noisy errors."""
     rng = np.random.default_rng(3)
     points = _ordinary_points(60000, 3)
     scale = 3e-5 * (1.0 + 2.0 * DOMAIN.to_unit(points)[:, 1])
@@ -75,4 +87,4 @@ def test_coverage_holds_on_noise_with_bin_level_heterogeneity():
     fresh = rng.normal(0.0, 3e-5 * (1.0 + 2.0 * DOMAIN.to_unit(query)[:, 1]))
     accepted = rule.accept(query)
     assert accepted.mean() > 0.05  # low-vol bins pass, high-vol bins do not
-    assert np.mean(np.abs(fresh[accepted]) <= 1e-4) > 0.99
+    assert np.mean(accepted & (np.abs(fresh) > 1e-4)) <= 0.01
