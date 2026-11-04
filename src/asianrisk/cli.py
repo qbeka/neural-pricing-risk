@@ -2,10 +2,15 @@
 
 import argparse
 import json
+from pathlib import Path
 
 from asianrisk.analytic import conditional_lower_bound_call, moment_matched_call
 from asianrisk.contract import Contract, Market
+from asianrisk.domain import load_domain, sample_dataset
+from asianrisk.labels import generate_labels, save_dataset
 from asianrisk.reference import SimulationConfig, price_reference
+
+SEALED = ("test", "stress_near_expiry", "stress_kink")
 
 
 def price(args) -> None:
@@ -29,6 +34,23 @@ def price(args) -> None:
     print(json.dumps(output, indent=2))
 
 
+def labels(args) -> None:
+    """Generate labels for named datasets. Sealed sets need an existing freeze file."""
+    config = json.loads(Path(args.config).read_text())
+    domain = load_domain(config)
+    out = Path(args.out)
+    for name in args.sets:
+        if name in SEALED and not (out / "freeze.json").exists():
+            raise SystemExit(f"{name} is sealed: write {out / 'freeze.json'} first")
+        spec = config["datasets"][name]
+        points = sample_dataset(name, domain, config)
+        values, timing = generate_labels(
+            points, config["rate"], config["n_fixings"], 2 ** spec["log2_units"], spec["seed"]
+        )
+        save_dataset(out / f"{name}.npz", points, values, {"name": name, **spec, **timing})
+        print(json.dumps({"name": name, "n_points": len(points), **timing}))
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(prog="asianrisk", description=__doc__)
     commands = parser.add_subparsers(required=True)
@@ -44,6 +66,12 @@ def main() -> None:
     price_command.add_argument("--seed", type=int, default=1)
     price_command.add_argument("--control", default="conditional")
     price_command.set_defaults(run=price)
+
+    labels_command = commands.add_parser("labels", help="generate labels for named datasets")
+    labels_command.add_argument("--config", default="configs/experiment.json")
+    labels_command.add_argument("--out", default="artifacts/data")
+    labels_command.add_argument("--sets", nargs="+", default=["train", "validation", "calibration"])
+    labels_command.set_defaults(run=labels)
 
     args = parser.parse_args()
     args.run(args)
