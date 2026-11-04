@@ -1,6 +1,7 @@
 """One command line for every step of the project."""
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 
@@ -34,14 +35,25 @@ def price(args) -> None:
     print(json.dumps(output, indent=2))
 
 
+def require_freeze(freeze_path: Path, config_path: Path) -> None:
+    """Refuse sealed work unless a real freeze exists for this exact config."""
+    try:
+        freeze = json.loads(freeze_path.read_text())
+    except (OSError, ValueError) as error:
+        raise SystemExit(f"sealed set refused: no valid freeze at {freeze_path} ({error})")
+    digest = hashlib.sha256(config_path.read_bytes()).hexdigest()
+    if freeze.get("config_sha256") != digest:
+        raise SystemExit(f"sealed set refused: {config_path} does not match the freeze")
+
+
 def labels(args) -> None:
-    """Generate labels for named datasets. Sealed sets need an existing freeze file."""
+    """Generate labels for named datasets. Sealed sets need a matching freeze."""
     config = json.loads(Path(args.config).read_text())
     domain = load_domain(config)
     out = Path(args.out)
     for name in args.sets:
-        if name in SEALED and not (out / "freeze.json").exists():
-            raise SystemExit(f"{name} is sealed: write {out / 'freeze.json'} first")
+        if name in SEALED:
+            require_freeze(Path(args.freeze), Path(args.config))
         spec = config["datasets"][name]
         points = sample_dataset(name, domain, config)
         values, timing = generate_labels(
@@ -70,6 +82,7 @@ def main() -> None:
     labels_command = commands.add_parser("labels", help="generate labels for named datasets")
     labels_command.add_argument("--config", default="configs/experiment.json")
     labels_command.add_argument("--out", default="artifacts/data")
+    labels_command.add_argument("--freeze", default="results/freeze.json")
     labels_command.add_argument("--sets", nargs="+", default=["train", "validation", "calibration"])
     labels_command.set_defaults(run=labels)
 

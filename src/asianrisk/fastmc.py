@@ -17,7 +17,10 @@ because the coefficient is fixed in advance, so it stays unbiased:
     delta = bound delta + exp(-rT) mean[a (1{S a > 1} - 1{S e > 1})]
 
 Paths are divided into independent batches of antithetic pairs, and the standard
-error comes from the spread of the batch estimates.
+error comes from the spread of the batch estimates. Far from the money the
+correction is a rare event, so that standard error can read near zero while the
+true noise is small but not zero (about 0.001 bp of strike in the worst measured
+case). Treat it as an estimate with that known weakness.
 """
 
 from dataclasses import dataclass
@@ -39,9 +42,11 @@ class PathEngine:
     batches: int = 16
 
     def __post_init__(self):
+        if self.n_units % self.batches != 0:
+            raise ValueError("n_units must be a multiple of batches")
         n = self.n_fixings
         rng = np.random.default_rng(self.seed)
-        normals = rng.standard_normal((self.n_units // self.batches * self.batches, n))
+        normals = rng.standard_normal((self.n_units, n))
         walk = np.cumsum(normals, axis=1)
         # z = mean(W_ti) / stdev(mean(W_ti)) depends on the normals only, not on T.
         weights = np.arange(n, 0, -1) / n

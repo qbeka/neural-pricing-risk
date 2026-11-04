@@ -58,6 +58,11 @@ def test_engine_agrees_with_the_reference(index):
         assert abs(result[name][0] - value) < 5 * combined
 
 
+def test_unit_count_must_divide_into_batches():
+    with pytest.raises(ValueError):
+        PathEngine(0.03, 12, n_units=17, seed=1)
+
+
 def test_groups_share_one_average_per_distinct_vol_and_maturity():
     engine = PathEngine(0.03, 12, n_units=2**10, seed=5)
     assert engine.price(POINTS)["distinct_vol_maturity_pairs"] == 4

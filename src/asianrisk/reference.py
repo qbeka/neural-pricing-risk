@@ -37,6 +37,12 @@ class SimulationConfig:
     batch_paths: int = 2**15  # memory bound: about 8 * 2 * n_fixings * batch bytes
     seed: int | tuple[int, ...] = 0
 
+    def __post_init__(self):
+        if self.n_paths < 2:
+            raise ValueError("a standard error needs at least 2 sample units")
+        if self.control not in ("geometric", "conditional", "none"):
+            raise ValueError(f"unknown control {self.control!r}")
+
 
 def fixing_averages(normals, vol, rate, maturity):
     """Arithmetic and geometric fixing averages per unit of spot.

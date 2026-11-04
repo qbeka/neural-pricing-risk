@@ -159,6 +159,13 @@ def test_records_round_trip_and_reject_other_schema_versions():
         Market.from_record(stale)
 
 
+def test_invalid_configs_are_refused():
+    with pytest.raises(ValueError):
+        SimulationConfig(n_paths=1)
+    with pytest.raises(ValueError):
+        SimulationConfig(control="Conditional")
+
+
 def test_shock_applies_relative_moves_to_spot_and_vol():
     shocked = Scenario("s", -0.1, 0.5).apply(MARKET)
     assert shocked == Market(90.0, pytest.approx(0.3), 0.03)

@@ -1,6 +1,9 @@
 """The split is by region, deterministic, and blind to labels."""
 
+import hashlib
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -17,6 +20,29 @@ from asianrisk.labels import generate_labels
 CONFIG = json.loads((Path(__file__).parent.parent / "configs" / "smoke.json").read_text())
 DOMAIN = load_domain(CONFIG)
 RATE = CONFIG["rate"]
+
+
+def _labels_command(tmp_path, freeze, config_path):
+    return subprocess.run(
+        [sys.executable, "-m", "asianrisk", "labels", "--config", str(config_path),
+         "--out", str(tmp_path), "--freeze", str(freeze), "--sets", "test"],
+        capture_output=True, text=True,
+    )
+
+
+def test_sealed_labels_need_a_valid_freeze_for_this_exact_config(tmp_path):
+    config_path = Path(__file__).parent.parent / "configs" / "smoke.json"
+    freeze = tmp_path / "freeze.json"
+    assert _labels_command(tmp_path, freeze, config_path).returncode != 0  # missing
+    freeze.write_text("")
+    assert _labels_command(tmp_path, freeze, config_path).returncode != 0  # empty
+    freeze.write_text(json.dumps({"config_sha256": "0" * 64}))
+    assert _labels_command(tmp_path, freeze, config_path).returncode != 0  # other config
+    assert not (tmp_path / "test.npz").exists()
+    digest = hashlib.sha256(config_path.read_bytes()).hexdigest()
+    freeze.write_text(json.dumps({"config_sha256": digest}))
+    assert _labels_command(tmp_path, freeze, config_path).returncode == 0
+    assert (tmp_path / "test.npz").exists()
 
 
 def test_unit_mapping_round_trips():
