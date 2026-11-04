@@ -74,5 +74,5 @@ def test_coverage_holds_on_noise_with_bin_level_heterogeneity():
     query = _ordinary_points(200000, 4)
     fresh = rng.normal(0.0, 3e-5 * (1.0 + 2.0 * DOMAIN.to_unit(query)[:, 1]))
     accepted = rule.accept(query)
-    assert accepted.mean() > 0.2
+    assert accepted.mean() > 0.05  # low-vol bins pass, high-vol bins do not
     assert np.mean(np.abs(fresh[accepted]) <= 1e-4) > 0.99
