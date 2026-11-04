@@ -19,6 +19,7 @@ from asianrisk.pipeline import (
     write_books,
 )
 from asianrisk.reference import SimulationConfig, price_reference
+from asianrisk.report import write_report
 
 SEALED = ("test", "stress_near_expiry", "stress_kink")
 
@@ -132,6 +133,12 @@ def evaluate(args) -> None:
     )
 
 
+def report(args) -> None:
+    """Rebuild tables, plots and the verdict from a recorded run."""
+    summary = write_report(Path(args.run))
+    print(json.dumps(summary["verdict"], indent=2))
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(prog="asianrisk", description=__doc__)
     commands = parser.add_subparsers(required=True)
@@ -180,6 +187,10 @@ def main() -> None:
     evaluate_command.add_argument("--freeze", default="results/freeze.json")
     evaluate_command.add_argument("--run", default="results/run")
     evaluate_command.set_defaults(handler=evaluate)
+
+    report_command = commands.add_parser("report", help="rebuild a report from a recorded run")
+    report_command.add_argument("--run", default="results/run")
+    report_command.set_defaults(handler=report)
 
     args = parser.parse_args()
     args.handler(args)
