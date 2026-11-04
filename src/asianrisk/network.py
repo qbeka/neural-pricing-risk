@@ -36,23 +36,31 @@ class TrainConfig:
 
 
 class PriceNet(nn.Module):
-    def __init__(self, width: int, depth: int):
+    """Inputs are centered to [-1, 1] and the output is scaled to the target's spread.
+
+    Without the output scale, targets of thousands of basis points leave the
+    last layer far from its starting scale and training stalls near 50 bp.
+    """
+
+    def __init__(self, width: int, depth: int, output_scale: float = 1.0):
         super().__init__()
         sizes = [3] + [width] * depth
         self.hidden = nn.ModuleList(nn.Linear(a, b) for a, b in zip(sizes[:-1], sizes[1:]))
         self.output = nn.Linear(width, 1)
+        self.register_buffer("output_scale", torch.tensor(output_scale, dtype=torch.float64))
 
     def forward(self, unit_inputs):
         """Return y and dy/du_0 together."""
-        value = unit_inputs
+        value = 2.0 * unit_inputs - 1.0
         slope = torch.zeros_like(unit_inputs)
-        slope[:, 0] = 1.0
+        slope[:, 0] = 2.0
         for layer in self.hidden:
             activation = layer(value)
             # d softplus(a) / da = sigmoid(a). A tangent passes through weights only.
             slope = torch.sigmoid(activation) * (slope @ layer.weight.T)
             value = nn.functional.softplus(activation)
-        return self.output(value)[:, 0], (slope @ self.output.weight.T)[:, 0]
+        scale = self.output_scale
+        return scale * self.output(value)[:, 0], scale * (slope @ self.output.weight.T)[:, 0]
 
 
 @dataclass
@@ -84,8 +92,9 @@ def train_surface(domain, points, price, delta, config: TrainConfig, base=None):
     """Fit one network. Returns the surface and a training record."""
     torch.manual_seed(config.seed)
     started = time.perf_counter()
-    net = PriceNet(config.width, config.depth).to(torch.float64)
     base_price, base_delta = base(points) if base is not None else (0.0, 0.0)
+    output_scale = float(np.std(price - base_price)) / PRICE_SCALE
+    net = PriceNet(config.width, config.depth, output_scale).to(torch.float64)
 
     unit = torch.as_tensor(domain.to_unit(points), dtype=torch.float64)
     price_target = torch.as_tensor((price - base_price) / PRICE_SCALE, dtype=torch.float64)

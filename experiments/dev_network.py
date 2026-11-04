@@ -31,17 +31,20 @@ def main():
     torch.set_num_threads(6)
     train = load_dataset(Path("artifacts/data/train.npz"))
     validation = load_dataset(Path("artifacts/data/validation.npz"))
+    all_points = len(train["points"])
     trials = [
-        ("price_only", None, TrainConfig(delta_weight=0.0, epochs=200)),
-        ("diff", None, TrainConfig(delta_weight=1.0, epochs=200)),
-        ("diff_w128", None, TrainConfig(width=128, depth=3, delta_weight=1.0, epochs=200)),
-        ("diff_d5", None, TrainConfig(width=64, depth=5, delta_weight=1.0, epochs=200)),
-        ("residual_diff", lower_bound, TrainConfig(delta_weight=1.0, epochs=200)),
+        ("price_only", None, all_points, TrainConfig(delta_weight=0.0, epochs=200)),
+        ("diff", None, all_points, TrainConfig(delta_weight=1.0, epochs=200)),
+        ("diff_e600", None, all_points, TrainConfig(delta_weight=1.0, epochs=600)),
+        ("residual_30k", lower_bound, 30000, TrainConfig(epochs=800, batch_size=1024)),
+        ("residual_6k", lower_bound, 6000, TrainConfig(epochs=2000, batch_size=512)),
+        ("residual_1500", lower_bound, 1500, TrainConfig(epochs=4000, batch_size=256)),
     ]
     rows = []
-    for name, base, config in trials:
+    for name, base, size, config in trials:
         surface, record = train_surface(
-            DOMAIN, train["points"], train["price"], train["delta"], config, base
+            DOMAIN, train["points"][:size], train["price"][:size], train["delta"][:size],
+            config, base,
         )
         price, delta = surface(validation["points"])
         summary = error_summary(price, delta, validation["price"], validation["delta"])
