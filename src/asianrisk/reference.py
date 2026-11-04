@@ -35,7 +35,7 @@ class SimulationConfig:
     control: str = "geometric"  # "geometric", "conditional" or "none"
     pilot_paths: int = 2**12  # independent pilot sample for the coefficient
     batch_paths: int = 2**15  # memory bound: about 8 * 2 * n_fixings * batch bytes
-    seed: int = 0
+    seed: int | tuple[int, ...] = 0
 
 
 def fixing_averages(normals, vol, rate, maturity):
