@@ -7,6 +7,7 @@ from pathlib import Path
 
 from asianrisk.analytic import conditional_lower_bound_call, moment_matched_call
 from asianrisk.contract import Contract, Market
+from asianrisk.demo import write_demo
 from asianrisk.domain import load_domain, sample_dataset
 from asianrisk.labels import generate_labels, save_dataset
 from asianrisk.evaluate import git_commit, run_sealed_evaluation, sha256
@@ -139,6 +140,12 @@ def report(args) -> None:
     print(json.dumps(summary["verdict"], indent=2))
 
 
+def demo(args) -> None:
+    """Generate the offline demo page from a recorded run."""
+    write_demo(Path(args.run), Path(args.target))
+    print(f"wrote {args.target}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(prog="asianrisk", description=__doc__)
     commands = parser.add_subparsers(required=True)
@@ -191,6 +198,11 @@ def main() -> None:
     report_command = commands.add_parser("report", help="rebuild a report from a recorded run")
     report_command.add_argument("--run", default="results/run")
     report_command.set_defaults(handler=report)
+
+    demo_command = commands.add_parser("demo", help="generate the offline demo page")
+    demo_command.add_argument("--run", default="results/run")
+    demo_command.add_argument("--target", default="site/index.html")
+    demo_command.set_defaults(handler=demo)
 
     args = parser.parse_args()
     args.handler(args)

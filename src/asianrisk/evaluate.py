@@ -244,6 +244,7 @@ def benchmark_book(config, out, books_dir, book_name, log2_units, seeds) -> dict
         "book_sha256": sha256(book_path),
         "requests": len(points),
         "contracts": len(book.contracts),
+        "gross_notional": float(np.sum(np.abs([c.quantity * c.strike for c in book.contracts]))),
         "scenarios": n_scenarios,
         "distinct_vol_maturity_pairs": len(np.unique(points[:, 1:], axis=0)),
         "reference": {

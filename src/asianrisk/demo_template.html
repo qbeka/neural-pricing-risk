@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Asian Book Repricing</title>
+<style>
+:root {
+  color-scheme: light;
+  --surface: #fcfcfb; --panel: #f3f2ef; --line: #dfded9;
+  --text: #0b0b0b; --muted: #52514e;
+  --accent: #2a78d6; --accent-ink: #ffffff; --sim: #eb6834;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --surface: #1a1a19; --panel: #242423; --line: #3a3a38;
+    --text: #f0efec; --muted: #c3c2b7;
+    --accent: #3987e5; --accent-ink: #ffffff; --sim: #d95926;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --surface: #1a1a19; --panel: #242423; --line: #3a3a38;
+  --text: #f0efec; --muted: #c3c2b7;
+  --accent: #3987e5; --accent-ink: #ffffff; --sim: #d95926;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface); color: var(--text);
+  font: 16px/1.5 ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif; }
+main { max-width: 880px; margin: 0 auto; padding: 40px 16px 64px; }
+h1 { font-size: 28px; line-height: 1.2; margin: 0 0 8px; }
+h2 { font-size: 18px; margin: 36px 0 8px; }
+p { margin: 0 0 12px; }
+.lede, .note { color: var(--muted); }
+.note { font-size: 14px; }
+.controls { display: flex; flex-wrap: wrap; gap: 16px; align-items: end; margin: 16px 0; }
+label { font-size: 14px; color: var(--muted); display: block; margin-bottom: 4px; }
+select { font: inherit; color: var(--text); background: var(--panel); border: 1px solid var(--line);
+  border-radius: 6px; padding: 8px 10px; max-width: 100%; }
+.matrix { display: grid; grid-template-columns: 64px repeat(6, minmax(0, 1fr)); gap: 4px; }
+.matrix span { font-size: 13px; color: var(--muted); display: flex; align-items: center; justify-content: center; }
+.matrix button { font: inherit; font-size: 13px; padding: 10px 0; color: var(--text); background: var(--panel);
+  border: 1px solid var(--line); border-radius: 6px; cursor: pointer; font-variant-numeric: tabular-nums; }
+.matrix button:hover { border-color: var(--accent); }
+.matrix button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.matrix button:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
+.tile { background: var(--panel); border-radius: 8px; padding: 14px 16px; min-width: 0; }
+.tile h3 { font-size: 13px; font-weight: 500; color: var(--muted); margin: 0 0 4px; }
+.tile .value { font-size: 24px; line-height: 1.25; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.tile .sub { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.routes { display: flex; gap: 2px; height: 10px; margin-top: 10px; }
+.routes div { border-radius: 4px; min-width: 2px; }
+.routes .fast { background: var(--accent); }
+.routes .sim { background: var(--sim); }
+.key { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 4px; }
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; font-variant-numeric: tabular-nums; }
+th, td { text-align: right; padding: 7px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+th { color: var(--muted); font-weight: 500; }
+tr.selected td { background: var(--panel); }
+ul { padding-left: 20px; margin: 0 0 12px; }
+li { margin-bottom: 4px; }
+code { font-size: 14px; }
+@media (max-width: 620px) {
+  .tiles { grid-template-columns: 1fr; }
+  .matrix { grid-template-columns: 44px repeat(6, minmax(0, 1fr)); }
+  .matrix button { font-size: 11px; padding: 8px 0; }
+}
+</style>
+</head>
+<body>
+<main>
+  <h1>Repricing a book of Asian calls</h1>
+  <p class="lede">Choose a shock and a pricing route. Every number on this page was recorded by one benchmark run, and nothing is computed live.</p>
+  <p class="lede" id="verdict"></p>
+
+  <h2>Shock scenario</h2>
+  <p class="note">Rows are spot shifts, columns are vol shifts. Each cell is one saved scenario applied to the same book.</p>
+  <div class="matrix" id="matrix"></div>
+  <div class="controls">
+    <div>
+      <label for="route">Pricing route</label>
+      <select id="route"></select>
+    </div>
+  </div>
+
+  <div class="tiles">
+    <div class="tile"><h3>Portfolio value</h3><div class="value" id="value"></div><div class="sub" id="valueSub"></div></div>
+    <div class="tile"><h3>Error against reference</h3><div class="value" id="error"></div><div class="sub" id="errorSub"></div></div>
+    <div class="tile"><h3>Routes for this scenario</h3><div class="value" id="counts"></div>
+      <div class="routes" id="routes" aria-hidden="true"></div>
+      <div class="sub"><span class="key" style="background:var(--accent)"></span>fast <span class="key" style="background:var(--sim);margin-left:8px"></span>simulation</div>
+    </div>
+  </div>
+
+  <h2>All routes in this scenario</h2>
+  <div class="table-wrap"><table id="table"></table></div>
+
+  <h2>Whole-book benchmark</h2>
+  <p class="note" id="benchNote"></p>
+  <div class="table-wrap"><table id="bench"></table></div>
+
+  <h2>What this claims, and what it does not</h2>
+  <ul id="assumptions"></ul>
+  <p class="note" id="provenance"></p>
+</main>
+<script>
+const DATA = __DATA__;
+const money = new Intl.NumberFormat("en-US", {maximumFractionDigits: 0});
+const state = {scenario: DATA.scenarios.find(s => s.spot_shift === 0 && s.vol_shift === 0).scenario_id,
+               route: DATA.routes[0]};
+const percent = v => (v > 0 ? "+" : "") + Math.round(v * 100) + "%";
+
+function buildMatrix() {
+  const root = document.getElementById("matrix");
+  const spots = [...new Set(DATA.scenarios.map(s => s.spot_shift))];
+  const vols = [...new Set(DATA.scenarios.map(s => s.vol_shift))];
+  root.append(document.createElement("span"));
+  for (const vol of vols) {
+    const head = document.createElement("span");
+    head.textContent = "vol " + percent(vol);
+    root.append(head);
+  }
+  for (const spot of spots) {
+    const head = document.createElement("span");
+    head.textContent = percent(spot);
+    root.append(head);
+    for (const vol of vols) {
+      const scenario = DATA.scenarios.find(s => s.spot_shift === spot && s.vol_shift === vol);
+      const button = document.createElement("button");
+      button.textContent = percent(spot).replace("%", "") + " / " + percent(vol).replace("%", "");
+      button.dataset.id = scenario.scenario_id;
+      button.setAttribute("aria-label", "Spot " + percent(spot) + ", vol " + percent(vol));
+      button.addEventListener("click", () => { state.scenario = scenario.scenario_id; render(); });
+      root.append(button);
+    }
+  }
+}
+
+function buildRoutes() {
+  const select = document.getElementById("route");
+  for (const route of DATA.routes) {
+    const option = document.createElement("option");
+    option.value = route;
+    option.textContent = route + " + fallback";
+    select.append(option);
+  }
+  select.addEventListener("change", () => { state.route = select.value; render(); });
+}
+
+function render() {
+  const scenario = DATA.scenarios.find(s => s.scenario_id === state.scenario);
+  const row = scenario.routes[state.route];
+  document.querySelectorAll("#matrix button").forEach(button =>
+    button.setAttribute("aria-pressed", button.dataset.id === state.scenario));
+  const error = row.value - scenario.reference_value;
+  document.getElementById("value").textContent = money.format(row.value);
+  document.getElementById("valueSub").textContent = "currency, " + DATA.contracts + " contracts";
+  document.getElementById("error").textContent = (error >= 0 ? "+" : "") + money.format(error);
+  document.getElementById("errorSub").textContent = (Math.abs(error) / DATA.gross * 1e4).toFixed(3) +
+    " bp of gross notional. Reference " + money.format(scenario.reference_value) +
+    " +/- " + money.format(scenario.reference_se);
+  document.getElementById("counts").textContent = row.accepted + " fast, " + row.rejected + " simulated";
+  const routes = document.getElementById("routes");
+  routes.innerHTML = "";
+  for (const [name, count] of [["fast", row.accepted], ["sim", row.rejected]]) {
+    if (!count) continue;
+    const bar = document.createElement("div");
+    bar.className = name;
+    bar.style.flex = count + " 0 0";
+    routes.append(bar);
+  }
+  const rows = DATA.routes.map(name => {
+    const entry = scenario.routes[name];
+    const gap = entry.value - scenario.reference_value;
+    return `<tr class="${name === state.route ? "selected" : ""}"><td>${name} + fallback</td>` +
+      `<td>${money.format(entry.value)}</td><td>${(gap >= 0 ? "+" : "") + money.format(gap)}</td>` +
+      `<td>${entry.accepted}</td><td>${entry.rejected}</td></tr>`;
+  }).join("");
+  document.getElementById("table").innerHTML =
+    "<thead><tr><th>Route</th><th>Value</th><th>Error</th><th>Fast</th><th>Simulated</th></tr></thead><tbody>" + rows + "</tbody>";
+}
+
+function buildStatic() {
+  document.getElementById("verdict").textContent = DATA.verdict;
+  document.getElementById("benchNote").textContent = DATA.bench_note;
+  document.getElementById("bench").innerHTML =
+    "<thead><tr><th>Route</th><th>Wall time</th><th>p99 price (bp of K)</th><th>p99 delta</th><th>Passes gate</th><th>Simulated</th></tr></thead><tbody>" +
+    DATA.bench.map(r => `<tr><td>${r.route}</td><td>${r.seconds}</td><td>${r.price}</td><td>${r.delta}</td><td>${r.passes}</td><td>${r.fallback}</td></tr>`).join("") +
+    "</tbody>";
+  const list = document.getElementById("assumptions");
+  for (const text of DATA.assumptions) {
+    const item = document.createElement("li");
+    item.textContent = text;
+    list.append(item);
+  }
+  document.getElementById("provenance").textContent = DATA.provenance;
+}
+
+buildMatrix();
+buildRoutes();
+buildStatic();
+render();
+</script>
+</body>
+</html>
