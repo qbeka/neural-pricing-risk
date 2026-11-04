@@ -1,0 +1,4557 @@
+{
+ "schema_version": 1,
+ "book_id": "bespoke",
+ "rate": 0.03,
+ "markets": {
+  "U1": {
+   "schema_version": 1,
+   "spot": 41.28,
+   "vol": 0.266,
+   "rate": 0.03
+  },
+  "U2": {
+   "schema_version": 1,
+   "spot": 53.2,
+   "vol": 0.299,
+   "rate": 0.03
+  },
+  "U3": {
+   "schema_version": 1,
+   "spot": 111.8,
+   "vol": 0.362,
+   "rate": 0.03
+  },
+  "U4": {
+   "schema_version": 1,
+   "spot": 87.65,
+   "vol": 0.336,
+   "rate": 0.03
+  },
+  "U5": {
+   "schema_version": 1,
+   "spot": 129.74,
+   "vol": 0.177,
+   "rate": 0.03
+  },
+  "U6": {
+   "schema_version": 1,
+   "spot": 41.43,
+   "vol": 0.265,
+   "rate": 0.03
+  },
+  "U7": {
+   "schema_version": 1,
+   "spot": 183.51,
+   "vol": 0.159,
+   "rate": 0.03
+  },
+  "U8": {
+   "schema_version": 1,
+   "spot": 193.84,
+   "vol": 0.374,
+   "rate": 0.03
+  }
+ },
+ "contracts": [
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0000",
+   "underlying": "U3",
+   "strike": 128.75,
+   "maturity": 1.8333333333333333,
+   "n_fixings": 12,
+   "quantity": 22.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0001",
+   "underlying": "U7",
+   "strike": 152.89,
+   "maturity": 1.8138888888888889,
+   "n_fixings": 12,
+   "quantity": -58.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0002",
+   "underlying": "U7",
+   "strike": 148.8,
+   "maturity": 0.3277777777777778,
+   "n_fixings": 12,
+   "quantity": 32.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0003",
+   "underlying": "U7",
+   "strike": 215.98,
+   "maturity": 0.95,
+   "n_fixings": 12,
+   "quantity": 84.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0004",
+   "underlying": "U7",
+   "strike": 208.97,
+   "maturity": 2.313888888888889,
+   "n_fixings": 12,
+   "quantity": 80.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0005",
+   "underlying": "U1",
+   "strike": 37.36,
+   "maturity": 0.5277777777777778,
+   "n_fixings": 12,
+   "quantity": -31.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0006",
+   "underlying": "U3",
+   "strike": 136.74,
+   "maturity": 2.4805555555555556,
+   "n_fixings": 12,
+   "quantity": -21.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0007",
+   "underlying": "U1",
+   "strike": 39.11,
+   "maturity": 1.6333333333333333,
+   "n_fixings": 12,
+   "quantity": -12.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0008",
+   "underlying": "U5",
+   "strike": 141.63,
+   "maturity": 0.32222222222222224,
+   "n_fixings": 12,
+   "quantity": -88.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0009",
+   "underlying": "U6",
+   "strike": 44.48,
+   "maturity": 1.8666666666666667,
+   "n_fixings": 12,
+   "quantity": 19.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0010",
+   "underlying": "U1",
+   "strike": 37.89,
+   "maturity": 2.436111111111111,
+   "n_fixings": 12,
+   "quantity": -93.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0011",
+   "underlying": "U3",
+   "strike": 93.94,
+   "maturity": 1.761111111111111,
+   "n_fixings": 12,
+   "quantity": -78.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0012",
+   "underlying": "U4",
+   "strike": 96.47,
+   "maturity": 1.475,
+   "n_fixings": 12,
+   "quantity": 24.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0013",
+   "underlying": "U6",
+   "strike": 37.45,
+   "maturity": 0.5777777777777777,
+   "n_fixings": 12,
+   "quantity": 47.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0014",
+   "underlying": "U3",
+   "strike": 129.88,
+   "maturity": 1.8611111111111112,
+   "n_fixings": 12,
+   "quantity": -75.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0015",
+   "underlying": "U3",
+   "strike": 104.83,
+   "maturity": 2.2305555555555556,
+   "n_fixings": 12,
+   "quantity": -16.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0016",
+   "underlying": "U3",
+   "strike": 108.44,
+   "maturity": 2.15,
+   "n_fixings": 12,
+   "quantity": -99.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0017",
+   "underlying": "U7",
+   "strike": 182.24,
+   "maturity": 2.061111111111111,
+   "n_fixings": 12,
+   "quantity": 79.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0018",
+   "underlying": "U3",
+   "strike": 138.23,
+   "maturity": 0.8472222222222222,
+   "n_fixings": 12,
+   "quantity": -27.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0019",
+   "underlying": "U7",
+   "strike": 183.94,
+   "maturity": 1.7138888888888888,
+   "n_fixings": 12,
+   "quantity": 31.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0020",
+   "underlying": "U8",
+   "strike": 179.36,
+   "maturity": 1.5083333333333333,
+   "n_fixings": 12,
+   "quantity": -64.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0021",
+   "underlying": "U5",
+   "strike": 119.68,
+   "maturity": 0.7083333333333334,
+   "n_fixings": 12,
+   "quantity": 6.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0022",
+   "underlying": "U5",
+   "strike": 124.3,
+   "maturity": 0.1111111111111111,
+   "n_fixings": 12,
+   "quantity": -34.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0023",
+   "underlying": "U8",
+   "strike": 226.76,
+   "maturity": 2.4027777777777777,
+   "n_fixings": 12,
+   "quantity": 19.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0024",
+   "underlying": "U8",
+   "strike": 189.7,
+   "maturity": 0.95,
+   "n_fixings": 12,
+   "quantity": 90.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0025",
+   "underlying": "U1",
+   "strike": 46.04,
+   "maturity": 2.011111111111111,
+   "n_fixings": 12,
+   "quantity": 14.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0026",
+   "underlying": "U6",
+   "strike": 38.41,
+   "maturity": 1.8111111111111111,
+   "n_fixings": 12,
+   "quantity": 26.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0027",
+   "underlying": "U3",
+   "strike": 103.21,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -7.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0028",
+   "underlying": "U3",
+   "strike": 126.96,
+   "maturity": 0.44166666666666665,
+   "n_fixings": 12,
+   "quantity": -98.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0029",
+   "underlying": "U6",
+   "strike": 39.87,
+   "maturity": 0.6083333333333333,
+   "n_fixings": 12,
+   "quantity": -72.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0030",
+   "underlying": "U1",
+   "strike": 46.67,
+   "maturity": 1.3833333333333333,
+   "n_fixings": 12,
+   "quantity": 43.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0031",
+   "underlying": "U2",
+   "strike": 65.55,
+   "maturity": 0.1361111111111111,
+   "n_fixings": 12,
+   "quantity": 53.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0032",
+   "underlying": "U4",
+   "strike": 87.01,
+   "maturity": 0.35555555555555557,
+   "n_fixings": 12,
+   "quantity": -21.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0033",
+   "underlying": "U4",
+   "strike": 76.99,
+   "maturity": 2.0305555555555554,
+   "n_fixings": 12,
+   "quantity": -68.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0034",
+   "underlying": "U2",
+   "strike": 57.79,
+   "maturity": 0.5777777777777777,
+   "n_fixings": 12,
+   "quantity": 51.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0035",
+   "underlying": "U4",
+   "strike": 71.72,
+   "maturity": 0.55,
+   "n_fixings": 12,
+   "quantity": 60.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0036",
+   "underlying": "U6",
+   "strike": 48.93,
+   "maturity": 2.3555555555555556,
+   "n_fixings": 12,
+   "quantity": -59.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0037",
+   "underlying": "U7",
+   "strike": 213.74,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": -53.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0038",
+   "underlying": "U3",
+   "strike": 93.33,
+   "maturity": 2.4055555555555554,
+   "n_fixings": 12,
+   "quantity": -92.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0039",
+   "underlying": "U8",
+   "strike": 228.29,
+   "maturity": 1.5666666666666667,
+   "n_fixings": 12,
+   "quantity": 66.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0040",
+   "underlying": "U4",
+   "strike": 79.21,
+   "maturity": 0.15,
+   "n_fixings": 12,
+   "quantity": -67.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0041",
+   "underlying": "U1",
+   "strike": 33.32,
+   "maturity": 0.23333333333333334,
+   "n_fixings": 12,
+   "quantity": -75.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0042",
+   "underlying": "U2",
+   "strike": 50.72,
+   "maturity": 0.3888888888888889,
+   "n_fixings": 12,
+   "quantity": -5.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0043",
+   "underlying": "U4",
+   "strike": 71.36,
+   "maturity": 0.8944444444444445,
+   "n_fixings": 12,
+   "quantity": 69.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0044",
+   "underlying": "U6",
+   "strike": 40.37,
+   "maturity": 0.6638888888888889,
+   "n_fixings": 12,
+   "quantity": 83.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0045",
+   "underlying": "U3",
+   "strike": 127.56,
+   "maturity": 2.475,
+   "n_fixings": 12,
+   "quantity": 75.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0046",
+   "underlying": "U5",
+   "strike": 123.51,
+   "maturity": 1.0777777777777777,
+   "n_fixings": 12,
+   "quantity": -50.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0047",
+   "underlying": "U1",
+   "strike": 49.62,
+   "maturity": 0.6638888888888889,
+   "n_fixings": 12,
+   "quantity": 45.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0048",
+   "underlying": "U2",
+   "strike": 46.77,
+   "maturity": 1.1944444444444444,
+   "n_fixings": 12,
+   "quantity": 74.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0049",
+   "underlying": "U7",
+   "strike": 197.1,
+   "maturity": 2.0083333333333333,
+   "n_fixings": 12,
+   "quantity": -43.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0050",
+   "underlying": "U7",
+   "strike": 190.4,
+   "maturity": 2.275,
+   "n_fixings": 12,
+   "quantity": 48.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0051",
+   "underlying": "U1",
+   "strike": 43.21,
+   "maturity": 1.2777777777777777,
+   "n_fixings": 12,
+   "quantity": 31.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0052",
+   "underlying": "U4",
+   "strike": 98.13,
+   "maturity": 1.9333333333333333,
+   "n_fixings": 12,
+   "quantity": -5.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0053",
+   "underlying": "U6",
+   "strike": 42.54,
+   "maturity": 1.1777777777777778,
+   "n_fixings": 12,
+   "quantity": -64.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0054",
+   "underlying": "U2",
+   "strike": 46.14,
+   "maturity": 1.1694444444444445,
+   "n_fixings": 12,
+   "quantity": 95.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0055",
+   "underlying": "U2",
+   "strike": 53.9,
+   "maturity": 1.6055555555555556,
+   "n_fixings": 12,
+   "quantity": -76.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0056",
+   "underlying": "U5",
+   "strike": 110.57,
+   "maturity": 0.4,
+   "n_fixings": 12,
+   "quantity": -4.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0057",
+   "underlying": "U5",
+   "strike": 142.45,
+   "maturity": 1.7694444444444444,
+   "n_fixings": 12,
+   "quantity": 35.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0058",
+   "underlying": "U5",
+   "strike": 110.07,
+   "maturity": 2.261111111111111,
+   "n_fixings": 12,
+   "quantity": -98.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0059",
+   "underlying": "U5",
+   "strike": 120.3,
+   "maturity": 0.43333333333333335,
+   "n_fixings": 12,
+   "quantity": 53.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0060",
+   "underlying": "U7",
+   "strike": 191.89,
+   "maturity": 0.4722222222222222,
+   "n_fixings": 12,
+   "quantity": 60.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0061",
+   "underlying": "U3",
+   "strike": 98.58,
+   "maturity": 0.39166666666666666,
+   "n_fixings": 12,
+   "quantity": -58.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0062",
+   "underlying": "U5",
+   "strike": 152.22,
+   "maturity": 1.5583333333333333,
+   "n_fixings": 12,
+   "quantity": 99.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0063",
+   "underlying": "U1",
+   "strike": 45.11,
+   "maturity": 0.7388888888888889,
+   "n_fixings": 12,
+   "quantity": 6.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0064",
+   "underlying": "U6",
+   "strike": 43.07,
+   "maturity": 1.7916666666666667,
+   "n_fixings": 12,
+   "quantity": 82.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0065",
+   "underlying": "U1",
+   "strike": 37.95,
+   "maturity": 0.275,
+   "n_fixings": 12,
+   "quantity": 69.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0066",
+   "underlying": "U8",
+   "strike": 170.39,
+   "maturity": 0.2611111111111111,
+   "n_fixings": 12,
+   "quantity": 80.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0067",
+   "underlying": "U3",
+   "strike": 96.34,
+   "maturity": 0.9222222222222223,
+   "n_fixings": 12,
+   "quantity": 91.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0068",
+   "underlying": "U3",
+   "strike": 97.54,
+   "maturity": 1.6305555555555555,
+   "n_fixings": 12,
+   "quantity": -64.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0069",
+   "underlying": "U4",
+   "strike": 104.28,
+   "maturity": 1.5305555555555554,
+   "n_fixings": 12,
+   "quantity": -52.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0070",
+   "underlying": "U1",
+   "strike": 38.88,
+   "maturity": 0.17222222222222222,
+   "n_fixings": 12,
+   "quantity": -5.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0071",
+   "underlying": "U5",
+   "strike": 105.14,
+   "maturity": 2.3583333333333334,
+   "n_fixings": 12,
+   "quantity": 37.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0072",
+   "underlying": "U3",
+   "strike": 118.63,
+   "maturity": 0.5722222222222222,
+   "n_fixings": 12,
+   "quantity": 8.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0073",
+   "underlying": "U4",
+   "strike": 84.39,
+   "maturity": 1.6472222222222221,
+   "n_fixings": 12,
+   "quantity": -99.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0074",
+   "underlying": "U7",
+   "strike": 214.66,
+   "maturity": 1.3805555555555555,
+   "n_fixings": 12,
+   "quantity": -78.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0075",
+   "underlying": "U4",
+   "strike": 73.92,
+   "maturity": 1.4166666666666667,
+   "n_fixings": 12,
+   "quantity": 58.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0076",
+   "underlying": "U4",
+   "strike": 109.14,
+   "maturity": 0.4861111111111111,
+   "n_fixings": 12,
+   "quantity": 42.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0077",
+   "underlying": "U8",
+   "strike": 223.95,
+   "maturity": 1.2416666666666667,
+   "n_fixings": 12,
+   "quantity": -61.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0078",
+   "underlying": "U7",
+   "strike": 193.45,
+   "maturity": 0.3388888888888889,
+   "n_fixings": 12,
+   "quantity": 62.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0079",
+   "underlying": "U4",
+   "strike": 74.85,
+   "maturity": 1.8222222222222222,
+   "n_fixings": 12,
+   "quantity": -11.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0080",
+   "underlying": "U8",
+   "strike": 226.72,
+   "maturity": 2.0944444444444446,
+   "n_fixings": 12,
+   "quantity": -12.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0081",
+   "underlying": "U7",
+   "strike": 151.15,
+   "maturity": 0.28055555555555556,
+   "n_fixings": 12,
+   "quantity": 76.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0082",
+   "underlying": "U5",
+   "strike": 122.08,
+   "maturity": 1.175,
+   "n_fixings": 12,
+   "quantity": 9.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0083",
+   "underlying": "U8",
+   "strike": 231.79,
+   "maturity": 1.5083333333333333,
+   "n_fixings": 12,
+   "quantity": 17.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0084",
+   "underlying": "U6",
+   "strike": 37.58,
+   "maturity": 2.436111111111111,
+   "n_fixings": 12,
+   "quantity": 62.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0085",
+   "underlying": "U6",
+   "strike": 44.63,
+   "maturity": 1.5444444444444445,
+   "n_fixings": 12,
+   "quantity": -80.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0086",
+   "underlying": "U2",
+   "strike": 42.94,
+   "maturity": 2.1694444444444443,
+   "n_fixings": 12,
+   "quantity": -48.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0087",
+   "underlying": "U3",
+   "strike": 116.06,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": -50.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0088",
+   "underlying": "U7",
+   "strike": 176.18,
+   "maturity": 0.8666666666666667,
+   "n_fixings": 12,
+   "quantity": -13.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0089",
+   "underlying": "U2",
+   "strike": 53.43,
+   "maturity": 1.6472222222222221,
+   "n_fixings": 12,
+   "quantity": 48.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0090",
+   "underlying": "U7",
+   "strike": 180.64,
+   "maturity": 0.22777777777777777,
+   "n_fixings": 12,
+   "quantity": 61.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0091",
+   "underlying": "U1",
+   "strike": 46.03,
+   "maturity": 1.2027777777777777,
+   "n_fixings": 12,
+   "quantity": 39.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0092",
+   "underlying": "U1",
+   "strike": 47.83,
+   "maturity": 2.436111111111111,
+   "n_fixings": 12,
+   "quantity": 72.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0093",
+   "underlying": "U4",
+   "strike": 105.35,
+   "maturity": 2.4166666666666665,
+   "n_fixings": 12,
+   "quantity": 39.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0094",
+   "underlying": "U5",
+   "strike": 143.29,
+   "maturity": 2.0722222222222224,
+   "n_fixings": 12,
+   "quantity": 8.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0095",
+   "underlying": "U8",
+   "strike": 166.94,
+   "maturity": 1.4944444444444445,
+   "n_fixings": 12,
+   "quantity": 25.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0096",
+   "underlying": "U1",
+   "strike": 37.01,
+   "maturity": 0.8277777777777777,
+   "n_fixings": 12,
+   "quantity": 19.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0097",
+   "underlying": "U2",
+   "strike": 58.87,
+   "maturity": 0.7583333333333333,
+   "n_fixings": 12,
+   "quantity": -22.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0098",
+   "underlying": "U2",
+   "strike": 50.91,
+   "maturity": 0.6694444444444444,
+   "n_fixings": 12,
+   "quantity": 56.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0099",
+   "underlying": "U8",
+   "strike": 179.5,
+   "maturity": 2.3583333333333334,
+   "n_fixings": 12,
+   "quantity": 17.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0100",
+   "underlying": "U5",
+   "strike": 131.21,
+   "maturity": 2.1694444444444443,
+   "n_fixings": 12,
+   "quantity": 44.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0101",
+   "underlying": "U7",
+   "strike": 192.0,
+   "maturity": 1.1277777777777778,
+   "n_fixings": 12,
+   "quantity": -50.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0102",
+   "underlying": "U4",
+   "strike": 80.52,
+   "maturity": 1.6722222222222223,
+   "n_fixings": 12,
+   "quantity": 8.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0103",
+   "underlying": "U2",
+   "strike": 46.13,
+   "maturity": 2.1444444444444444,
+   "n_fixings": 12,
+   "quantity": 91.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0104",
+   "underlying": "U4",
+   "strike": 92.79,
+   "maturity": 2.063888888888889,
+   "n_fixings": 12,
+   "quantity": 26.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0105",
+   "underlying": "U6",
+   "strike": 42.47,
+   "maturity": 2.2694444444444444,
+   "n_fixings": 12,
+   "quantity": 69.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0106",
+   "underlying": "U7",
+   "strike": 214.96,
+   "maturity": 2.088888888888889,
+   "n_fixings": 12,
+   "quantity": -44.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0107",
+   "underlying": "U2",
+   "strike": 54.88,
+   "maturity": 2.1277777777777778,
+   "n_fixings": 12,
+   "quantity": 12.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0108",
+   "underlying": "U8",
+   "strike": 178.95,
+   "maturity": 1.9388888888888889,
+   "n_fixings": 12,
+   "quantity": 26.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0109",
+   "underlying": "U2",
+   "strike": 63.02,
+   "maturity": 1.0194444444444444,
+   "n_fixings": 12,
+   "quantity": -18.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0110",
+   "underlying": "U6",
+   "strike": 41.58,
+   "maturity": 0.33611111111111114,
+   "n_fixings": 12,
+   "quantity": 11.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0111",
+   "underlying": "U5",
+   "strike": 156.55,
+   "maturity": 2.2888888888888888,
+   "n_fixings": 12,
+   "quantity": -33.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0112",
+   "underlying": "U7",
+   "strike": 155.59,
+   "maturity": 1.5944444444444446,
+   "n_fixings": 12,
+   "quantity": -61.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0113",
+   "underlying": "U4",
+   "strike": 106.64,
+   "maturity": 1.575,
+   "n_fixings": 12,
+   "quantity": 20.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0114",
+   "underlying": "U8",
+   "strike": 172.28,
+   "maturity": 0.3277777777777778,
+   "n_fixings": 12,
+   "quantity": 99.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0115",
+   "underlying": "U4",
+   "strike": 78.78,
+   "maturity": 1.9527777777777777,
+   "n_fixings": 12,
+   "quantity": 74.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0116",
+   "underlying": "U7",
+   "strike": 166.93,
+   "maturity": 1.1888888888888889,
+   "n_fixings": 12,
+   "quantity": -44.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0117",
+   "underlying": "U8",
+   "strike": 187.58,
+   "maturity": 0.5916666666666667,
+   "n_fixings": 12,
+   "quantity": -41.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0118",
+   "underlying": "U2",
+   "strike": 56.58,
+   "maturity": 0.2833333333333333,
+   "n_fixings": 12,
+   "quantity": 44.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0119",
+   "underlying": "U4",
+   "strike": 75.54,
+   "maturity": 0.10277777777777777,
+   "n_fixings": 12,
+   "quantity": -77.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0120",
+   "underlying": "U2",
+   "strike": 63.87,
+   "maturity": 0.5722222222222222,
+   "n_fixings": 12,
+   "quantity": 83.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0121",
+   "underlying": "U3",
+   "strike": 112.06,
+   "maturity": 2.1944444444444446,
+   "n_fixings": 12,
+   "quantity": 64.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0122",
+   "underlying": "U5",
+   "strike": 118.1,
+   "maturity": 0.30833333333333335,
+   "n_fixings": 12,
+   "quantity": -50.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0123",
+   "underlying": "U3",
+   "strike": 114.49,
+   "maturity": 0.1361111111111111,
+   "n_fixings": 12,
+   "quantity": 63.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0124",
+   "underlying": "U6",
+   "strike": 35.81,
+   "maturity": 0.1638888888888889,
+   "n_fixings": 12,
+   "quantity": 23.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0125",
+   "underlying": "U4",
+   "strike": 89.93,
+   "maturity": 1.6055555555555556,
+   "n_fixings": 12,
+   "quantity": -45.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0126",
+   "underlying": "U6",
+   "strike": 50.21,
+   "maturity": 1.3555555555555556,
+   "n_fixings": 12,
+   "quantity": 76.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0127",
+   "underlying": "U1",
+   "strike": 44.86,
+   "maturity": 1.9722222222222223,
+   "n_fixings": 12,
+   "quantity": 44.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0128",
+   "underlying": "U4",
+   "strike": 94.99,
+   "maturity": 0.7861111111111111,
+   "n_fixings": 12,
+   "quantity": -59.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0129",
+   "underlying": "U6",
+   "strike": 41.5,
+   "maturity": 2.1166666666666667,
+   "n_fixings": 12,
+   "quantity": -99.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0130",
+   "underlying": "U6",
+   "strike": 51.51,
+   "maturity": 0.21388888888888888,
+   "n_fixings": 12,
+   "quantity": -28.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0131",
+   "underlying": "U7",
+   "strike": 193.54,
+   "maturity": 1.6388888888888888,
+   "n_fixings": 12,
+   "quantity": 57.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0132",
+   "underlying": "U2",
+   "strike": 55.29,
+   "maturity": 2.338888888888889,
+   "n_fixings": 12,
+   "quantity": -27.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0133",
+   "underlying": "U7",
+   "strike": 186.07,
+   "maturity": 0.9166666666666666,
+   "n_fixings": 12,
+   "quantity": 80.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0134",
+   "underlying": "U7",
+   "strike": 209.65,
+   "maturity": 2.022222222222222,
+   "n_fixings": 12,
+   "quantity": -76.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0135",
+   "underlying": "U6",
+   "strike": 35.53,
+   "maturity": 0.5388888888888889,
+   "n_fixings": 12,
+   "quantity": -72.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0136",
+   "underlying": "U7",
+   "strike": 221.07,
+   "maturity": 0.7361111111111112,
+   "n_fixings": 12,
+   "quantity": 65.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0137",
+   "underlying": "U1",
+   "strike": 45.41,
+   "maturity": 2.363888888888889,
+   "n_fixings": 12,
+   "quantity": -36.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0138",
+   "underlying": "U6",
+   "strike": 37.83,
+   "maturity": 1.788888888888889,
+   "n_fixings": 12,
+   "quantity": -19.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0139",
+   "underlying": "U8",
+   "strike": 157.53,
+   "maturity": 0.9277777777777778,
+   "n_fixings": 12,
+   "quantity": -76.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0140",
+   "underlying": "U4",
+   "strike": 92.33,
+   "maturity": 1.7861111111111112,
+   "n_fixings": 12,
+   "quantity": 62.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0141",
+   "underlying": "U5",
+   "strike": 118.48,
+   "maturity": 0.85,
+   "n_fixings": 12,
+   "quantity": -79.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0142",
+   "underlying": "U5",
+   "strike": 120.14,
+   "maturity": 0.3888888888888889,
+   "n_fixings": 12,
+   "quantity": -63.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0143",
+   "underlying": "U7",
+   "strike": 165.47,
+   "maturity": 2.3305555555555557,
+   "n_fixings": 12,
+   "quantity": -35.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0144",
+   "underlying": "U1",
+   "strike": 50.38,
+   "maturity": 1.7277777777777779,
+   "n_fixings": 12,
+   "quantity": -64.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0145",
+   "underlying": "U3",
+   "strike": 127.69,
+   "maturity": 1.0305555555555554,
+   "n_fixings": 12,
+   "quantity": -61.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0146",
+   "underlying": "U2",
+   "strike": 61.95,
+   "maturity": 2.4916666666666667,
+   "n_fixings": 12,
+   "quantity": -95.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0147",
+   "underlying": "U6",
+   "strike": 43.85,
+   "maturity": 0.14722222222222223,
+   "n_fixings": 12,
+   "quantity": -63.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0148",
+   "underlying": "U8",
+   "strike": 206.39,
+   "maturity": 0.5833333333333334,
+   "n_fixings": 12,
+   "quantity": -3.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0149",
+   "underlying": "U2",
+   "strike": 48.72,
+   "maturity": 0.6805555555555556,
+   "n_fixings": 12,
+   "quantity": -46.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0150",
+   "underlying": "U5",
+   "strike": 138.27,
+   "maturity": 2.025,
+   "n_fixings": 12,
+   "quantity": -50.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0151",
+   "underlying": "U1",
+   "strike": 34.28,
+   "maturity": 2.272222222222222,
+   "n_fixings": 12,
+   "quantity": -85.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0152",
+   "underlying": "U6",
+   "strike": 41.77,
+   "maturity": 0.30833333333333335,
+   "n_fixings": 12,
+   "quantity": -27.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0153",
+   "underlying": "U8",
+   "strike": 174.84,
+   "maturity": 0.36666666666666664,
+   "n_fixings": 12,
+   "quantity": 78.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0154",
+   "underlying": "U4",
+   "strike": 77.73,
+   "maturity": 0.1638888888888889,
+   "n_fixings": 12,
+   "quantity": 16.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0155",
+   "underlying": "U8",
+   "strike": 227.38,
+   "maturity": 1.5361111111111112,
+   "n_fixings": 12,
+   "quantity": 86.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0156",
+   "underlying": "U3",
+   "strike": 136.23,
+   "maturity": 2.2944444444444443,
+   "n_fixings": 12,
+   "quantity": -96.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0157",
+   "underlying": "U3",
+   "strike": 120.79,
+   "maturity": 0.3888888888888889,
+   "n_fixings": 12,
+   "quantity": 24.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0158",
+   "underlying": "U1",
+   "strike": 42.42,
+   "maturity": 2.025,
+   "n_fixings": 12,
+   "quantity": 70.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0159",
+   "underlying": "U8",
+   "strike": 241.16,
+   "maturity": 0.6972222222222222,
+   "n_fixings": 12,
+   "quantity": 4.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0160",
+   "underlying": "U6",
+   "strike": 44.14,
+   "maturity": 1.9166666666666667,
+   "n_fixings": 12,
+   "quantity": -35.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0161",
+   "underlying": "U8",
+   "strike": 166.63,
+   "maturity": 2.172222222222222,
+   "n_fixings": 12,
+   "quantity": 30.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0162",
+   "underlying": "U8",
+   "strike": 229.16,
+   "maturity": 0.22777777777777777,
+   "n_fixings": 12,
+   "quantity": -53.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0163",
+   "underlying": "U6",
+   "strike": 40.03,
+   "maturity": 0.7,
+   "n_fixings": 12,
+   "quantity": -27.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0164",
+   "underlying": "U6",
+   "strike": 33.51,
+   "maturity": 1.2166666666666666,
+   "n_fixings": 12,
+   "quantity": -8.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0165",
+   "underlying": "U7",
+   "strike": 150.13,
+   "maturity": 1.125,
+   "n_fixings": 12,
+   "quantity": -45.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0166",
+   "underlying": "U2",
+   "strike": 48.35,
+   "maturity": 0.6416666666666667,
+   "n_fixings": 12,
+   "quantity": 45.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0167",
+   "underlying": "U1",
+   "strike": 38.72,
+   "maturity": 1.6472222222222221,
+   "n_fixings": 12,
+   "quantity": 42.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0168",
+   "underlying": "U2",
+   "strike": 51.35,
+   "maturity": 2.0555555555555554,
+   "n_fixings": 12,
+   "quantity": -55.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0169",
+   "underlying": "U7",
+   "strike": 203.66,
+   "maturity": 0.35833333333333334,
+   "n_fixings": 12,
+   "quantity": -10.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0170",
+   "underlying": "U4",
+   "strike": 74.47,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": 33.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0171",
+   "underlying": "U2",
+   "strike": 50.06,
+   "maturity": 0.4166666666666667,
+   "n_fixings": 12,
+   "quantity": 47.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0172",
+   "underlying": "U8",
+   "strike": 167.63,
+   "maturity": 2.058333333333333,
+   "n_fixings": 12,
+   "quantity": -37.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0173",
+   "underlying": "U6",
+   "strike": 33.61,
+   "maturity": 1.6333333333333333,
+   "n_fixings": 12,
+   "quantity": -62.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0174",
+   "underlying": "U7",
+   "strike": 179.87,
+   "maturity": 0.925,
+   "n_fixings": 12,
+   "quantity": 94.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0175",
+   "underlying": "U1",
+   "strike": 40.51,
+   "maturity": 0.3611111111111111,
+   "n_fixings": 12,
+   "quantity": -4.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0176",
+   "underlying": "U4",
+   "strike": 76.74,
+   "maturity": 0.55,
+   "n_fixings": 12,
+   "quantity": -19.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0177",
+   "underlying": "U1",
+   "strike": 33.81,
+   "maturity": 1.6194444444444445,
+   "n_fixings": 12,
+   "quantity": 75.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0178",
+   "underlying": "U3",
+   "strike": 119.04,
+   "maturity": 2.386111111111111,
+   "n_fixings": 12,
+   "quantity": 60.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0179",
+   "underlying": "U5",
+   "strike": 112.22,
+   "maturity": 0.7888888888888889,
+   "n_fixings": 12,
+   "quantity": 87.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0180",
+   "underlying": "U4",
+   "strike": 90.98,
+   "maturity": 1.1777777777777778,
+   "n_fixings": 12,
+   "quantity": -26.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0181",
+   "underlying": "U3",
+   "strike": 135.25,
+   "maturity": 1.7138888888888888,
+   "n_fixings": 12,
+   "quantity": -99.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0182",
+   "underlying": "U8",
+   "strike": 166.73,
+   "maturity": 0.4666666666666667,
+   "n_fixings": 12,
+   "quantity": -64.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0183",
+   "underlying": "U8",
+   "strike": 199.84,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": -38.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0184",
+   "underlying": "U6",
+   "strike": 34.59,
+   "maturity": 0.5527777777777778,
+   "n_fixings": 12,
+   "quantity": -56.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0185",
+   "underlying": "U6",
+   "strike": 33.92,
+   "maturity": 0.7527777777777778,
+   "n_fixings": 12,
+   "quantity": -18.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0186",
+   "underlying": "U1",
+   "strike": 47.25,
+   "maturity": 0.4638888888888889,
+   "n_fixings": 12,
+   "quantity": -19.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0187",
+   "underlying": "U1",
+   "strike": 47.34,
+   "maturity": 1.6527777777777777,
+   "n_fixings": 12,
+   "quantity": -3.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0188",
+   "underlying": "U6",
+   "strike": 38.9,
+   "maturity": 0.28055555555555556,
+   "n_fixings": 12,
+   "quantity": -69.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0189",
+   "underlying": "U3",
+   "strike": 107.29,
+   "maturity": 1.9416666666666667,
+   "n_fixings": 12,
+   "quantity": 98.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0190",
+   "underlying": "U5",
+   "strike": 134.31,
+   "maturity": 2.316666666666667,
+   "n_fixings": 12,
+   "quantity": 55.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0191",
+   "underlying": "U7",
+   "strike": 191.69,
+   "maturity": 1.5277777777777777,
+   "n_fixings": 12,
+   "quantity": -81.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0192",
+   "underlying": "U7",
+   "strike": 187.9,
+   "maturity": 1.0194444444444444,
+   "n_fixings": 12,
+   "quantity": 39.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0193",
+   "underlying": "U7",
+   "strike": 213.38,
+   "maturity": 1.5277777777777777,
+   "n_fixings": 12,
+   "quantity": -87.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0194",
+   "underlying": "U3",
+   "strike": 112.01,
+   "maturity": 0.8611111111111112,
+   "n_fixings": 12,
+   "quantity": 74.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0195",
+   "underlying": "U6",
+   "strike": 49.91,
+   "maturity": 2.436111111111111,
+   "n_fixings": 12,
+   "quantity": 73.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0196",
+   "underlying": "U5",
+   "strike": 132.89,
+   "maturity": 1.9305555555555556,
+   "n_fixings": 12,
+   "quantity": -24.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0197",
+   "underlying": "U6",
+   "strike": 37.84,
+   "maturity": 2.1555555555555554,
+   "n_fixings": 12,
+   "quantity": -17.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0198",
+   "underlying": "U3",
+   "strike": 104.66,
+   "maturity": 1.1388888888888888,
+   "n_fixings": 12,
+   "quantity": 11.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0199",
+   "underlying": "U2",
+   "strike": 65.88,
+   "maturity": 0.6833333333333333,
+   "n_fixings": 12,
+   "quantity": 30.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0200",
+   "underlying": "U1",
+   "strike": 35.07,
+   "maturity": 1.6916666666666667,
+   "n_fixings": 12,
+   "quantity": -17.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0201",
+   "underlying": "U8",
+   "strike": 224.71,
+   "maturity": 0.9666666666666667,
+   "n_fixings": 12,
+   "quantity": -25.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0202",
+   "underlying": "U8",
+   "strike": 155.48,
+   "maturity": 0.8111111111111111,
+   "n_fixings": 12,
+   "quantity": -72.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0203",
+   "underlying": "U3",
+   "strike": 118.75,
+   "maturity": 1.086111111111111,
+   "n_fixings": 12,
+   "quantity": 69.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0204",
+   "underlying": "U2",
+   "strike": 64.27,
+   "maturity": 0.5944444444444444,
+   "n_fixings": 12,
+   "quantity": -47.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0205",
+   "underlying": "U3",
+   "strike": 117.13,
+   "maturity": 2.3666666666666667,
+   "n_fixings": 12,
+   "quantity": -23.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0206",
+   "underlying": "U7",
+   "strike": 179.64,
+   "maturity": 1.3388888888888888,
+   "n_fixings": 12,
+   "quantity": -9.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0207",
+   "underlying": "U3",
+   "strike": 117.38,
+   "maturity": 0.4,
+   "n_fixings": 12,
+   "quantity": 36.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0208",
+   "underlying": "U8",
+   "strike": 236.92,
+   "maturity": 0.08888888888888889,
+   "n_fixings": 12,
+   "quantity": 94.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0209",
+   "underlying": "U1",
+   "strike": 35.52,
+   "maturity": 0.4166666666666667,
+   "n_fixings": 12,
+   "quantity": 79.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0210",
+   "underlying": "U8",
+   "strike": 239.87,
+   "maturity": 0.3,
+   "n_fixings": 12,
+   "quantity": 100.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0211",
+   "underlying": "U7",
+   "strike": 161.72,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": 2.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0212",
+   "underlying": "U4",
+   "strike": 79.41,
+   "maturity": 2.013888888888889,
+   "n_fixings": 12,
+   "quantity": -30.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0213",
+   "underlying": "U8",
+   "strike": 195.66,
+   "maturity": 0.8138888888888889,
+   "n_fixings": 12,
+   "quantity": 70.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0214",
+   "underlying": "U7",
+   "strike": 200.13,
+   "maturity": 1.7333333333333334,
+   "n_fixings": 12,
+   "quantity": -72.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0215",
+   "underlying": "U5",
+   "strike": 153.05,
+   "maturity": 2.15,
+   "n_fixings": 12,
+   "quantity": 41.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0216",
+   "underlying": "U8",
+   "strike": 193.22,
+   "maturity": 1.7361111111111112,
+   "n_fixings": 12,
+   "quantity": 84.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0217",
+   "underlying": "U1",
+   "strike": 43.16,
+   "maturity": 1.5527777777777778,
+   "n_fixings": 12,
+   "quantity": 32.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0218",
+   "underlying": "U5",
+   "strike": 116.4,
+   "maturity": 1.2694444444444444,
+   "n_fixings": 12,
+   "quantity": -68.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0219",
+   "underlying": "U3",
+   "strike": 122.27,
+   "maturity": 1.9861111111111112,
+   "n_fixings": 12,
+   "quantity": -97.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0220",
+   "underlying": "U5",
+   "strike": 109.04,
+   "maturity": 1.5722222222222222,
+   "n_fixings": 12,
+   "quantity": 57.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0221",
+   "underlying": "U2",
+   "strike": 44.03,
+   "maturity": 1.788888888888889,
+   "n_fixings": 12,
+   "quantity": -79.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0222",
+   "underlying": "U4",
+   "strike": 70.47,
+   "maturity": 0.7694444444444445,
+   "n_fixings": 12,
+   "quantity": -99.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0223",
+   "underlying": "U5",
+   "strike": 136.05,
+   "maturity": 1.6416666666666666,
+   "n_fixings": 12,
+   "quantity": -42.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0224",
+   "underlying": "U5",
+   "strike": 116.45,
+   "maturity": 1.1972222222222222,
+   "n_fixings": 12,
+   "quantity": 2.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0225",
+   "underlying": "U7",
+   "strike": 215.81,
+   "maturity": 0.5694444444444444,
+   "n_fixings": 12,
+   "quantity": -18.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0226",
+   "underlying": "U2",
+   "strike": 54.72,
+   "maturity": 0.25833333333333336,
+   "n_fixings": 12,
+   "quantity": -30.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0227",
+   "underlying": "U6",
+   "strike": 42.76,
+   "maturity": 1.2805555555555554,
+   "n_fixings": 12,
+   "quantity": -30.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0228",
+   "underlying": "U7",
+   "strike": 179.44,
+   "maturity": 1.1666666666666667,
+   "n_fixings": 12,
+   "quantity": -41.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0229",
+   "underlying": "U2",
+   "strike": 65.44,
+   "maturity": 1.0472222222222223,
+   "n_fixings": 12,
+   "quantity": -53.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0230",
+   "underlying": "U7",
+   "strike": 181.44,
+   "maturity": 1.1805555555555556,
+   "n_fixings": 12,
+   "quantity": 62.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0231",
+   "underlying": "U6",
+   "strike": 37.74,
+   "maturity": 1.0472222222222223,
+   "n_fixings": 12,
+   "quantity": 8.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0232",
+   "underlying": "U6",
+   "strike": 36.08,
+   "maturity": 1.4972222222222222,
+   "n_fixings": 12,
+   "quantity": 74.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0233",
+   "underlying": "U8",
+   "strike": 162.52,
+   "maturity": 2.2944444444444443,
+   "n_fixings": 12,
+   "quantity": -57.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0234",
+   "underlying": "U4",
+   "strike": 82.15,
+   "maturity": 1.8416666666666666,
+   "n_fixings": 12,
+   "quantity": 6.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0235",
+   "underlying": "U2",
+   "strike": 47.92,
+   "maturity": 0.6666666666666666,
+   "n_fixings": 12,
+   "quantity": -45.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0236",
+   "underlying": "U4",
+   "strike": 72.35,
+   "maturity": 0.39166666666666666,
+   "n_fixings": 12,
+   "quantity": -6.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0237",
+   "underlying": "U5",
+   "strike": 115.8,
+   "maturity": 1.6694444444444445,
+   "n_fixings": 12,
+   "quantity": 80.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0238",
+   "underlying": "U6",
+   "strike": 36.12,
+   "maturity": 1.1333333333333333,
+   "n_fixings": 12,
+   "quantity": -71.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0239",
+   "underlying": "U8",
+   "strike": 160.9,
+   "maturity": 0.33611111111111114,
+   "n_fixings": 12,
+   "quantity": -77.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0240",
+   "underlying": "U2",
+   "strike": 63.6,
+   "maturity": 2.338888888888889,
+   "n_fixings": 12,
+   "quantity": 55.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0241",
+   "underlying": "U1",
+   "strike": 36.74,
+   "maturity": 0.24166666666666667,
+   "n_fixings": 12,
+   "quantity": -48.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0242",
+   "underlying": "U8",
+   "strike": 241.19,
+   "maturity": 2.272222222222222,
+   "n_fixings": 12,
+   "quantity": 97.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0243",
+   "underlying": "U5",
+   "strike": 139.76,
+   "maturity": 1.5583333333333333,
+   "n_fixings": 12,
+   "quantity": 16.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0244",
+   "underlying": "U7",
+   "strike": 156.05,
+   "maturity": 1.2444444444444445,
+   "n_fixings": 12,
+   "quantity": 98.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0245",
+   "underlying": "U5",
+   "strike": 139.66,
+   "maturity": 0.9583333333333334,
+   "n_fixings": 12,
+   "quantity": 97.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0246",
+   "underlying": "U6",
+   "strike": 48.98,
+   "maturity": 2.1527777777777777,
+   "n_fixings": 12,
+   "quantity": -57.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0247",
+   "underlying": "U8",
+   "strike": 160.45,
+   "maturity": 1.4055555555555554,
+   "n_fixings": 12,
+   "quantity": -74.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0248",
+   "underlying": "U4",
+   "strike": 86.58,
+   "maturity": 1.2972222222222223,
+   "n_fixings": 12,
+   "quantity": -76.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0249",
+   "underlying": "U8",
+   "strike": 178.25,
+   "maturity": 1.275,
+   "n_fixings": 12,
+   "quantity": 32.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0250",
+   "underlying": "U2",
+   "strike": 63.74,
+   "maturity": 1.238888888888889,
+   "n_fixings": 12,
+   "quantity": 96.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0251",
+   "underlying": "U4",
+   "strike": 73.09,
+   "maturity": 1.2722222222222221,
+   "n_fixings": 12,
+   "quantity": -91.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0252",
+   "underlying": "U8",
+   "strike": 207.43,
+   "maturity": 1.836111111111111,
+   "n_fixings": 12,
+   "quantity": -38.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0253",
+   "underlying": "U5",
+   "strike": 159.66,
+   "maturity": 0.95,
+   "n_fixings": 12,
+   "quantity": 98.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0254",
+   "underlying": "U7",
+   "strike": 209.88,
+   "maturity": 2.411111111111111,
+   "n_fixings": 12,
+   "quantity": 24.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0255",
+   "underlying": "U5",
+   "strike": 108.18,
+   "maturity": 2.272222222222222,
+   "n_fixings": 12,
+   "quantity": 67.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0256",
+   "underlying": "U4",
+   "strike": 71.63,
+   "maturity": 1.288888888888889,
+   "n_fixings": 12,
+   "quantity": -2.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0257",
+   "underlying": "U8",
+   "strike": 238.32,
+   "maturity": 0.6333333333333333,
+   "n_fixings": 12,
+   "quantity": -29.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0258",
+   "underlying": "U8",
+   "strike": 217.86,
+   "maturity": 1.9666666666666666,
+   "n_fixings": 12,
+   "quantity": 74.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0259",
+   "underlying": "U8",
+   "strike": 188.87,
+   "maturity": 1.8916666666666666,
+   "n_fixings": 12,
+   "quantity": 78.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0260",
+   "underlying": "U1",
+   "strike": 38.27,
+   "maturity": 1.0833333333333333,
+   "n_fixings": 12,
+   "quantity": 90.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0261",
+   "underlying": "U3",
+   "strike": 96.72,
+   "maturity": 1.4805555555555556,
+   "n_fixings": 12,
+   "quantity": 28.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0262",
+   "underlying": "U5",
+   "strike": 113.73,
+   "maturity": 1.5194444444444444,
+   "n_fixings": 12,
+   "quantity": 45.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0263",
+   "underlying": "U7",
+   "strike": 202.7,
+   "maturity": 0.2388888888888889,
+   "n_fixings": 12,
+   "quantity": -92.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0264",
+   "underlying": "U1",
+   "strike": 38.3,
+   "maturity": 0.6722222222222223,
+   "n_fixings": 12,
+   "quantity": -89.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0265",
+   "underlying": "U5",
+   "strike": 108.98,
+   "maturity": 2.3055555555555554,
+   "n_fixings": 12,
+   "quantity": 40.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0266",
+   "underlying": "U7",
+   "strike": 166.92,
+   "maturity": 2.0972222222222223,
+   "n_fixings": 12,
+   "quantity": 87.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0267",
+   "underlying": "U3",
+   "strike": 95.07,
+   "maturity": 1.211111111111111,
+   "n_fixings": 12,
+   "quantity": 1.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0268",
+   "underlying": "U7",
+   "strike": 154.21,
+   "maturity": 2.363888888888889,
+   "n_fixings": 12,
+   "quantity": 24.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0269",
+   "underlying": "U1",
+   "strike": 35.21,
+   "maturity": 1.0222222222222221,
+   "n_fixings": 12,
+   "quantity": 66.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0270",
+   "underlying": "U3",
+   "strike": 97.65,
+   "maturity": 2.341666666666667,
+   "n_fixings": 12,
+   "quantity": 11.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0271",
+   "underlying": "U1",
+   "strike": 50.49,
+   "maturity": 0.1638888888888889,
+   "n_fixings": 12,
+   "quantity": 15.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0272",
+   "underlying": "U2",
+   "strike": 57.27,
+   "maturity": 2.2194444444444446,
+   "n_fixings": 12,
+   "quantity": 80.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0273",
+   "underlying": "U2",
+   "strike": 46.15,
+   "maturity": 1.0472222222222223,
+   "n_fixings": 12,
+   "quantity": -62.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0274",
+   "underlying": "U5",
+   "strike": 158.17,
+   "maturity": 2.325,
+   "n_fixings": 12,
+   "quantity": -34.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0275",
+   "underlying": "U4",
+   "strike": 90.04,
+   "maturity": 0.4583333333333333,
+   "n_fixings": 12,
+   "quantity": -84.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0276",
+   "underlying": "U3",
+   "strike": 91.56,
+   "maturity": 0.5527777777777778,
+   "n_fixings": 12,
+   "quantity": -55.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0277",
+   "underlying": "U2",
+   "strike": 57.86,
+   "maturity": 0.16944444444444445,
+   "n_fixings": 12,
+   "quantity": 60.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0278",
+   "underlying": "U2",
+   "strike": 43.69,
+   "maturity": 1.2861111111111112,
+   "n_fixings": 12,
+   "quantity": -24.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0279",
+   "underlying": "U1",
+   "strike": 50.99,
+   "maturity": 2.4944444444444445,
+   "n_fixings": 12,
+   "quantity": 22.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0280",
+   "underlying": "U5",
+   "strike": 150.66,
+   "maturity": 1.961111111111111,
+   "n_fixings": 12,
+   "quantity": -19.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0281",
+   "underlying": "U6",
+   "strike": 40.54,
+   "maturity": 1.3777777777777778,
+   "n_fixings": 12,
+   "quantity": -96.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0282",
+   "underlying": "U3",
+   "strike": 117.16,
+   "maturity": 1.038888888888889,
+   "n_fixings": 12,
+   "quantity": 39.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0283",
+   "underlying": "U2",
+   "strike": 63.11,
+   "maturity": 1.5361111111111112,
+   "n_fixings": 12,
+   "quantity": 70.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0284",
+   "underlying": "U2",
+   "strike": 46.82,
+   "maturity": 1.8944444444444444,
+   "n_fixings": 12,
+   "quantity": -64.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0285",
+   "underlying": "U1",
+   "strike": 46.45,
+   "maturity": 1.3111111111111111,
+   "n_fixings": 12,
+   "quantity": 32.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0286",
+   "underlying": "U3",
+   "strike": 119.56,
+   "maturity": 2.475,
+   "n_fixings": 12,
+   "quantity": -84.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0287",
+   "underlying": "U4",
+   "strike": 76.21,
+   "maturity": 1.8888888888888888,
+   "n_fixings": 12,
+   "quantity": 94.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0288",
+   "underlying": "U5",
+   "strike": 121.05,
+   "maturity": 0.24444444444444444,
+   "n_fixings": 12,
+   "quantity": -95.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0289",
+   "underlying": "U3",
+   "strike": 107.89,
+   "maturity": 0.6527777777777778,
+   "n_fixings": 12,
+   "quantity": -7.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0290",
+   "underlying": "U5",
+   "strike": 144.1,
+   "maturity": 1.45,
+   "n_fixings": 12,
+   "quantity": 61.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0291",
+   "underlying": "U2",
+   "strike": 59.47,
+   "maturity": 1.0944444444444446,
+   "n_fixings": 12,
+   "quantity": 61.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0292",
+   "underlying": "U8",
+   "strike": 209.69,
+   "maturity": 1.6833333333333333,
+   "n_fixings": 12,
+   "quantity": 36.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0293",
+   "underlying": "U3",
+   "strike": 129.77,
+   "maturity": 0.9388888888888889,
+   "n_fixings": 12,
+   "quantity": -25.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0294",
+   "underlying": "U7",
+   "strike": 167.48,
+   "maturity": 1.9333333333333333,
+   "n_fixings": 12,
+   "quantity": 52.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0295",
+   "underlying": "U5",
+   "strike": 139.62,
+   "maturity": 2.363888888888889,
+   "n_fixings": 12,
+   "quantity": -1.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0296",
+   "underlying": "U7",
+   "strike": 186.2,
+   "maturity": 1.8527777777777779,
+   "n_fixings": 12,
+   "quantity": 31.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0297",
+   "underlying": "U3",
+   "strike": 95.2,
+   "maturity": 0.19722222222222222,
+   "n_fixings": 12,
+   "quantity": 50.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0298",
+   "underlying": "U2",
+   "strike": 52.62,
+   "maturity": 2.088888888888889,
+   "n_fixings": 12,
+   "quantity": -86.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0299",
+   "underlying": "U6",
+   "strike": 34.23,
+   "maturity": 1.3777777777777778,
+   "n_fixings": 12,
+   "quantity": 93.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0300",
+   "underlying": "U7",
+   "strike": 199.06,
+   "maturity": 0.8055555555555556,
+   "n_fixings": 12,
+   "quantity": -8.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0301",
+   "underlying": "U6",
+   "strike": 40.28,
+   "maturity": 1.663888888888889,
+   "n_fixings": 12,
+   "quantity": 32.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0302",
+   "underlying": "U1",
+   "strike": 48.25,
+   "maturity": 0.7194444444444444,
+   "n_fixings": 12,
+   "quantity": 93.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0303",
+   "underlying": "U5",
+   "strike": 109.63,
+   "maturity": 1.1472222222222221,
+   "n_fixings": 12,
+   "quantity": 27.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0304",
+   "underlying": "U8",
+   "strike": 198.63,
+   "maturity": 1.1722222222222223,
+   "n_fixings": 12,
+   "quantity": -33.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0305",
+   "underlying": "U1",
+   "strike": 43.29,
+   "maturity": 1.2,
+   "n_fixings": 12,
+   "quantity": 69.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0306",
+   "underlying": "U8",
+   "strike": 159.45,
+   "maturity": 0.7166666666666667,
+   "n_fixings": 12,
+   "quantity": 65.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0307",
+   "underlying": "U1",
+   "strike": 38.27,
+   "maturity": 2.1444444444444444,
+   "n_fixings": 12,
+   "quantity": 71.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0308",
+   "underlying": "U5",
+   "strike": 117.74,
+   "maturity": 0.4666666666666667,
+   "n_fixings": 12,
+   "quantity": -86.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0309",
+   "underlying": "U7",
+   "strike": 183.84,
+   "maturity": 1.3777777777777778,
+   "n_fixings": 12,
+   "quantity": -82.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0310",
+   "underlying": "U2",
+   "strike": 46.15,
+   "maturity": 1.3972222222222221,
+   "n_fixings": 12,
+   "quantity": -16.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0311",
+   "underlying": "U8",
+   "strike": 157.28,
+   "maturity": 0.7638888888888888,
+   "n_fixings": 12,
+   "quantity": 69.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0312",
+   "underlying": "U7",
+   "strike": 213.43,
+   "maturity": 1.1333333333333333,
+   "n_fixings": 12,
+   "quantity": 6.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0313",
+   "underlying": "U5",
+   "strike": 122.76,
+   "maturity": 2.4944444444444445,
+   "n_fixings": 12,
+   "quantity": -17.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0314",
+   "underlying": "U8",
+   "strike": 162.1,
+   "maturity": 0.7805555555555556,
+   "n_fixings": 12,
+   "quantity": 90.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0315",
+   "underlying": "U2",
+   "strike": 52.02,
+   "maturity": 1.5472222222222223,
+   "n_fixings": 12,
+   "quantity": -96.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0316",
+   "underlying": "U8",
+   "strike": 233.97,
+   "maturity": 2.1166666666666667,
+   "n_fixings": 12,
+   "quantity": 59.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0317",
+   "underlying": "U3",
+   "strike": 131.24,
+   "maturity": 1.9666666666666666,
+   "n_fixings": 12,
+   "quantity": 99.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0318",
+   "underlying": "U8",
+   "strike": 182.27,
+   "maturity": 0.49722222222222223,
+   "n_fixings": 12,
+   "quantity": 40.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0319",
+   "underlying": "U4",
+   "strike": 89.06,
+   "maturity": 0.10833333333333334,
+   "n_fixings": 12,
+   "quantity": -11.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0320",
+   "underlying": "U8",
+   "strike": 188.42,
+   "maturity": 1.6,
+   "n_fixings": 12,
+   "quantity": -21.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0321",
+   "underlying": "U7",
+   "strike": 218.61,
+   "maturity": 0.21666666666666667,
+   "n_fixings": 12,
+   "quantity": 3.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0322",
+   "underlying": "U6",
+   "strike": 42.0,
+   "maturity": 2.2083333333333335,
+   "n_fixings": 12,
+   "quantity": -4.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0323",
+   "underlying": "U5",
+   "strike": 112.45,
+   "maturity": 0.30277777777777776,
+   "n_fixings": 12,
+   "quantity": -94.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0324",
+   "underlying": "U3",
+   "strike": 104.96,
+   "maturity": 1.4694444444444446,
+   "n_fixings": 12,
+   "quantity": 29.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0325",
+   "underlying": "U6",
+   "strike": 39.89,
+   "maturity": 1.3472222222222223,
+   "n_fixings": 12,
+   "quantity": 71.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0326",
+   "underlying": "U5",
+   "strike": 130.19,
+   "maturity": 0.5861111111111111,
+   "n_fixings": 12,
+   "quantity": -67.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0327",
+   "underlying": "U8",
+   "strike": 203.39,
+   "maturity": 1.9083333333333334,
+   "n_fixings": 12,
+   "quantity": -17.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0328",
+   "underlying": "U2",
+   "strike": 44.95,
+   "maturity": 1.3611111111111112,
+   "n_fixings": 12,
+   "quantity": -62.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0329",
+   "underlying": "U5",
+   "strike": 105.56,
+   "maturity": 0.325,
+   "n_fixings": 12,
+   "quantity": 39.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0330",
+   "underlying": "U7",
+   "strike": 204.57,
+   "maturity": 1.9333333333333333,
+   "n_fixings": 12,
+   "quantity": 4.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0331",
+   "underlying": "U8",
+   "strike": 201.75,
+   "maturity": 2.0444444444444443,
+   "n_fixings": 12,
+   "quantity": -62.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0332",
+   "underlying": "U3",
+   "strike": 100.75,
+   "maturity": 1.45,
+   "n_fixings": 12,
+   "quantity": -69.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0333",
+   "underlying": "U2",
+   "strike": 54.13,
+   "maturity": 0.38055555555555554,
+   "n_fixings": 12,
+   "quantity": -4.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0334",
+   "underlying": "U6",
+   "strike": 39.62,
+   "maturity": 1.3722222222222222,
+   "n_fixings": 12,
+   "quantity": 62.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0335",
+   "underlying": "U7",
+   "strike": 207.35,
+   "maturity": 0.6777777777777778,
+   "n_fixings": 12,
+   "quantity": 32.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0336",
+   "underlying": "U2",
+   "strike": 65.76,
+   "maturity": 0.5055555555555555,
+   "n_fixings": 12,
+   "quantity": -48.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0337",
+   "underlying": "U8",
+   "strike": 207.5,
+   "maturity": 1.0666666666666667,
+   "n_fixings": 12,
+   "quantity": -28.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0338",
+   "underlying": "U3",
+   "strike": 91.26,
+   "maturity": 1.2833333333333334,
+   "n_fixings": 12,
+   "quantity": -93.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0339",
+   "underlying": "U2",
+   "strike": 49.18,
+   "maturity": 1.625,
+   "n_fixings": 12,
+   "quantity": 100.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0340",
+   "underlying": "U6",
+   "strike": 39.79,
+   "maturity": 1.3722222222222222,
+   "n_fixings": 12,
+   "quantity": -90.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0341",
+   "underlying": "U7",
+   "strike": 151.08,
+   "maturity": 1.4444444444444444,
+   "n_fixings": 12,
+   "quantity": -29.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0342",
+   "underlying": "U1",
+   "strike": 37.19,
+   "maturity": 0.5083333333333333,
+   "n_fixings": 12,
+   "quantity": -31.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0343",
+   "underlying": "U6",
+   "strike": 47.53,
+   "maturity": 0.31666666666666665,
+   "n_fixings": 12,
+   "quantity": -78.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0344",
+   "underlying": "U4",
+   "strike": 100.55,
+   "maturity": 2.438888888888889,
+   "n_fixings": 12,
+   "quantity": 29.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0345",
+   "underlying": "U1",
+   "strike": 46.74,
+   "maturity": 0.2361111111111111,
+   "n_fixings": 12,
+   "quantity": -18.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0346",
+   "underlying": "U3",
+   "strike": 105.21,
+   "maturity": 0.25277777777777777,
+   "n_fixings": 12,
+   "quantity": -53.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0347",
+   "underlying": "U5",
+   "strike": 149.72,
+   "maturity": 1.225,
+   "n_fixings": 12,
+   "quantity": 87.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0348",
+   "underlying": "U2",
+   "strike": 53.57,
+   "maturity": 2.186111111111111,
+   "n_fixings": 12,
+   "quantity": -3.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0349",
+   "underlying": "U6",
+   "strike": 51.68,
+   "maturity": 0.14444444444444443,
+   "n_fixings": 12,
+   "quantity": 99.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0350",
+   "underlying": "U4",
+   "strike": 87.32,
+   "maturity": 1.6527777777777777,
+   "n_fixings": 12,
+   "quantity": 92.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0351",
+   "underlying": "U2",
+   "strike": 59.66,
+   "maturity": 1.125,
+   "n_fixings": 12,
+   "quantity": -88.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0352",
+   "underlying": "U7",
+   "strike": 184.64,
+   "maturity": 1.4027777777777777,
+   "n_fixings": 12,
+   "quantity": -46.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0353",
+   "underlying": "U6",
+   "strike": 47.26,
+   "maturity": 2.3444444444444446,
+   "n_fixings": 12,
+   "quantity": 42.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0354",
+   "underlying": "U3",
+   "strike": 102.56,
+   "maturity": 2.4833333333333334,
+   "n_fixings": 12,
+   "quantity": -34.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0355",
+   "underlying": "U7",
+   "strike": 149.01,
+   "maturity": 1.9111111111111112,
+   "n_fixings": 12,
+   "quantity": 33.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0356",
+   "underlying": "U1",
+   "strike": 45.86,
+   "maturity": 0.31666666666666665,
+   "n_fixings": 12,
+   "quantity": 16.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0357",
+   "underlying": "U4",
+   "strike": 76.08,
+   "maturity": 2.3333333333333335,
+   "n_fixings": 12,
+   "quantity": -1.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0358",
+   "underlying": "U8",
+   "strike": 173.94,
+   "maturity": 0.24722222222222223,
+   "n_fixings": 12,
+   "quantity": 62.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0359",
+   "underlying": "U2",
+   "strike": 59.01,
+   "maturity": 1.7222222222222223,
+   "n_fixings": 12,
+   "quantity": 16.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0360",
+   "underlying": "U6",
+   "strike": 35.72,
+   "maturity": 1.0194444444444444,
+   "n_fixings": 12,
+   "quantity": 21.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0361",
+   "underlying": "U2",
+   "strike": 54.21,
+   "maturity": 0.1638888888888889,
+   "n_fixings": 12,
+   "quantity": 23.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0362",
+   "underlying": "U5",
+   "strike": 106.17,
+   "maturity": 2.386111111111111,
+   "n_fixings": 12,
+   "quantity": -70.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0363",
+   "underlying": "U6",
+   "strike": 45.08,
+   "maturity": 1.5638888888888889,
+   "n_fixings": 12,
+   "quantity": 36.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0364",
+   "underlying": "U7",
+   "strike": 214.26,
+   "maturity": 0.5694444444444444,
+   "n_fixings": 12,
+   "quantity": 91.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0365",
+   "underlying": "U4",
+   "strike": 104.49,
+   "maturity": 1.5361111111111112,
+   "n_fixings": 12,
+   "quantity": 56.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0366",
+   "underlying": "U2",
+   "strike": 56.08,
+   "maturity": 0.8166666666666667,
+   "n_fixings": 12,
+   "quantity": 85.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0367",
+   "underlying": "U7",
+   "strike": 188.95,
+   "maturity": 0.5666666666666667,
+   "n_fixings": 12,
+   "quantity": 5.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0368",
+   "underlying": "U8",
+   "strike": 238.94,
+   "maturity": 0.1527777777777778,
+   "n_fixings": 12,
+   "quantity": 43.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0369",
+   "underlying": "U3",
+   "strike": 123.3,
+   "maturity": 2.113888888888889,
+   "n_fixings": 12,
+   "quantity": 83.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0370",
+   "underlying": "U6",
+   "strike": 44.03,
+   "maturity": 1.5527777777777778,
+   "n_fixings": 12,
+   "quantity": 86.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0371",
+   "underlying": "U7",
+   "strike": 197.26,
+   "maturity": 0.30833333333333335,
+   "n_fixings": 12,
+   "quantity": 51.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0372",
+   "underlying": "U4",
+   "strike": 82.25,
+   "maturity": 0.4527777777777778,
+   "n_fixings": 12,
+   "quantity": 9.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0373",
+   "underlying": "U6",
+   "strike": 44.07,
+   "maturity": 1.2194444444444446,
+   "n_fixings": 12,
+   "quantity": 84.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0374",
+   "underlying": "U8",
+   "strike": 226.86,
+   "maturity": 1.1222222222222222,
+   "n_fixings": 12,
+   "quantity": -13.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0375",
+   "underlying": "U2",
+   "strike": 53.57,
+   "maturity": 1.575,
+   "n_fixings": 12,
+   "quantity": 19.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0376",
+   "underlying": "U5",
+   "strike": 108.84,
+   "maturity": 0.6055555555555555,
+   "n_fixings": 12,
+   "quantity": -86.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0377",
+   "underlying": "U5",
+   "strike": 115.04,
+   "maturity": 2.2,
+   "n_fixings": 12,
+   "quantity": 51.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0378",
+   "underlying": "U8",
+   "strike": 168.67,
+   "maturity": 2.3055555555555554,
+   "n_fixings": 12,
+   "quantity": 41.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0379",
+   "underlying": "U1",
+   "strike": 44.25,
+   "maturity": 0.7944444444444444,
+   "n_fixings": 12,
+   "quantity": -75.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0380",
+   "underlying": "U1",
+   "strike": 33.93,
+   "maturity": 1.8194444444444444,
+   "n_fixings": 12,
+   "quantity": -37.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0381",
+   "underlying": "U6",
+   "strike": 33.65,
+   "maturity": 1.4944444444444445,
+   "n_fixings": 12,
+   "quantity": 20.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0382",
+   "underlying": "U1",
+   "strike": 41.91,
+   "maturity": 2.022222222222222,
+   "n_fixings": 12,
+   "quantity": 62.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0383",
+   "underlying": "U1",
+   "strike": 47.13,
+   "maturity": 2.2694444444444444,
+   "n_fixings": 12,
+   "quantity": -11.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0384",
+   "underlying": "U5",
+   "strike": 160.85,
+   "maturity": 1.6472222222222221,
+   "n_fixings": 12,
+   "quantity": 44.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0385",
+   "underlying": "U5",
+   "strike": 115.66,
+   "maturity": 1.9861111111111112,
+   "n_fixings": 12,
+   "quantity": 24.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0386",
+   "underlying": "U2",
+   "strike": 52.49,
+   "maturity": 0.2972222222222222,
+   "n_fixings": 12,
+   "quantity": -4.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0387",
+   "underlying": "U3",
+   "strike": 116.57,
+   "maturity": 1.8388888888888888,
+   "n_fixings": 12,
+   "quantity": -12.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0388",
+   "underlying": "U4",
+   "strike": 74.84,
+   "maturity": 1.5333333333333334,
+   "n_fixings": 12,
+   "quantity": -88.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0389",
+   "underlying": "U4",
+   "strike": 83.95,
+   "maturity": 1.125,
+   "n_fixings": 12,
+   "quantity": 68.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0390",
+   "underlying": "U3",
+   "strike": 138.04,
+   "maturity": 0.49722222222222223,
+   "n_fixings": 12,
+   "quantity": -48.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0391",
+   "underlying": "U6",
+   "strike": 40.11,
+   "maturity": 1.8166666666666667,
+   "n_fixings": 12,
+   "quantity": -64.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0392",
+   "underlying": "U5",
+   "strike": 107.52,
+   "maturity": 2.436111111111111,
+   "n_fixings": 12,
+   "quantity": -70.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0393",
+   "underlying": "U1",
+   "strike": 46.65,
+   "maturity": 0.7472222222222222,
+   "n_fixings": 12,
+   "quantity": 17.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0394",
+   "underlying": "U2",
+   "strike": 60.38,
+   "maturity": 1.2194444444444446,
+   "n_fixings": 12,
+   "quantity": -73.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0395",
+   "underlying": "U7",
+   "strike": 210.7,
+   "maturity": 1.3305555555555555,
+   "n_fixings": 12,
+   "quantity": -48.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0396",
+   "underlying": "U6",
+   "strike": 40.33,
+   "maturity": 0.1388888888888889,
+   "n_fixings": 12,
+   "quantity": 2.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0397",
+   "underlying": "U2",
+   "strike": 57.51,
+   "maturity": 0.5861111111111111,
+   "n_fixings": 12,
+   "quantity": 71.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0398",
+   "underlying": "U6",
+   "strike": 37.97,
+   "maturity": 0.2722222222222222,
+   "n_fixings": 12,
+   "quantity": 84.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0399",
+   "underlying": "U6",
+   "strike": 43.63,
+   "maturity": 0.7388888888888889,
+   "n_fixings": 12,
+   "quantity": -3.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0400",
+   "underlying": "U8",
+   "strike": 210.84,
+   "maturity": 2.161111111111111,
+   "n_fixings": 12,
+   "quantity": -41.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0401",
+   "underlying": "U6",
+   "strike": 50.64,
+   "maturity": 1.525,
+   "n_fixings": 12,
+   "quantity": -40.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0402",
+   "underlying": "U6",
+   "strike": 39.22,
+   "maturity": 1.261111111111111,
+   "n_fixings": 12,
+   "quantity": -22.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0403",
+   "underlying": "U4",
+   "strike": 107.29,
+   "maturity": 1.1166666666666667,
+   "n_fixings": 12,
+   "quantity": 83.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0404",
+   "underlying": "U5",
+   "strike": 140.98,
+   "maturity": 0.4361111111111111,
+   "n_fixings": 12,
+   "quantity": -24.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0405",
+   "underlying": "U2",
+   "strike": 61.78,
+   "maturity": 2.3583333333333334,
+   "n_fixings": 12,
+   "quantity": 87.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0406",
+   "underlying": "U2",
+   "strike": 48.33,
+   "maturity": 1.4166666666666667,
+   "n_fixings": 12,
+   "quantity": -48.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0407",
+   "underlying": "U4",
+   "strike": 102.44,
+   "maturity": 1.0888888888888888,
+   "n_fixings": 12,
+   "quantity": 26.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0408",
+   "underlying": "U2",
+   "strike": 47.14,
+   "maturity": 0.49722222222222223,
+   "n_fixings": 12,
+   "quantity": -94.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0409",
+   "underlying": "U2",
+   "strike": 62.86,
+   "maturity": 1.1666666666666667,
+   "n_fixings": 12,
+   "quantity": 13.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0410",
+   "underlying": "U5",
+   "strike": 109.8,
+   "maturity": 1.0611111111111111,
+   "n_fixings": 12,
+   "quantity": -64.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0411",
+   "underlying": "U5",
+   "strike": 126.57,
+   "maturity": 0.4638888888888889,
+   "n_fixings": 12,
+   "quantity": 28.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0412",
+   "underlying": "U5",
+   "strike": 119.37,
+   "maturity": 2.0527777777777776,
+   "n_fixings": 12,
+   "quantity": 55.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0413",
+   "underlying": "U6",
+   "strike": 39.43,
+   "maturity": 0.4083333333333333,
+   "n_fixings": 12,
+   "quantity": -61.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0414",
+   "underlying": "U3",
+   "strike": 104.27,
+   "maturity": 1.1416666666666666,
+   "n_fixings": 12,
+   "quantity": -30.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0415",
+   "underlying": "U4",
+   "strike": 88.2,
+   "maturity": 2.361111111111111,
+   "n_fixings": 12,
+   "quantity": -59.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0416",
+   "underlying": "U4",
+   "strike": 81.79,
+   "maturity": 0.11944444444444445,
+   "n_fixings": 12,
+   "quantity": 87.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0417",
+   "underlying": "U8",
+   "strike": 155.49,
+   "maturity": 1.4861111111111112,
+   "n_fixings": 12,
+   "quantity": -74.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0418",
+   "underlying": "U2",
+   "strike": 45.19,
+   "maturity": 2.047222222222222,
+   "n_fixings": 12,
+   "quantity": 76.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0419",
+   "underlying": "U8",
+   "strike": 193.21,
+   "maturity": 1.4166666666666667,
+   "n_fixings": 12,
+   "quantity": 12.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0420",
+   "underlying": "U2",
+   "strike": 58.56,
+   "maturity": 1.0833333333333333,
+   "n_fixings": 12,
+   "quantity": 58.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0421",
+   "underlying": "U7",
+   "strike": 209.55,
+   "maturity": 0.8361111111111111,
+   "n_fixings": 12,
+   "quantity": 2.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0422",
+   "underlying": "U5",
+   "strike": 111.13,
+   "maturity": 1.4638888888888888,
+   "n_fixings": 12,
+   "quantity": -73.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0423",
+   "underlying": "U1",
+   "strike": 38.29,
+   "maturity": 0.6027777777777777,
+   "n_fixings": 12,
+   "quantity": 56.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0424",
+   "underlying": "U5",
+   "strike": 130.14,
+   "maturity": 2.3472222222222223,
+   "n_fixings": 12,
+   "quantity": -95.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0425",
+   "underlying": "U2",
+   "strike": 46.93,
+   "maturity": 1.4083333333333334,
+   "n_fixings": 12,
+   "quantity": 54.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0426",
+   "underlying": "U6",
+   "strike": 36.03,
+   "maturity": 1.125,
+   "n_fixings": 12,
+   "quantity": 15.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0427",
+   "underlying": "U1",
+   "strike": 39.65,
+   "maturity": 1.275,
+   "n_fixings": 12,
+   "quantity": 22.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0428",
+   "underlying": "U1",
+   "strike": 42.73,
+   "maturity": 1.4333333333333333,
+   "n_fixings": 12,
+   "quantity": 18.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0429",
+   "underlying": "U8",
+   "strike": 212.47,
+   "maturity": 0.8361111111111111,
+   "n_fixings": 12,
+   "quantity": 48.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0430",
+   "underlying": "U6",
+   "strike": 43.55,
+   "maturity": 0.8861111111111111,
+   "n_fixings": 12,
+   "quantity": -68.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0431",
+   "underlying": "U4",
+   "strike": 76.47,
+   "maturity": 0.9527777777777777,
+   "n_fixings": 12,
+   "quantity": -75.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0432",
+   "underlying": "U3",
+   "strike": 127.76,
+   "maturity": 1.2638888888888888,
+   "n_fixings": 12,
+   "quantity": -1.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0433",
+   "underlying": "U1",
+   "strike": 44.96,
+   "maturity": 0.7944444444444444,
+   "n_fixings": 12,
+   "quantity": -83.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0434",
+   "underlying": "U3",
+   "strike": 113.24,
+   "maturity": 2.3,
+   "n_fixings": 12,
+   "quantity": -15.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0435",
+   "underlying": "U5",
+   "strike": 116.81,
+   "maturity": 1.961111111111111,
+   "n_fixings": 12,
+   "quantity": 42.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0436",
+   "underlying": "U8",
+   "strike": 172.14,
+   "maturity": 1.7972222222222223,
+   "n_fixings": 12,
+   "quantity": 45.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0437",
+   "underlying": "U1",
+   "strike": 41.82,
+   "maturity": 1.475,
+   "n_fixings": 12,
+   "quantity": -54.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0438",
+   "underlying": "U3",
+   "strike": 93.56,
+   "maturity": 0.6194444444444445,
+   "n_fixings": 12,
+   "quantity": -13.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0439",
+   "underlying": "U8",
+   "strike": 204.07,
+   "maturity": 2.341666666666667,
+   "n_fixings": 12,
+   "quantity": 42.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0440",
+   "underlying": "U7",
+   "strike": 157.03,
+   "maturity": 1.6305555555555555,
+   "n_fixings": 12,
+   "quantity": -27.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0441",
+   "underlying": "U6",
+   "strike": 41.59,
+   "maturity": 0.14722222222222223,
+   "n_fixings": 12,
+   "quantity": 84.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0442",
+   "underlying": "U6",
+   "strike": 46.3,
+   "maturity": 2.3027777777777776,
+   "n_fixings": 12,
+   "quantity": 32.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0443",
+   "underlying": "U1",
+   "strike": 38.34,
+   "maturity": 2.45,
+   "n_fixings": 12,
+   "quantity": 38.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0444",
+   "underlying": "U2",
+   "strike": 53.26,
+   "maturity": 2.075,
+   "n_fixings": 12,
+   "quantity": 73.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0445",
+   "underlying": "U7",
+   "strike": 187.37,
+   "maturity": 0.8944444444444445,
+   "n_fixings": 12,
+   "quantity": 46.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0446",
+   "underlying": "U1",
+   "strike": 41.9,
+   "maturity": 0.49444444444444446,
+   "n_fixings": 12,
+   "quantity": -36.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0447",
+   "underlying": "U5",
+   "strike": 142.21,
+   "maturity": 2.0055555555555555,
+   "n_fixings": 12,
+   "quantity": -22.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0448",
+   "underlying": "U5",
+   "strike": 112.17,
+   "maturity": 1.6861111111111111,
+   "n_fixings": 12,
+   "quantity": -74.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0449",
+   "underlying": "U1",
+   "strike": 44.49,
+   "maturity": 0.5027777777777778,
+   "n_fixings": 12,
+   "quantity": -53.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0450",
+   "underlying": "U3",
+   "strike": 136.42,
+   "maturity": 1.4944444444444445,
+   "n_fixings": 12,
+   "quantity": 40.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0451",
+   "underlying": "U6",
+   "strike": 40.67,
+   "maturity": 1.8611111111111112,
+   "n_fixings": 12,
+   "quantity": -53.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0452",
+   "underlying": "U5",
+   "strike": 127.71,
+   "maturity": 2.3305555555555557,
+   "n_fixings": 12,
+   "quantity": 50.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0453",
+   "underlying": "U6",
+   "strike": 38.69,
+   "maturity": 1.8888888888888888,
+   "n_fixings": 12,
+   "quantity": -74.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0454",
+   "underlying": "U5",
+   "strike": 132.81,
+   "maturity": 2.1055555555555556,
+   "n_fixings": 12,
+   "quantity": 72.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0455",
+   "underlying": "U5",
+   "strike": 120.59,
+   "maturity": 2.386111111111111,
+   "n_fixings": 12,
+   "quantity": 73.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0456",
+   "underlying": "U5",
+   "strike": 154.15,
+   "maturity": 1.538888888888889,
+   "n_fixings": 12,
+   "quantity": -14.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0457",
+   "underlying": "U5",
+   "strike": 134.49,
+   "maturity": 1.2416666666666667,
+   "n_fixings": 12,
+   "quantity": 53.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0458",
+   "underlying": "U5",
+   "strike": 149.63,
+   "maturity": 2.2805555555555554,
+   "n_fixings": 12,
+   "quantity": 58.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0459",
+   "underlying": "U7",
+   "strike": 163.74,
+   "maturity": 1.325,
+   "n_fixings": 12,
+   "quantity": -4.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0460",
+   "underlying": "U5",
+   "strike": 122.73,
+   "maturity": 1.1222222222222222,
+   "n_fixings": 12,
+   "quantity": 8.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0461",
+   "underlying": "U7",
+   "strike": 167.22,
+   "maturity": 1.6805555555555556,
+   "n_fixings": 12,
+   "quantity": 91.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0462",
+   "underlying": "U7",
+   "strike": 151.91,
+   "maturity": 1.4777777777777779,
+   "n_fixings": 12,
+   "quantity": -6.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0463",
+   "underlying": "U2",
+   "strike": 48.17,
+   "maturity": 0.4388888888888889,
+   "n_fixings": 12,
+   "quantity": 13.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0464",
+   "underlying": "U4",
+   "strike": 71.75,
+   "maturity": 1.7916666666666667,
+   "n_fixings": 12,
+   "quantity": 48.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0465",
+   "underlying": "U8",
+   "strike": 227.89,
+   "maturity": 1.8611111111111112,
+   "n_fixings": 12,
+   "quantity": -63.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0466",
+   "underlying": "U1",
+   "strike": 36.97,
+   "maturity": 0.7916666666666666,
+   "n_fixings": 12,
+   "quantity": 70.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0467",
+   "underlying": "U7",
+   "strike": 159.42,
+   "maturity": 0.6305555555555555,
+   "n_fixings": 12,
+   "quantity": 28.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0468",
+   "underlying": "U2",
+   "strike": 56.91,
+   "maturity": 0.6888888888888889,
+   "n_fixings": 12,
+   "quantity": 84.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0469",
+   "underlying": "U7",
+   "strike": 200.47,
+   "maturity": 0.8333333333333334,
+   "n_fixings": 12,
+   "quantity": 94.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0470",
+   "underlying": "U1",
+   "strike": 41.14,
+   "maturity": 1.975,
+   "n_fixings": 12,
+   "quantity": 34.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0471",
+   "underlying": "U1",
+   "strike": 39.54,
+   "maturity": 0.37222222222222223,
+   "n_fixings": 12,
+   "quantity": 26.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0472",
+   "underlying": "U2",
+   "strike": 52.65,
+   "maturity": 1.7638888888888888,
+   "n_fixings": 12,
+   "quantity": 41.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0473",
+   "underlying": "U4",
+   "strike": 109.41,
+   "maturity": 1.0083333333333333,
+   "n_fixings": 12,
+   "quantity": 69.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0474",
+   "underlying": "U4",
+   "strike": 89.2,
+   "maturity": 1.613888888888889,
+   "n_fixings": 12,
+   "quantity": -10.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0475",
+   "underlying": "U1",
+   "strike": 45.12,
+   "maturity": 0.6333333333333333,
+   "n_fixings": 12,
+   "quantity": 76.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0476",
+   "underlying": "U6",
+   "strike": 38.73,
+   "maturity": 0.6,
+   "n_fixings": 12,
+   "quantity": -20.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0477",
+   "underlying": "U5",
+   "strike": 118.02,
+   "maturity": 1.2916666666666667,
+   "n_fixings": 12,
+   "quantity": 83.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0478",
+   "underlying": "U5",
+   "strike": 141.76,
+   "maturity": 2.0833333333333335,
+   "n_fixings": 12,
+   "quantity": 38.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0479",
+   "underlying": "U2",
+   "strike": 51.27,
+   "maturity": 2.1055555555555556,
+   "n_fixings": 12,
+   "quantity": -8.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0480",
+   "underlying": "U4",
+   "strike": 102.94,
+   "maturity": 1.8111111111111111,
+   "n_fixings": 12,
+   "quantity": 86.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0481",
+   "underlying": "U5",
+   "strike": 153.55,
+   "maturity": 2.0277777777777777,
+   "n_fixings": 12,
+   "quantity": 7.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0482",
+   "underlying": "U7",
+   "strike": 227.45,
+   "maturity": 0.30277777777777776,
+   "n_fixings": 12,
+   "quantity": -61.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0483",
+   "underlying": "U4",
+   "strike": 89.05,
+   "maturity": 2.0694444444444446,
+   "n_fixings": 12,
+   "quantity": -72.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0484",
+   "underlying": "U5",
+   "strike": 127.1,
+   "maturity": 1.7055555555555555,
+   "n_fixings": 12,
+   "quantity": -100.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0485",
+   "underlying": "U7",
+   "strike": 193.26,
+   "maturity": 1.1527777777777777,
+   "n_fixings": 12,
+   "quantity": 13.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0486",
+   "underlying": "U6",
+   "strike": 35.88,
+   "maturity": 0.9666666666666667,
+   "n_fixings": 12,
+   "quantity": 18.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0487",
+   "underlying": "U3",
+   "strike": 90.05,
+   "maturity": 0.6833333333333333,
+   "n_fixings": 12,
+   "quantity": 11.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0488",
+   "underlying": "U8",
+   "strike": 184.76,
+   "maturity": 0.3388888888888889,
+   "n_fixings": 12,
+   "quantity": -29.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0489",
+   "underlying": "U7",
+   "strike": 165.89,
+   "maturity": 2.102777777777778,
+   "n_fixings": 12,
+   "quantity": -96.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0490",
+   "underlying": "U5",
+   "strike": 126.56,
+   "maturity": 1.7805555555555554,
+   "n_fixings": 12,
+   "quantity": -97.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0491",
+   "underlying": "U1",
+   "strike": 33.91,
+   "maturity": 2.386111111111111,
+   "n_fixings": 12,
+   "quantity": 65.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0492",
+   "underlying": "U8",
+   "strike": 204.4,
+   "maturity": 0.46111111111111114,
+   "n_fixings": 12,
+   "quantity": -33.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0493",
+   "underlying": "U4",
+   "strike": 77.37,
+   "maturity": 0.8583333333333333,
+   "n_fixings": 12,
+   "quantity": 76.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0494",
+   "underlying": "U1",
+   "strike": 49.12,
+   "maturity": 0.25555555555555554,
+   "n_fixings": 12,
+   "quantity": 31.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0495",
+   "underlying": "U6",
+   "strike": 38.21,
+   "maturity": 0.11944444444444445,
+   "n_fixings": 12,
+   "quantity": -35.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0496",
+   "underlying": "U6",
+   "strike": 44.48,
+   "maturity": 2.1777777777777776,
+   "n_fixings": 12,
+   "quantity": 93.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0497",
+   "underlying": "U1",
+   "strike": 37.52,
+   "maturity": 2.2333333333333334,
+   "n_fixings": 12,
+   "quantity": 74.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0498",
+   "underlying": "U6",
+   "strike": 33.55,
+   "maturity": 2.2916666666666665,
+   "n_fixings": 12,
+   "quantity": -50.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "bespoke-0499",
+   "underlying": "U3",
+   "strike": 96.81,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": -98.0
+  }
+ ]
+}

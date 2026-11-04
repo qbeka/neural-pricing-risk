@@ -1,0 +1,4557 @@
+{
+ "schema_version": 1,
+ "book_id": "primary",
+ "rate": 0.03,
+ "markets": {
+  "U1": {
+   "schema_version": 1,
+   "spot": 68.63,
+   "vol": 0.342,
+   "rate": 0.03
+  },
+  "U2": {
+   "schema_version": 1,
+   "spot": 114.76,
+   "vol": 0.261,
+   "rate": 0.03
+  },
+  "U3": {
+   "schema_version": 1,
+   "spot": 96.79,
+   "vol": 0.387,
+   "rate": 0.03
+  },
+  "U4": {
+   "schema_version": 1,
+   "spot": 184.82,
+   "vol": 0.203,
+   "rate": 0.03
+  },
+  "U5": {
+   "schema_version": 1,
+   "spot": 144.45,
+   "vol": 0.239,
+   "rate": 0.03
+  },
+  "U6": {
+   "schema_version": 1,
+   "spot": 194.71,
+   "vol": 0.426,
+   "rate": 0.03
+  },
+  "U7": {
+   "schema_version": 1,
+   "spot": 141.74,
+   "vol": 0.376,
+   "rate": 0.03
+  },
+  "U8": {
+   "schema_version": 1,
+   "spot": 122.42,
+   "vol": 0.398,
+   "rate": 0.03
+  }
+ },
+ "contracts": [
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0000",
+   "underlying": "U6",
+   "strike": 209.23,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -16.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0001",
+   "underlying": "U2",
+   "strike": 113.45,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": -10.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0002",
+   "underlying": "U3",
+   "strike": 120.3,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": -47.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0003",
+   "underlying": "U8",
+   "strike": 140.25,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 48.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0004",
+   "underlying": "U3",
+   "strike": 105.83,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -97.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0005",
+   "underlying": "U8",
+   "strike": 107.2,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": 53.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0006",
+   "underlying": "U2",
+   "strike": 94.01,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 80.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0007",
+   "underlying": "U5",
+   "strike": 120.81,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -1.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0008",
+   "underlying": "U4",
+   "strike": 200.83,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -8.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0009",
+   "underlying": "U1",
+   "strike": 77.49,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -55.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0010",
+   "underlying": "U4",
+   "strike": 212.35,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": 16.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0011",
+   "underlying": "U8",
+   "strike": 115.96,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": -4.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0012",
+   "underlying": "U3",
+   "strike": 97.01,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -86.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0013",
+   "underlying": "U1",
+   "strike": 66.31,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -94.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0014",
+   "underlying": "U7",
+   "strike": 124.31,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": 88.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0015",
+   "underlying": "U7",
+   "strike": 141.74,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": -31.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0016",
+   "underlying": "U2",
+   "strike": 92.23,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": -36.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0017",
+   "underlying": "U3",
+   "strike": 87.35,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": -74.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0018",
+   "underlying": "U4",
+   "strike": 191.83,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": 20.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0019",
+   "underlying": "U5",
+   "strike": 121.46,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": 97.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0020",
+   "underlying": "U3",
+   "strike": 79.28,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": -28.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0021",
+   "underlying": "U1",
+   "strike": 75.66,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": 11.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0022",
+   "underlying": "U1",
+   "strike": 82.3,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -37.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0023",
+   "underlying": "U7",
+   "strike": 142.28,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 56.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0024",
+   "underlying": "U4",
+   "strike": 155.26,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": 31.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0025",
+   "underlying": "U2",
+   "strike": 94.21,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": 25.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0026",
+   "underlying": "U5",
+   "strike": 134.52,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 7.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0027",
+   "underlying": "U7",
+   "strike": 159.66,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": 77.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0028",
+   "underlying": "U6",
+   "strike": 229.18,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 79.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0029",
+   "underlying": "U2",
+   "strike": 101.91,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": -34.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0030",
+   "underlying": "U3",
+   "strike": 82.53,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 37.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0031",
+   "underlying": "U8",
+   "strike": 114.2,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": -61.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0032",
+   "underlying": "U5",
+   "strike": 170.51,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -48.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0033",
+   "underlying": "U3",
+   "strike": 116.54,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": 93.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0034",
+   "underlying": "U4",
+   "strike": 183.5,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": 99.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0035",
+   "underlying": "U8",
+   "strike": 130.6,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": -78.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0036",
+   "underlying": "U7",
+   "strike": 168.1,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": 46.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0037",
+   "underlying": "U3",
+   "strike": 97.96,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 34.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0038",
+   "underlying": "U2",
+   "strike": 105.01,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": 54.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0039",
+   "underlying": "U4",
+   "strike": 209.81,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": 46.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0040",
+   "underlying": "U6",
+   "strike": 167.13,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -92.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0041",
+   "underlying": "U6",
+   "strike": 185.85,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -53.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0042",
+   "underlying": "U2",
+   "strike": 122.54,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": 38.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0043",
+   "underlying": "U2",
+   "strike": 136.36,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": -66.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0044",
+   "underlying": "U5",
+   "strike": 160.27,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": 6.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0045",
+   "underlying": "U3",
+   "strike": 93.15,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": -28.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0046",
+   "underlying": "U6",
+   "strike": 229.91,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": 25.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0047",
+   "underlying": "U3",
+   "strike": 111.47,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": 67.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0048",
+   "underlying": "U7",
+   "strike": 145.71,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": -16.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0049",
+   "underlying": "U4",
+   "strike": 196.27,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": -4.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0050",
+   "underlying": "U5",
+   "strike": 178.12,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": -58.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0051",
+   "underlying": "U6",
+   "strike": 221.83,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -18.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0052",
+   "underlying": "U4",
+   "strike": 150.66,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": 4.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0053",
+   "underlying": "U5",
+   "strike": 123.38,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": -29.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0054",
+   "underlying": "U3",
+   "strike": 106.0,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 48.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0055",
+   "underlying": "U2",
+   "strike": 98.14,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": 14.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0056",
+   "underlying": "U6",
+   "strike": 183.87,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": 48.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0057",
+   "underlying": "U6",
+   "strike": 181.05,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": -41.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0058",
+   "underlying": "U5",
+   "strike": 141.3,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": -1.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0059",
+   "underlying": "U6",
+   "strike": 182.76,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": -3.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0060",
+   "underlying": "U4",
+   "strike": 213.39,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": -86.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0061",
+   "underlying": "U8",
+   "strike": 108.31,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 73.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0062",
+   "underlying": "U1",
+   "strike": 61.54,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": 47.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0063",
+   "underlying": "U6",
+   "strike": 235.02,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": -41.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0064",
+   "underlying": "U7",
+   "strike": 119.66,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": -33.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0065",
+   "underlying": "U3",
+   "strike": 107.6,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": -70.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0066",
+   "underlying": "U6",
+   "strike": 214.63,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": -37.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0067",
+   "underlying": "U4",
+   "strike": 177.7,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": -79.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0068",
+   "underlying": "U2",
+   "strike": 115.12,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": 12.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0069",
+   "underlying": "U8",
+   "strike": 126.81,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": -41.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0070",
+   "underlying": "U5",
+   "strike": 116.81,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": 16.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0071",
+   "underlying": "U3",
+   "strike": 120.17,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": -3.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0072",
+   "underlying": "U7",
+   "strike": 137.41,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": -65.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0073",
+   "underlying": "U5",
+   "strike": 158.27,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 75.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0074",
+   "underlying": "U6",
+   "strike": 200.42,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 61.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0075",
+   "underlying": "U1",
+   "strike": 55.06,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": -28.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0076",
+   "underlying": "U5",
+   "strike": 178.57,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": -12.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0077",
+   "underlying": "U3",
+   "strike": 114.8,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": -24.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0078",
+   "underlying": "U5",
+   "strike": 167.95,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": -34.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0079",
+   "underlying": "U1",
+   "strike": 64.99,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": 89.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0080",
+   "underlying": "U1",
+   "strike": 56.55,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 47.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0081",
+   "underlying": "U4",
+   "strike": 148.73,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": 86.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0082",
+   "underlying": "U2",
+   "strike": 101.03,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": 30.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0083",
+   "underlying": "U7",
+   "strike": 140.8,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": -21.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0084",
+   "underlying": "U8",
+   "strike": 120.12,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": -10.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0085",
+   "underlying": "U1",
+   "strike": 54.92,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": 78.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0086",
+   "underlying": "U1",
+   "strike": 65.89,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -14.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0087",
+   "underlying": "U5",
+   "strike": 155.77,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": -93.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0088",
+   "underlying": "U4",
+   "strike": 214.08,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": -45.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0089",
+   "underlying": "U6",
+   "strike": 163.75,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": 99.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0090",
+   "underlying": "U7",
+   "strike": 114.23,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": 31.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0091",
+   "underlying": "U6",
+   "strike": 202.04,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": -48.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0092",
+   "underlying": "U3",
+   "strike": 99.83,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": 15.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0093",
+   "underlying": "U7",
+   "strike": 168.52,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -26.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0094",
+   "underlying": "U2",
+   "strike": 104.6,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": 94.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0095",
+   "underlying": "U4",
+   "strike": 230.08,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 74.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0096",
+   "underlying": "U4",
+   "strike": 200.27,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": 5.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0097",
+   "underlying": "U5",
+   "strike": 147.12,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": -8.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0098",
+   "underlying": "U3",
+   "strike": 83.09,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": 97.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0099",
+   "underlying": "U4",
+   "strike": 157.58,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": -20.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0100",
+   "underlying": "U1",
+   "strike": 67.84,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": -55.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0101",
+   "underlying": "U2",
+   "strike": 98.54,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": 74.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0102",
+   "underlying": "U3",
+   "strike": 88.27,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 69.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0103",
+   "underlying": "U1",
+   "strike": 74.53,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -73.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0104",
+   "underlying": "U2",
+   "strike": 99.64,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": -41.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0105",
+   "underlying": "U7",
+   "strike": 148.29,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": 56.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0106",
+   "underlying": "U5",
+   "strike": 150.93,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": 85.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0107",
+   "underlying": "U8",
+   "strike": 99.67,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": 95.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0108",
+   "underlying": "U4",
+   "strike": 154.03,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": -81.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0109",
+   "underlying": "U2",
+   "strike": 103.05,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 79.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0110",
+   "underlying": "U7",
+   "strike": 161.94,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": -59.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0111",
+   "underlying": "U5",
+   "strike": 168.9,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 79.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0112",
+   "underlying": "U2",
+   "strike": 119.34,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": -50.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0113",
+   "underlying": "U2",
+   "strike": 125.87,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": -35.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0114",
+   "underlying": "U3",
+   "strike": 96.11,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": 56.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0115",
+   "underlying": "U2",
+   "strike": 101.41,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": 84.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0116",
+   "underlying": "U4",
+   "strike": 194.93,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": 59.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0117",
+   "underlying": "U4",
+   "strike": 148.26,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": -47.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0118",
+   "underlying": "U8",
+   "strike": 146.77,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 95.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0119",
+   "underlying": "U4",
+   "strike": 150.36,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -92.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0120",
+   "underlying": "U2",
+   "strike": 122.18,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": -81.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0121",
+   "underlying": "U7",
+   "strike": 174.8,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 18.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0122",
+   "underlying": "U8",
+   "strike": 149.75,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -19.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0123",
+   "underlying": "U4",
+   "strike": 206.76,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": 26.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0124",
+   "underlying": "U5",
+   "strike": 168.56,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 59.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0125",
+   "underlying": "U1",
+   "strike": 65.67,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": -91.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0126",
+   "underlying": "U1",
+   "strike": 63.28,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": -15.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0127",
+   "underlying": "U4",
+   "strike": 175.33,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 71.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0128",
+   "underlying": "U8",
+   "strike": 136.63,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": -56.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0129",
+   "underlying": "U8",
+   "strike": 149.33,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": 37.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0130",
+   "underlying": "U2",
+   "strike": 104.02,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": -65.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0131",
+   "underlying": "U3",
+   "strike": 109.96,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": 40.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0132",
+   "underlying": "U1",
+   "strike": 63.07,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": -44.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0133",
+   "underlying": "U4",
+   "strike": 164.49,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": 93.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0134",
+   "underlying": "U8",
+   "strike": 118.62,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": -49.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0135",
+   "underlying": "U1",
+   "strike": 65.25,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": 29.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0136",
+   "underlying": "U8",
+   "strike": 137.97,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": -58.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0137",
+   "underlying": "U6",
+   "strike": 160.6,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": 18.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0138",
+   "underlying": "U6",
+   "strike": 235.42,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": -6.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0139",
+   "underlying": "U1",
+   "strike": 81.13,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": -32.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0140",
+   "underlying": "U8",
+   "strike": 133.76,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": -66.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0141",
+   "underlying": "U2",
+   "strike": 104.96,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": -56.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0142",
+   "underlying": "U5",
+   "strike": 144.71,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": -76.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0143",
+   "underlying": "U7",
+   "strike": 126.49,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": -77.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0144",
+   "underlying": "U8",
+   "strike": 117.0,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 35.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0145",
+   "underlying": "U3",
+   "strike": 110.29,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": 33.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0146",
+   "underlying": "U3",
+   "strike": 114.24,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": 55.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0147",
+   "underlying": "U8",
+   "strike": 138.56,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -88.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0148",
+   "underlying": "U6",
+   "strike": 188.72,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": 82.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0149",
+   "underlying": "U1",
+   "strike": 77.39,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": -87.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0150",
+   "underlying": "U3",
+   "strike": 89.16,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -64.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0151",
+   "underlying": "U2",
+   "strike": 119.79,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 43.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0152",
+   "underlying": "U7",
+   "strike": 119.84,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": -89.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0153",
+   "underlying": "U7",
+   "strike": 122.46,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 93.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0154",
+   "underlying": "U7",
+   "strike": 121.79,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": -9.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0155",
+   "underlying": "U2",
+   "strike": 132.51,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": -99.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0156",
+   "underlying": "U7",
+   "strike": 115.6,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": -97.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0157",
+   "underlying": "U2",
+   "strike": 98.69,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -1.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0158",
+   "underlying": "U1",
+   "strike": 67.68,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 21.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0159",
+   "underlying": "U8",
+   "strike": 105.89,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": 9.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0160",
+   "underlying": "U5",
+   "strike": 154.45,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": -36.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0161",
+   "underlying": "U3",
+   "strike": 82.01,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": -75.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0162",
+   "underlying": "U5",
+   "strike": 157.51,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": -31.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0163",
+   "underlying": "U7",
+   "strike": 149.23,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": -10.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0164",
+   "underlying": "U5",
+   "strike": 126.46,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -22.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0165",
+   "underlying": "U3",
+   "strike": 77.47,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -30.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0166",
+   "underlying": "U6",
+   "strike": 156.62,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": -70.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0167",
+   "underlying": "U3",
+   "strike": 94.79,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": -56.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0168",
+   "underlying": "U4",
+   "strike": 153.77,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": 65.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0169",
+   "underlying": "U1",
+   "strike": 73.3,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 95.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0170",
+   "underlying": "U4",
+   "strike": 149.31,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": -30.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0171",
+   "underlying": "U6",
+   "strike": 175.69,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": 42.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0172",
+   "underlying": "U7",
+   "strike": 114.6,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": 15.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0173",
+   "underlying": "U1",
+   "strike": 67.41,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": -79.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0174",
+   "underlying": "U1",
+   "strike": 65.78,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": 43.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0175",
+   "underlying": "U3",
+   "strike": 85.81,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": -43.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0176",
+   "underlying": "U8",
+   "strike": 120.18,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": -16.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0177",
+   "underlying": "U3",
+   "strike": 96.39,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 42.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0178",
+   "underlying": "U1",
+   "strike": 81.97,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": -4.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0179",
+   "underlying": "U8",
+   "strike": 116.95,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": 94.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0180",
+   "underlying": "U3",
+   "strike": 109.52,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 89.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0181",
+   "underlying": "U4",
+   "strike": 155.01,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": -60.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0182",
+   "underlying": "U5",
+   "strike": 129.27,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": -83.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0183",
+   "underlying": "U6",
+   "strike": 157.4,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": 87.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0184",
+   "underlying": "U1",
+   "strike": 56.55,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": 9.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0185",
+   "underlying": "U4",
+   "strike": 174.15,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": 53.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0186",
+   "underlying": "U5",
+   "strike": 162.89,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": 28.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0187",
+   "underlying": "U6",
+   "strike": 225.78,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": 56.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0188",
+   "underlying": "U3",
+   "strike": 119.47,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -87.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0189",
+   "underlying": "U1",
+   "strike": 71.52,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 4.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0190",
+   "underlying": "U8",
+   "strike": 104.13,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": -22.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0191",
+   "underlying": "U4",
+   "strike": 189.04,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 92.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0192",
+   "underlying": "U3",
+   "strike": 110.19,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": -99.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0193",
+   "underlying": "U7",
+   "strike": 125.38,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": -66.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0194",
+   "underlying": "U3",
+   "strike": 117.45,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": 79.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0195",
+   "underlying": "U2",
+   "strike": 114.4,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": -85.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0196",
+   "underlying": "U1",
+   "strike": 68.35,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 44.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0197",
+   "underlying": "U1",
+   "strike": 65.68,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": 22.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0198",
+   "underlying": "U2",
+   "strike": 137.6,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": 61.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0199",
+   "underlying": "U3",
+   "strike": 82.4,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": 59.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0200",
+   "underlying": "U2",
+   "strike": 100.54,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -35.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0201",
+   "underlying": "U6",
+   "strike": 174.16,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": 68.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0202",
+   "underlying": "U7",
+   "strike": 145.09,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 61.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0203",
+   "underlying": "U4",
+   "strike": 203.11,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": 67.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0204",
+   "underlying": "U1",
+   "strike": 73.31,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": -66.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0205",
+   "underlying": "U1",
+   "strike": 57.98,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 8.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0206",
+   "underlying": "U1",
+   "strike": 56.83,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": 52.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0207",
+   "underlying": "U1",
+   "strike": 79.23,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -45.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0208",
+   "underlying": "U1",
+   "strike": 71.75,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": -31.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0209",
+   "underlying": "U7",
+   "strike": 160.39,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": 8.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0210",
+   "underlying": "U3",
+   "strike": 101.59,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": 99.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0211",
+   "underlying": "U4",
+   "strike": 160.03,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": 48.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0212",
+   "underlying": "U4",
+   "strike": 188.59,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": 52.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0213",
+   "underlying": "U2",
+   "strike": 95.12,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": 99.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0214",
+   "underlying": "U1",
+   "strike": 57.64,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": 70.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0215",
+   "underlying": "U4",
+   "strike": 182.12,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -9.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0216",
+   "underlying": "U2",
+   "strike": 141.86,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": -63.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0217",
+   "underlying": "U5",
+   "strike": 118.05,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": -33.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0218",
+   "underlying": "U7",
+   "strike": 123.28,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": 41.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0219",
+   "underlying": "U2",
+   "strike": 120.3,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": -28.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0220",
+   "underlying": "U4",
+   "strike": 195.44,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": -72.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0221",
+   "underlying": "U8",
+   "strike": 136.06,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": -80.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0222",
+   "underlying": "U7",
+   "strike": 136.23,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 52.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0223",
+   "underlying": "U7",
+   "strike": 121.35,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": -2.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0224",
+   "underlying": "U6",
+   "strike": 161.34,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": -7.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0225",
+   "underlying": "U4",
+   "strike": 163.36,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": -65.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0226",
+   "underlying": "U3",
+   "strike": 83.16,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": 21.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0227",
+   "underlying": "U6",
+   "strike": 176.16,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": 93.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0228",
+   "underlying": "U3",
+   "strike": 119.84,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 92.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0229",
+   "underlying": "U7",
+   "strike": 155.08,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -19.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0230",
+   "underlying": "U8",
+   "strike": 118.24,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 99.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0231",
+   "underlying": "U4",
+   "strike": 223.14,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 97.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0232",
+   "underlying": "U1",
+   "strike": 56.91,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": -47.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0233",
+   "underlying": "U1",
+   "strike": 60.42,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": 3.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0234",
+   "underlying": "U7",
+   "strike": 169.63,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": 74.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0235",
+   "underlying": "U5",
+   "strike": 118.6,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 36.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0236",
+   "underlying": "U2",
+   "strike": 100.15,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 27.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0237",
+   "underlying": "U4",
+   "strike": 175.83,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": 26.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0238",
+   "underlying": "U6",
+   "strike": 182.92,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": 36.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0239",
+   "underlying": "U6",
+   "strike": 227.7,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": -70.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0240",
+   "underlying": "U1",
+   "strike": 63.49,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": 40.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0241",
+   "underlying": "U6",
+   "strike": 169.5,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": -31.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0242",
+   "underlying": "U3",
+   "strike": 116.29,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": 59.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0243",
+   "underlying": "U6",
+   "strike": 168.11,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": -99.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0244",
+   "underlying": "U3",
+   "strike": 82.3,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": 97.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0245",
+   "underlying": "U4",
+   "strike": 157.86,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": -97.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0246",
+   "underlying": "U5",
+   "strike": 173.85,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": 80.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0247",
+   "underlying": "U4",
+   "strike": 155.95,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": 36.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0248",
+   "underlying": "U1",
+   "strike": 56.71,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": 30.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0249",
+   "underlying": "U6",
+   "strike": 159.04,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 61.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0250",
+   "underlying": "U1",
+   "strike": 56.43,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": -53.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0251",
+   "underlying": "U2",
+   "strike": 94.74,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 21.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0252",
+   "underlying": "U7",
+   "strike": 142.6,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": -20.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0253",
+   "underlying": "U4",
+   "strike": 166.15,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": 99.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0254",
+   "underlying": "U4",
+   "strike": 150.04,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 55.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0255",
+   "underlying": "U8",
+   "strike": 104.75,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": 93.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0256",
+   "underlying": "U7",
+   "strike": 124.34,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": 20.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0257",
+   "underlying": "U8",
+   "strike": 151.58,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": 37.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0258",
+   "underlying": "U5",
+   "strike": 144.69,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": -35.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0259",
+   "underlying": "U5",
+   "strike": 115.6,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": 36.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0260",
+   "underlying": "U1",
+   "strike": 60.17,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": -32.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0261",
+   "underlying": "U7",
+   "strike": 125.29,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": 9.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0262",
+   "underlying": "U4",
+   "strike": 194.18,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": -25.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0263",
+   "underlying": "U6",
+   "strike": 174.88,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": 100.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0264",
+   "underlying": "U8",
+   "strike": 98.26,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": -38.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0265",
+   "underlying": "U5",
+   "strike": 115.64,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": -31.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0266",
+   "underlying": "U4",
+   "strike": 216.79,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": 81.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0267",
+   "underlying": "U6",
+   "strike": 216.75,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 89.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0268",
+   "underlying": "U3",
+   "strike": 87.4,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": -67.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0269",
+   "underlying": "U5",
+   "strike": 176.51,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 23.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0270",
+   "underlying": "U5",
+   "strike": 134.55,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 96.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0271",
+   "underlying": "U6",
+   "strike": 159.21,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": -34.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0272",
+   "underlying": "U8",
+   "strike": 139.68,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": -40.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0273",
+   "underlying": "U7",
+   "strike": 121.23,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": -17.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0274",
+   "underlying": "U8",
+   "strike": 116.57,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 76.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0275",
+   "underlying": "U7",
+   "strike": 172.19,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -76.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0276",
+   "underlying": "U1",
+   "strike": 57.64,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -32.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0277",
+   "underlying": "U4",
+   "strike": 159.27,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": -25.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0278",
+   "underlying": "U6",
+   "strike": 157.78,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": -34.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0279",
+   "underlying": "U7",
+   "strike": 150.04,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": 74.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0280",
+   "underlying": "U7",
+   "strike": 127.96,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": -42.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0281",
+   "underlying": "U7",
+   "strike": 133.45,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 95.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0282",
+   "underlying": "U3",
+   "strike": 93.52,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": 27.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0283",
+   "underlying": "U3",
+   "strike": 85.58,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": -89.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0284",
+   "underlying": "U7",
+   "strike": 138.17,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": 17.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0285",
+   "underlying": "U7",
+   "strike": 135.15,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": -77.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0286",
+   "underlying": "U1",
+   "strike": 68.18,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": -2.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0287",
+   "underlying": "U5",
+   "strike": 163.7,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": -27.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0288",
+   "underlying": "U2",
+   "strike": 105.89,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": 74.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0289",
+   "underlying": "U2",
+   "strike": 130.5,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": -89.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0290",
+   "underlying": "U3",
+   "strike": 102.78,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": 81.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0291",
+   "underlying": "U5",
+   "strike": 147.68,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": 31.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0292",
+   "underlying": "U1",
+   "strike": 58.49,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 90.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0293",
+   "underlying": "U2",
+   "strike": 92.16,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 61.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0294",
+   "underlying": "U3",
+   "strike": 85.95,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 6.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0295",
+   "underlying": "U5",
+   "strike": 150.6,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": -53.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0296",
+   "underlying": "U1",
+   "strike": 56.32,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": -42.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0297",
+   "underlying": "U3",
+   "strike": 103.28,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": 35.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0298",
+   "underlying": "U4",
+   "strike": 207.39,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": 64.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0299",
+   "underlying": "U5",
+   "strike": 148.31,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": -61.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0300",
+   "underlying": "U7",
+   "strike": 120.78,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": 54.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0301",
+   "underlying": "U6",
+   "strike": 206.66,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": -74.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0302",
+   "underlying": "U4",
+   "strike": 154.24,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": 6.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0303",
+   "underlying": "U2",
+   "strike": 138.74,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -66.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0304",
+   "underlying": "U8",
+   "strike": 125.63,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": -84.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0305",
+   "underlying": "U6",
+   "strike": 219.09,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": 75.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0306",
+   "underlying": "U4",
+   "strike": 167.69,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": -60.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0307",
+   "underlying": "U2",
+   "strike": 119.7,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -67.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0308",
+   "underlying": "U2",
+   "strike": 93.33,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 33.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0309",
+   "underlying": "U2",
+   "strike": 141.48,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": -1.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0310",
+   "underlying": "U1",
+   "strike": 79.89,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 100.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0311",
+   "underlying": "U4",
+   "strike": 188.26,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": -57.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0312",
+   "underlying": "U8",
+   "strike": 119.94,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": -69.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0313",
+   "underlying": "U7",
+   "strike": 126.9,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": 78.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0314",
+   "underlying": "U8",
+   "strike": 138.62,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": 11.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0315",
+   "underlying": "U8",
+   "strike": 150.29,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -76.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0316",
+   "underlying": "U6",
+   "strike": 176.24,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": 79.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0317",
+   "underlying": "U4",
+   "strike": 153.89,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": -38.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0318",
+   "underlying": "U2",
+   "strike": 100.83,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": 94.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0319",
+   "underlying": "U5",
+   "strike": 141.25,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": -63.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0320",
+   "underlying": "U5",
+   "strike": 156.91,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": -99.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0321",
+   "underlying": "U2",
+   "strike": 95.84,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 10.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0322",
+   "underlying": "U8",
+   "strike": 144.99,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": -2.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0323",
+   "underlying": "U8",
+   "strike": 144.01,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 94.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0324",
+   "underlying": "U4",
+   "strike": 173.7,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": -51.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0325",
+   "underlying": "U2",
+   "strike": 100.49,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": 36.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0326",
+   "underlying": "U8",
+   "strike": 116.53,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": 48.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0327",
+   "underlying": "U5",
+   "strike": 160.89,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": -37.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0328",
+   "underlying": "U5",
+   "strike": 172.95,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 68.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0329",
+   "underlying": "U2",
+   "strike": 104.53,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": -8.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0330",
+   "underlying": "U1",
+   "strike": 80.04,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": 1.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0331",
+   "underlying": "U4",
+   "strike": 167.57,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": -41.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0332",
+   "underlying": "U2",
+   "strike": 96.87,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": -22.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0333",
+   "underlying": "U4",
+   "strike": 175.47,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": -66.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0334",
+   "underlying": "U1",
+   "strike": 56.17,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -54.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0335",
+   "underlying": "U2",
+   "strike": 129.5,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": 48.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0336",
+   "underlying": "U5",
+   "strike": 164.57,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": 31.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0337",
+   "underlying": "U2",
+   "strike": 92.23,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": 75.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0338",
+   "underlying": "U4",
+   "strike": 176.4,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": -76.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0339",
+   "underlying": "U2",
+   "strike": 98.46,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 75.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0340",
+   "underlying": "U8",
+   "strike": 143.25,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": 45.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0341",
+   "underlying": "U3",
+   "strike": 79.9,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": 3.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0342",
+   "underlying": "U1",
+   "strike": 61.13,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": 20.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0343",
+   "underlying": "U3",
+   "strike": 94.15,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -85.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0344",
+   "underlying": "U7",
+   "strike": 118.86,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": -56.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0345",
+   "underlying": "U6",
+   "strike": 163.39,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 29.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0346",
+   "underlying": "U3",
+   "strike": 103.34,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": 52.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0347",
+   "underlying": "U5",
+   "strike": 169.03,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -12.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0348",
+   "underlying": "U6",
+   "strike": 167.77,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": 19.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0349",
+   "underlying": "U6",
+   "strike": 179.15,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 53.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0350",
+   "underlying": "U7",
+   "strike": 171.64,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": -11.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0351",
+   "underlying": "U6",
+   "strike": 242.03,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 85.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0352",
+   "underlying": "U2",
+   "strike": 99.63,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": -83.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0353",
+   "underlying": "U7",
+   "strike": 150.22,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": -18.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0354",
+   "underlying": "U6",
+   "strike": 228.0,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": 44.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0355",
+   "underlying": "U5",
+   "strike": 141.34,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -17.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0356",
+   "underlying": "U2",
+   "strike": 109.68,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": -74.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0357",
+   "underlying": "U5",
+   "strike": 167.87,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": 7.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0358",
+   "underlying": "U2",
+   "strike": 121.68,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": -77.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0359",
+   "underlying": "U2",
+   "strike": 132.67,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": -46.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0360",
+   "underlying": "U4",
+   "strike": 222.59,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 70.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0361",
+   "underlying": "U6",
+   "strike": 191.46,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": 4.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0362",
+   "underlying": "U2",
+   "strike": 97.02,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 95.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0363",
+   "underlying": "U3",
+   "strike": 103.05,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": -26.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0364",
+   "underlying": "U4",
+   "strike": 210.91,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 65.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0365",
+   "underlying": "U7",
+   "strike": 142.06,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": 100.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0366",
+   "underlying": "U4",
+   "strike": 198.22,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -2.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0367",
+   "underlying": "U6",
+   "strike": 194.42,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": 91.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0368",
+   "underlying": "U8",
+   "strike": 149.29,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": 80.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0369",
+   "underlying": "U5",
+   "strike": 162.68,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": -79.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0370",
+   "underlying": "U4",
+   "strike": 152.93,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": 63.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0371",
+   "underlying": "U7",
+   "strike": 120.74,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": 3.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0372",
+   "underlying": "U7",
+   "strike": 124.37,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": 62.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0373",
+   "underlying": "U6",
+   "strike": 187.45,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": 64.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0374",
+   "underlying": "U6",
+   "strike": 212.55,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": -55.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0375",
+   "underlying": "U4",
+   "strike": 155.94,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": -98.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0376",
+   "underlying": "U8",
+   "strike": 112.01,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -12.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0377",
+   "underlying": "U3",
+   "strike": 104.7,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 58.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0378",
+   "underlying": "U7",
+   "strike": 130.93,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": 18.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0379",
+   "underlying": "U3",
+   "strike": 89.18,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": -70.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0380",
+   "underlying": "U7",
+   "strike": 136.24,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": -99.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0381",
+   "underlying": "U6",
+   "strike": 212.32,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -69.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0382",
+   "underlying": "U2",
+   "strike": 142.38,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": -35.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0383",
+   "underlying": "U6",
+   "strike": 210.3,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": 89.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0384",
+   "underlying": "U5",
+   "strike": 137.9,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": 62.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0385",
+   "underlying": "U5",
+   "strike": 123.7,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": -73.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0386",
+   "underlying": "U6",
+   "strike": 221.48,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 30.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0387",
+   "underlying": "U2",
+   "strike": 138.4,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": -55.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0388",
+   "underlying": "U7",
+   "strike": 127.05,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": -14.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0389",
+   "underlying": "U2",
+   "strike": 109.29,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": -30.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0390",
+   "underlying": "U7",
+   "strike": 126.61,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": 39.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0391",
+   "underlying": "U4",
+   "strike": 195.77,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": -36.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0392",
+   "underlying": "U7",
+   "strike": 170.86,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -63.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0393",
+   "underlying": "U2",
+   "strike": 120.95,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": -73.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0394",
+   "underlying": "U4",
+   "strike": 222.46,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": -95.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0395",
+   "underlying": "U3",
+   "strike": 78.48,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": 96.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0396",
+   "underlying": "U8",
+   "strike": 112.81,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": -95.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0397",
+   "underlying": "U8",
+   "strike": 133.09,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": 83.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0398",
+   "underlying": "U7",
+   "strike": 113.95,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": 34.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0399",
+   "underlying": "U8",
+   "strike": 148.86,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": -71.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0400",
+   "underlying": "U2",
+   "strike": 126.16,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": 95.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0401",
+   "underlying": "U3",
+   "strike": 104.45,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": 59.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0402",
+   "underlying": "U7",
+   "strike": 153.42,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 25.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0403",
+   "underlying": "U8",
+   "strike": 110.83,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": -16.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0404",
+   "underlying": "U3",
+   "strike": 115.86,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 15.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0405",
+   "underlying": "U6",
+   "strike": 225.46,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": 26.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0406",
+   "underlying": "U6",
+   "strike": 219.35,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 57.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0407",
+   "underlying": "U2",
+   "strike": 117.6,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": 14.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0408",
+   "underlying": "U4",
+   "strike": 160.66,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 91.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0409",
+   "underlying": "U2",
+   "strike": 95.38,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": 90.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0410",
+   "underlying": "U7",
+   "strike": 168.72,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -23.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0411",
+   "underlying": "U5",
+   "strike": 140.61,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -49.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0412",
+   "underlying": "U2",
+   "strike": 107.52,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": -36.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0413",
+   "underlying": "U3",
+   "strike": 96.16,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": -65.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0414",
+   "underlying": "U8",
+   "strike": 120.24,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": 55.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0415",
+   "underlying": "U5",
+   "strike": 159.8,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -15.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0416",
+   "underlying": "U5",
+   "strike": 154.11,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": 95.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0417",
+   "underlying": "U1",
+   "strike": 59.77,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": -34.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0418",
+   "underlying": "U7",
+   "strike": 171.46,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": -3.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0419",
+   "underlying": "U4",
+   "strike": 153.45,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 57.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0420",
+   "underlying": "U2",
+   "strike": 125.61,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": -73.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0421",
+   "underlying": "U1",
+   "strike": 56.21,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 3.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0422",
+   "underlying": "U4",
+   "strike": 195.01,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 62.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0423",
+   "underlying": "U4",
+   "strike": 168.27,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -97.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0424",
+   "underlying": "U3",
+   "strike": 109.0,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -7.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0425",
+   "underlying": "U5",
+   "strike": 148.51,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": -33.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0426",
+   "underlying": "U4",
+   "strike": 173.19,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": -38.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0427",
+   "underlying": "U8",
+   "strike": 113.77,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 81.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0428",
+   "underlying": "U3",
+   "strike": 79.3,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": 95.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0429",
+   "underlying": "U8",
+   "strike": 98.65,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": 92.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0430",
+   "underlying": "U5",
+   "strike": 170.2,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 68.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0431",
+   "underlying": "U6",
+   "strike": 165.41,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": 5.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0432",
+   "underlying": "U2",
+   "strike": 126.23,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 7.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0433",
+   "underlying": "U8",
+   "strike": 141.83,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": 20.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0434",
+   "underlying": "U5",
+   "strike": 119.59,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -29.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0435",
+   "underlying": "U5",
+   "strike": 166.31,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": 89.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0436",
+   "underlying": "U7",
+   "strike": 138.47,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": -4.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0437",
+   "underlying": "U3",
+   "strike": 93.09,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": -9.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0438",
+   "underlying": "U1",
+   "strike": 59.32,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": 5.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0439",
+   "underlying": "U5",
+   "strike": 163.76,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 48.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0440",
+   "underlying": "U7",
+   "strike": 141.26,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": -32.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0441",
+   "underlying": "U7",
+   "strike": 157.11,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": -70.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0442",
+   "underlying": "U4",
+   "strike": 189.09,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 22.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0443",
+   "underlying": "U7",
+   "strike": 144.69,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": -55.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0444",
+   "underlying": "U5",
+   "strike": 156.51,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": -18.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0445",
+   "underlying": "U1",
+   "strike": 71.63,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": -3.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0446",
+   "underlying": "U8",
+   "strike": 107.86,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": -9.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0447",
+   "underlying": "U1",
+   "strike": 60.51,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": 36.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0448",
+   "underlying": "U5",
+   "strike": 139.3,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -3.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0449",
+   "underlying": "U6",
+   "strike": 183.99,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": 12.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0450",
+   "underlying": "U1",
+   "strike": 81.42,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": 17.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0451",
+   "underlying": "U1",
+   "strike": 55.9,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": 13.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0452",
+   "underlying": "U8",
+   "strike": 115.7,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": -36.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0453",
+   "underlying": "U3",
+   "strike": 90.79,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 53.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0454",
+   "underlying": "U6",
+   "strike": 241.01,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": -48.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0455",
+   "underlying": "U7",
+   "strike": 117.91,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -51.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0456",
+   "underlying": "U6",
+   "strike": 164.22,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -1.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0457",
+   "underlying": "U4",
+   "strike": 155.76,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": 16.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0458",
+   "underlying": "U8",
+   "strike": 114.38,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": -5.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0459",
+   "underlying": "U1",
+   "strike": 57.81,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": 69.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0460",
+   "underlying": "U4",
+   "strike": 169.67,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": 87.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0461",
+   "underlying": "U8",
+   "strike": 113.37,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 24.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0462",
+   "underlying": "U6",
+   "strike": 234.57,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": -97.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0463",
+   "underlying": "U5",
+   "strike": 158.94,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": -2.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0464",
+   "underlying": "U2",
+   "strike": 123.85,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -18.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0465",
+   "underlying": "U2",
+   "strike": 140.02,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": -42.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0466",
+   "underlying": "U6",
+   "strike": 223.55,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": -2.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0467",
+   "underlying": "U3",
+   "strike": 82.34,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": -79.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0468",
+   "underlying": "U2",
+   "strike": 116.28,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": 30.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0469",
+   "underlying": "U1",
+   "strike": 68.41,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": 60.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0470",
+   "underlying": "U1",
+   "strike": 56.07,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": 79.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0471",
+   "underlying": "U1",
+   "strike": 84.62,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": 1.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0472",
+   "underlying": "U4",
+   "strike": 216.77,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": -92.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0473",
+   "underlying": "U1",
+   "strike": 68.96,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": -78.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0474",
+   "underlying": "U8",
+   "strike": 142.33,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -37.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0475",
+   "underlying": "U4",
+   "strike": 222.13,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": 45.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0476",
+   "underlying": "U1",
+   "strike": 64.51,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 14.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0477",
+   "underlying": "U6",
+   "strike": 160.48,
+   "maturity": 1.0,
+   "n_fixings": 12,
+   "quantity": 23.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0478",
+   "underlying": "U2",
+   "strike": 105.0,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -84.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0479",
+   "underlying": "U7",
+   "strike": 172.85,
+   "maturity": 0.25,
+   "n_fixings": 12,
+   "quantity": 4.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0480",
+   "underlying": "U5",
+   "strike": 124.24,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": -46.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0481",
+   "underlying": "U3",
+   "strike": 94.38,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": -82.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0482",
+   "underlying": "U8",
+   "strike": 128.48,
+   "maturity": 1.5,
+   "n_fixings": 12,
+   "quantity": 47.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0483",
+   "underlying": "U3",
+   "strike": 119.57,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": -17.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0484",
+   "underlying": "U7",
+   "strike": 156.75,
+   "maturity": 2.5,
+   "n_fixings": 12,
+   "quantity": 78.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0485",
+   "underlying": "U3",
+   "strike": 109.86,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": -50.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0486",
+   "underlying": "U6",
+   "strike": 197.86,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 9.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0487",
+   "underlying": "U7",
+   "strike": 122.89,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": -28.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0488",
+   "underlying": "U2",
+   "strike": 143.24,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": 92.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0489",
+   "underlying": "U4",
+   "strike": 190.8,
+   "maturity": 0.3333333333333333,
+   "n_fixings": 12,
+   "quantity": -65.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0490",
+   "underlying": "U3",
+   "strike": 78.88,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": 90.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0491",
+   "underlying": "U2",
+   "strike": 101.45,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -28.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0492",
+   "underlying": "U4",
+   "strike": 160.92,
+   "maturity": 2.0,
+   "n_fixings": 12,
+   "quantity": -31.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0493",
+   "underlying": "U5",
+   "strike": 177.66,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -64.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0494",
+   "underlying": "U5",
+   "strike": 126.41,
+   "maturity": 0.5,
+   "n_fixings": 12,
+   "quantity": -2.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0495",
+   "underlying": "U6",
+   "strike": 197.65,
+   "maturity": 1.25,
+   "n_fixings": 12,
+   "quantity": 40.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0496",
+   "underlying": "U5",
+   "strike": 175.3,
+   "maturity": 1.75,
+   "n_fixings": 12,
+   "quantity": 59.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0497",
+   "underlying": "U6",
+   "strike": 181.34,
+   "maturity": 0.16666666666666666,
+   "n_fixings": 12,
+   "quantity": -6.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0498",
+   "underlying": "U6",
+   "strike": 160.19,
+   "maturity": 0.08333333333333333,
+   "n_fixings": 12,
+   "quantity": 29.0
+  },
+  {
+   "schema_version": 1,
+   "contract_id": "primary-0499",
+   "underlying": "U2",
+   "strike": 130.71,
+   "maturity": 0.75,
+   "n_fixings": 12,
+   "quantity": -72.0
+  }
+ ]
+}
