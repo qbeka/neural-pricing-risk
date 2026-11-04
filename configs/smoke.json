@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "rate": 0.03,
+  "n_fixings": 12,
+  "domain": {
+    "log_moneyness": [-0.45, 0.45],
+    "vol": [0.08, 0.70],
+    "maturity": [0.08, 2.5],
+    "near_expiry_maturity": [0.01, 0.08],
+    "kink_max_average_vol": 0.05,
+    "kink_width_in_average_vols": 2.0
+  },
+  "split": {
+    "blocks_per_axis": 16,
+    "fractions": {"train": 0.60, "validation": 0.15, "calibration": 0.15, "test": 0.10},
+    "seed": 20261104
+  },
+  "datasets": {
+    "train": {"log2_pool": 12, "max_points": 1500, "log2_units": 10, "seed": 1},
+    "validation": {"log2_pool": 12, "max_points": 300, "log2_units": 12, "seed": 2},
+    "calibration": {"log2_pool": 12, "max_points": 300, "log2_units": 12, "seed": 3},
+    "test": {"log2_pool": 12, "max_points": 200, "log2_units": 12, "seed": 4},
+    "stress_near_expiry": {"log2_pool": 8, "max_points": 50, "log2_units": 12, "seed": 5},
+    "stress_kink": {"log2_pool": 8, "max_points": 50, "log2_units": 12, "seed": 6}
+  }
+}
