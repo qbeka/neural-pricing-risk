@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+# Regenerated from saved configs. Keep large arrays out of Git.
+artifacts/

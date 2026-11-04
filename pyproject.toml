@@ -1,0 +1,28 @@
+[project]
+name = "asianrisk"
+version = "0.1.0"
+description = "Repricing a book of discrete arithmetic Asian calls: simulation, interpolation, closed-form bounds and a neural surrogate."
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "numpy>=2.1",
+    "scipy>=1.14",
+    "torch>=2.5",
+    "matplotlib>=3.9",
+]
+
+[project.optional-dependencies]
+# QuantLib is only the independent cross-check; the library itself does not import it.
+crosscheck = ["QuantLib>=1.36"]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/asianrisk"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = ["slow: statistical checks that take more than a few seconds"]
