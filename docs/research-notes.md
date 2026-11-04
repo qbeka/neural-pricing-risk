@@ -55,3 +55,29 @@ Found and accepted, with the reason:
 - **The holdout is weak by design.** Blocks are 1/16 of each axis and every test block touches a train block. The sealed test measures filling gaps about one block wide, which is what production queries look like. It does not measure extrapolation. The reserved stress sets are the real out-of-sample check.
 - **Grid nodes sit inside test and calibration blocks.** A lattice cannot skip regions. Calibration and test points are equally far from nodes, so calibration stays valid for grids, but grids do see those regions while networks do not. That asymmetry favors grids slightly and is stated in the report.
 - **Standard errors go unreliable far from the money.** With rare control mismatches the sample error can read near zero (at (x, vol, T) = (0.45, 0.2, 1), about 26% coverage from nominal 95%). The true noise there is about 0.001 bp of strike, far below tolerance. Sealed labels get a second-seed replication, so label noise is measured directly rather than assumed.
+
+## How the surfaces were chosen (validation set only)
+
+Tolerances were set before any surface was tried: 1 bp of strike on price and 0.001 on delta, at the 99th percentile. The price figure was already recorded in the note on the geometric control above.
+
+**A closed form is the competitor to beat.** On 20,000 validation points the lower bound takes 0.8 us per query, with p99 errors of 6.8 bp and 0.0009. Its delta already passes. Its price error is confined to high total volatility.
+
+**Learning the correction beats learning the price.** The same table or network does far better on (price - lower bound), which is small and smooth, than on price.
+
+| Surface | Nodes or points | Label CPU (s) | p99 price (bp) | p99 delta |
+|---|---:|---:|---:|---:|
+| Linear grid on price | 70,785 nodes | 3,771 | 1.26 | 0.00098 |
+| Cubic grid on price | 9,537 nodes | 326 | 0.35 | 0.00100 |
+| Linear grid on correction | 1,377 nodes | 22 | 0.28 | 0.00071 |
+| Network on price, 64 by 3 | 30,000 points | about 380 | 1.61 | 0.00227 |
+| Network on correction, 64 by 3 | 6,000 points | about 76 | 0.18 | 0.00048 |
+
+Grid labels here used 2^15 pairs, network labels 2^14. Errors below about 0.2 bp are at the validation label noise floor, so differences there are not meaningful.
+
+**The first network result was a bug, not a finding.** The raw network first stalled near 47 bp. Targets reach thousands of bp while the output layer starts near unit scale, and inputs were not centered. Centering inputs and scaling the output helped, but 200 epochs still gave 31 bp. Gradient steps were the limit: 600 epochs reached 5.8 bp and 2,000 epochs on 30,000 points reached 1.6 bp. Without those checks the report would have blamed the network for a training setup.
+
+**Raw network size.** Going from 64 by 3 (8,641 parameters) to 128 by 4 (50,177) only moved p99 from 1.6 to 1.1 bp at 2.5 times the training time. The brief asks for a compact network, so 64 by 3 stays.
+
+**Cubic spline boundary.** A padded spline dropped to first order at the box edge, where the worst error sets the p99. A not-a-knot tensor-product spline fixed it. `tests/test_surfaces.py` checks the convergence order.
+
+**Simulation size.** On the development book, 2^15 antithetic pairs is the first ladder step to pass, and delta is the limiting output. Price alone would pass at 2^10.

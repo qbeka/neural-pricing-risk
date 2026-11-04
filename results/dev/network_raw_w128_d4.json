@@ -1,0 +1,21 @@
+{
+  "width": 128,
+  "depth": 4,
+  "epochs": 2000,
+  "batch_size": 1024,
+  "learning_rate": 0.003,
+  "delta_weight": 1.0,
+  "delta_scale": 0.001,
+  "seed": 0,
+  "n_points": 30000,
+  "parameters": 50177,
+  "wall_seconds": 1606.2447243329952,
+  "final_batch_loss": 0.41270426957929274,
+  "n": 20000,
+  "price_median_bp": 0.16832807680808998,
+  "price_p99_bp": 1.1292552532838371,
+  "price_max_bp": 4.5278863856457185,
+  "delta_median": 0.0002627053549518199,
+  "delta_p99": 0.0016220707682423874,
+  "delta_max": 0.015285713402178496
+}

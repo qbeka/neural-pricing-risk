@@ -128,29 +128,29 @@
   "networks": {
     "nn_price": {
       "base": null,
-      "n_points": 150000,
+      "n_points": 30000,
       "width": 64,
       "depth": 3,
-      "epochs": 600,
-      "batch_size": 4096,
+      "epochs": 2000,
+      "batch_size": 1024,
       "delta_weight": 0.0
     },
     "nn_diff": {
       "base": null,
-      "n_points": 150000,
+      "n_points": 30000,
       "width": 64,
       "depth": 3,
-      "epochs": 600,
-      "batch_size": 4096,
+      "epochs": 2000,
+      "batch_size": 1024,
       "delta_weight": 1.0
     },
     "nn_residual": {
       "base": "lower_bound",
-      "n_points": 30000,
+      "n_points": 6000,
       "width": 64,
       "depth": 3,
-      "epochs": 800,
-      "batch_size": 1024,
+      "epochs": 2000,
+      "batch_size": 512,
       "delta_weight": 1.0
     }
   },
