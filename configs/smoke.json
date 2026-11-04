@@ -3,24 +3,174 @@
   "rate": 0.03,
   "n_fixings": 12,
   "domain": {
-    "log_moneyness": [-0.45, 0.45],
-    "vol": [0.08, 0.70],
-    "maturity": [0.08, 2.5],
-    "near_expiry_maturity": [0.01, 0.08],
+    "log_moneyness": [
+      -0.45,
+      0.45
+    ],
+    "vol": [
+      0.08,
+      0.7
+    ],
+    "maturity": [
+      0.08,
+      2.5
+    ],
+    "near_expiry_maturity": [
+      0.01,
+      0.08
+    ],
     "kink_max_average_vol": 0.05,
     "kink_width_in_average_vols": 2.0
   },
   "split": {
     "blocks_per_axis": 16,
-    "fractions": {"train": 0.60, "validation": 0.15, "calibration": 0.15, "test": 0.10},
+    "fractions": {
+      "train": 0.6,
+      "validation": 0.15,
+      "calibration": 0.15,
+      "test": 0.1
+    },
     "seed": 20261104
   },
   "datasets": {
-    "train": {"log2_pool": 12, "max_points": 1500, "log2_units": 10, "seed": 1},
-    "validation": {"log2_pool": 12, "max_points": 300, "log2_units": 12, "seed": 2},
-    "calibration": {"log2_pool": 12, "max_points": 300, "log2_units": 12, "seed": 3},
-    "test": {"log2_pool": 12, "max_points": 200, "log2_units": 12, "seed": 4},
-    "stress_near_expiry": {"log2_pool": 8, "max_points": 50, "log2_units": 12, "seed": 5},
-    "stress_kink": {"log2_pool": 8, "max_points": 50, "log2_units": 12, "seed": 6}
+    "train": {
+      "log2_pool": 12,
+      "max_points": 1500,
+      "log2_units": 10,
+      "seed": 1
+    },
+    "validation": {
+      "log2_pool": 12,
+      "max_points": 300,
+      "log2_units": 12,
+      "seed": 2
+    },
+    "calibration": {
+      "log2_pool": 12,
+      "max_points": 300,
+      "log2_units": 12,
+      "seed": 3
+    },
+    "test": {
+      "log2_pool": 12,
+      "max_points": 200,
+      "log2_units": 12,
+      "seed": 4
+    },
+    "stress_near_expiry": {
+      "log2_pool": 8,
+      "max_points": 50,
+      "log2_units": 12,
+      "seed": 5
+    },
+    "stress_kink": {
+      "log2_pool": 8,
+      "max_points": 50,
+      "log2_units": 12,
+      "seed": 6
+    }
+  },
+  "tolerance": {
+    "price_bp": 1.0,
+    "delta": 0.001
+  },
+  "fallback": {
+    "coverage": 0.99,
+    "bins": 2
+  },
+  "simulation": {
+    "ladder_log2_units": [
+      10,
+      11
+    ],
+    "torch_threads": 6,
+    "runs": 2,
+    "reference_replicates": 2,
+    "reference_log2_units": 12
+  },
+  "grids": {
+    "grid_linear": {
+      "shape": [
+        9,
+        5,
+        5
+      ],
+      "order": 1,
+      "base": null,
+      "log2_units": 10
+    },
+    "grid_cubic": {
+      "shape": [
+        9,
+        5,
+        5
+      ],
+      "order": 3,
+      "base": null,
+      "log2_units": 10
+    },
+    "corrected_grid": {
+      "shape": [
+        9,
+        5,
+        5
+      ],
+      "order": 1,
+      "base": "lower_bound",
+      "log2_units": 10
+    }
+  },
+  "networks": {
+    "nn_price": {
+      "base": null,
+      "n_points": 1500,
+      "width": 64,
+      "depth": 3,
+      "epochs": 20,
+      "batch_size": 256,
+      "delta_weight": 0.0
+    },
+    "nn_diff": {
+      "base": null,
+      "n_points": 1500,
+      "width": 64,
+      "depth": 3,
+      "epochs": 20,
+      "batch_size": 256,
+      "delta_weight": 1.0
+    },
+    "nn_residual": {
+      "base": "lower_bound",
+      "n_points": 1500,
+      "width": 64,
+      "depth": 3,
+      "epochs": 20,
+      "batch_size": 256,
+      "delta_weight": 1.0
+    }
+  },
+  "network_seeds": [
+    0,
+    1
+  ],
+  "books": {
+    "primary": {
+      "seed": 2026,
+      "n_contracts": 20,
+      "n_underlyings": 3,
+      "bespoke_maturities": false
+    },
+    "bespoke": {
+      "seed": 2027,
+      "n_contracts": 20,
+      "n_underlyings": 3,
+      "bespoke_maturities": true
+    },
+    "development": {
+      "seed": 1999,
+      "n_contracts": 20,
+      "n_underlyings": 3,
+      "bespoke_maturities": false
+    }
   }
 }

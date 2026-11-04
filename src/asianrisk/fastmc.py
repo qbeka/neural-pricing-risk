@@ -89,7 +89,7 @@ class PathEngine:
         tail_a_by_e = torch.cat([a_by_e.flip(1).cumsum(1).flip(1), zeros], dim=1)
 
         spot = self._tensor(spots)
-        threshold = (1.0 / spot).expand(pair_batches, -1)
+        threshold = (1.0 / spot).repeat(pair_batches, 1)
         above_a = torch.searchsorted(sorted_a, threshold, right=True)
         above_e = torch.searchsorted(e_sorted, threshold, right=True)
         sum_a = torch.gather(tail_a, 1, above_a)

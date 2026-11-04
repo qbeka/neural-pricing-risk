@@ -9,6 +9,13 @@ from asianrisk.analytic import conditional_lower_bound_call, moment_matched_call
 from asianrisk.contract import Contract, Market
 from asianrisk.domain import load_domain, sample_dataset
 from asianrisk.labels import generate_labels, save_dataset
+from asianrisk.pipeline import (
+    fit_grids,
+    fit_networks,
+    generate_datasets,
+    select_simulation_units,
+    write_books,
+)
 from asianrisk.reference import SimulationConfig, price_reference
 
 SEALED = ("test", "stress_near_expiry", "stress_kink")
@@ -63,6 +70,25 @@ def labels(args) -> None:
         print(json.dumps({"name": name, "n_points": len(points), **timing}))
 
 
+def fit(args) -> None:
+    """Generate development data, then fit every grid and network. Safe to rerun."""
+    config = json.loads(Path(args.config).read_text())
+    out = Path(args.out)
+    write_books(config, Path(args.books))
+    generate_datasets(config, out)
+    fit_grids(config, out)
+    fit_networks(config, out)
+
+
+def tune(args) -> None:
+    """Pick the simulation size on the development book and save the ladder."""
+    config = json.loads(Path(args.config).read_text())
+    result = select_simulation_units(config, Path(args.out), Path(args.books))
+    path = Path(args.out) / "simulation_ladder.json"
+    path.write_text(json.dumps(result, indent=2) + "\n")
+    print(json.dumps(result, indent=2))
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(prog="asianrisk", description=__doc__)
     commands = parser.add_subparsers(required=True)
@@ -85,6 +111,16 @@ def main() -> None:
     labels_command.add_argument("--freeze", default="results/freeze.json")
     labels_command.add_argument("--sets", nargs="+", default=["train", "validation", "calibration"])
     labels_command.set_defaults(run=labels)
+
+    for name, run, help_text in (
+        ("fit", fit, "generate development data and fit every surface"),
+        ("tune", tune, "pick the simulation size on the development book"),
+    ):
+        command = commands.add_parser(name, help=help_text)
+        command.add_argument("--config", default="configs/experiment.json")
+        command.add_argument("--out", default="artifacts")
+        command.add_argument("--books", default="configs")
+        command.set_defaults(run=run)
 
     args = parser.parse_args()
     args.run(args)
