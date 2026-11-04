@@ -42,3 +42,16 @@ Measured with 2^17 antithetic pairs on the same seed. It costs about 45% more pe
 **The price of that control is a slower-settling standard error.** Its residual is a rare positive event. Repeating the estimate 1000 times, the z-score standard deviation was 2.95 at 2^10 units, 1.27 at 2^12, 1.06 at 2^14 and 1.08 at 2^16. The conditional control is used only at 2^14 units or more, and its standard errors are read as about 6% optimistic.
 
 **Delta estimator: pathwise, not bumped.** The payoff is Lipschitz in spot, so the pathwise derivative is unbiased. A bumped price on common random numbers agrees within statistical error in `tests/test_reference.py`.
+
+## First independent review (commit 4635f21)
+
+A separate agent, a fresh Claude instance with only the acceptance criteria and the commit hash, reproduced the suite from a clean clone and tried to break the numerics. It is independent of this session's reasoning but not of its maker.
+
+Confirmed by its own derivations and runs: geometric formula against QuantLib to 1e-13, lower bound against independent quadrature to 2e-14, n = 1 equals Black-Scholes, 40,000 fuzzed Newton solves with no failure, a second QuantLib cross-check at S = 87, K = 95, vol 37%, T = 0.75, n = 9.
+
+Found and fixed: sealed sets opened with an empty freeze file; the fallback docstring claimed coverage among accepted points, which is false because acceptance is a selection (it now states the joint bound); the lower bound was wrong at exactly zero vol; unsupported calibration points could rescue a bin; several unvalidated inputs.
+
+Found and accepted, with the reason:
+- **The holdout is weak by design.** Blocks are 1/16 of each axis and every test block touches a train block. The sealed test measures filling gaps about one block wide, which is what production queries look like. It does not measure extrapolation. The reserved stress sets are the real out-of-sample check.
+- **Grid nodes sit inside test and calibration blocks.** A lattice cannot skip regions. Calibration and test points are equally far from nodes, so calibration stays valid for grids, but grids do see those regions while networks do not. That asymmetry favors grids slightly and is stated in the report.
+- **Standard errors go unreliable far from the money.** With rare control mismatches the sample error can read near zero (at (x, vol, T) = (0.45, 0.2, 1), about 26% coverage from nominal 95%). The true noise there is about 0.001 bp of strike, far below tolerance. Sealed labels get a second-seed replication, so label noise is measured directly rather than assumed.
