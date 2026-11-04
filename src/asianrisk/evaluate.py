@@ -239,6 +239,13 @@ def benchmark_book(config, out, books_dir, book_name, log2_units, seeds) -> dict
                         "rejected": int((~by_scenario[index]).sum()),
                     })
     latency = _single_request_latency(config, out, seeds[0], points, log2_units)
+    ladder = []
+    for step in config["simulation"]["ladder_log2_units"]:
+        result, seconds = _timed(lambda: _engine(config, step, 2500).price(points), repeats=1)
+        summary, _ = _book_summary(
+            result["price"], result["delta"], strikes, quantities, n_scenarios, reference
+        )
+        ladder.append({"log2_units": step, "seconds": seconds, **summary})
     return {
         "book": book_name,
         "book_sha256": sha256(book_path),
@@ -266,6 +273,7 @@ def benchmark_book(config, out, books_dir, book_name, log2_units, seeds) -> dict
         "runs": rows,
         "scenarios_run0": scenario_rows,
         "latency": latency,
+        "simulation_ladder": ladder,
         "target_price_sample": target_price[:3].tolist(),
         "target_delta_sample": target_delta[:3].tolist(),
     }

@@ -133,10 +133,19 @@ def _family(row: dict) -> str:
     return "neural" if row["method"] in NEURAL else "non-neural fast"
 
 
-def plot_accuracy_vs_compute(summary, tolerance, path: Path) -> None:
-    """Scatter of wall time against p99 price error, one point per route."""
+def plot_accuracy_vs_compute(summary, ladder, tolerance, path: Path) -> None:
+    """Wall time against p99 price error, one point per route plus the simulation ladder."""
     figure, axis = plt.subplots(figsize=(9.5, 5.8), dpi=160)
     seen = set()
+    axis.plot(
+        [row["seconds"] for row in ladder], [row["price_p99_bp"] for row in ladder],
+        color=FAMILY_COLORS["simulation"], linewidth=2, zorder=2,
+    )
+    for row in (ladder[0], ladder[-1]):
+        axis.annotate(
+            f"2^{row['log2_units']} pairs", (row["seconds"], row["price_p99_bp"]),
+            xytext=(0, 8), textcoords="offset points", fontsize=7.5, color=TEXT_SECONDARY, ha="center",
+        )
     for row in summary:
         family = _family(row)
         axis.scatter(
@@ -210,13 +219,13 @@ def _format_seconds(value: float) -> str:
 
 def book_table(summary, tolerance) -> list[str]:
     lines = [
-        "| Route | Wall time (s, mean +/- sd) | p99 price (bp) | p99 delta | Passes gate | Sent to simulation |",
-        "|---|---|---:|---:|---|---:|",
+        "| Route | Wall time (s, mean +/- sd) | Requests per second | p99 price (bp) | p99 delta | Passes gate | Sent to simulation |",
+        "|---|---|---:|---:|---:|---|---:|",
     ]
     for row in summary:
         lines.append(
             f"| {label(row)} | {row['seconds_mean']:.4g} +/- {row['seconds_sd']:.2g} "
-            f"| {row['price_p99_bp']:.3f} | {row['delta_p99']:.5f} "
+            f"| {row['requests'] / row['seconds_mean']:,.0f} | {row['price_p99_bp']:.3f} | {row['delta_p99']:.5f} "
             f"| {'yes' if passes(row, tolerance) else 'no'} | {row['fallback_rate']:.1%} |"
         )
     return lines
@@ -270,7 +279,9 @@ def write_report(run_dir: Path) -> dict:
 
     plots = run_dir / "plots"
     plots.mkdir(exist_ok=True)
-    plot_accuracy_vs_compute(primary_summary, tolerance, plots / "accuracy_vs_compute.png")
+    plot_accuracy_vs_compute(
+        primary_summary, primary["simulation_ladder"], tolerance, plots / "accuracy_vs_compute.png"
+    )
     plot_fallback_heatmaps(
         run["points"]["heatmap"], ["corrected_grid", "nn_diff", "nn_residual"],
         plots / "fallback_heatmap.png",
@@ -317,6 +328,12 @@ def _tables(run, summary) -> list[str]:
             if other else
             f"| {entry['route']} | {entry['upfront']['wall']:.0f} | {entry['upfront']['cpu']:.0f} "
             f"| {direct['savings_per_job']:.3f} | {jobs(direct['jobs_to_recover'])} | comparator | comparator |"
+        )
+    lines += ["", "## Simulation ladder, primary book, one run", "",
+              "| Antithetic pairs | Wall time (s) | p99 price (bp) | p99 delta |", "|---:|---:|---:|---:|"]
+    for row in primary["simulation_ladder"]:
+        lines.append(
+            f"| 2^{row['log2_units']} | {row['seconds']:.3f} | {row['price_p99_bp']:.3f} | {row['delta_p99']:.5f} |"
         )
     lines += ["", "## Single-request latency", "",
               "Median over 300 requests, one at a time, routing decision included. direct_mc uses 30 requests with paths already built.", "",
