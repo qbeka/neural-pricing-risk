@@ -9,7 +9,9 @@ from asianrisk.analytic import conditional_lower_bound_call, moment_matched_call
 from asianrisk.contract import Contract, Market
 from asianrisk.domain import load_domain, sample_dataset
 from asianrisk.labels import generate_labels, save_dataset
+from asianrisk.evaluate import git_commit, run_sealed_evaluation, sha256
 from asianrisk.pipeline import (
+    fit_differential,
     fit_grids,
     fit_networks,
     generate_datasets,
@@ -78,6 +80,7 @@ def fit(args) -> None:
     generate_datasets(config, out)
     fit_grids(config, out)
     fit_networks(config, out)
+    fit_differential(config, out)
 
 
 def tune(args) -> None:
@@ -87,6 +90,46 @@ def tune(args) -> None:
     path = Path(args.out) / "simulation_ladder.json"
     path.write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps(result, indent=2))
+
+
+def freeze(args) -> None:
+    """Record the hypothesis, workload, baselines, metrics and decision rule."""
+    config_path = Path(args.config)
+    config = json.loads(config_path.read_text())
+    out = Path(args.out)
+    path = Path(args.freeze)
+    if path.exists():
+        raise SystemExit(f"{path} already exists: a freeze is never replaced")
+    ladder = json.loads((out / "simulation_ladder.json").read_text())
+    record = {
+        **json.loads(Path(args.statement).read_text()),
+        "commit": git_commit(),
+        "config_sha256": sha256(config_path),
+        "tolerance": config["tolerance"],
+        "books": {
+            name: sha256(Path(args.books) / f"book_{name}.json") for name in config["books"]
+        },
+        "simulation_log2_units": ladder["chosen_log2_units"],
+        "simulation_ladder_sha256": sha256(out / "simulation_ladder.json"),
+        "models": {p.name: sha256(p) for p in sorted((out / "models").glob("*.pt"))},
+    }
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(record, indent=2) + "\n")
+    print(f"wrote {path}")
+
+
+def evaluate(args) -> None:
+    """Label the sealed sets and take every measurement. Needs a matching freeze."""
+    config_path = Path(args.config)
+    freeze_path = Path(args.freeze)
+    require_freeze(freeze_path, config_path)
+    config = json.loads(config_path.read_text())
+    out = Path(args.out)
+    generate_datasets(config, out, SEALED)
+    run_sealed_evaluation(
+        config, config_path, out, Path(args.books), Path(args.run),
+        json.loads(freeze_path.read_text()),
+    )
 
 
 def main() -> None:
@@ -103,14 +146,14 @@ def main() -> None:
     price_command.add_argument("--log2-paths", type=int, default=20)
     price_command.add_argument("--seed", type=int, default=1)
     price_command.add_argument("--control", default="conditional")
-    price_command.set_defaults(run=price)
+    price_command.set_defaults(handler=price)
 
     labels_command = commands.add_parser("labels", help="generate labels for named datasets")
     labels_command.add_argument("--config", default="configs/experiment.json")
     labels_command.add_argument("--out", default="artifacts/data")
     labels_command.add_argument("--freeze", default="results/freeze.json")
     labels_command.add_argument("--sets", nargs="+", default=["train", "validation", "calibration"])
-    labels_command.set_defaults(run=labels)
+    labels_command.set_defaults(handler=labels)
 
     for name, run, help_text in (
         ("fit", fit, "generate development data and fit every surface"),
@@ -120,7 +163,23 @@ def main() -> None:
         command.add_argument("--config", default="configs/experiment.json")
         command.add_argument("--out", default="artifacts")
         command.add_argument("--books", default="configs")
-        command.set_defaults(run=run)
+        command.set_defaults(handler=run)
+
+    freeze_command = commands.add_parser("freeze", help="freeze the plan before sealed data")
+    freeze_command.add_argument("--config", default="configs/experiment.json")
+    freeze_command.add_argument("--out", default="artifacts")
+    freeze_command.add_argument("--books", default="configs")
+    freeze_command.add_argument("--statement", default="configs/freeze_statement.json")
+    freeze_command.add_argument("--freeze", default="results/freeze.json")
+    freeze_command.set_defaults(handler=freeze)
+
+    evaluate_command = commands.add_parser("evaluate", help="run the sealed evaluation")
+    evaluate_command.add_argument("--config", default="configs/experiment.json")
+    evaluate_command.add_argument("--out", default="artifacts")
+    evaluate_command.add_argument("--books", default="configs")
+    evaluate_command.add_argument("--freeze", default="results/freeze.json")
+    evaluate_command.add_argument("--run", default="results/run")
+    evaluate_command.set_defaults(handler=evaluate)
 
     args = parser.parse_args()
-    args.run(args)
+    args.handler(args)

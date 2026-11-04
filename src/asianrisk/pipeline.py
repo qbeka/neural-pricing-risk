@@ -99,6 +99,40 @@ def fit_networks(config: dict, out: Path) -> None:
             print(json.dumps({"name": name, "seed": seed, "seconds": record["wall_seconds"]}), flush=True)
 
 
+def fit_differential(config: dict, out: Path) -> None:
+    """Price-only and delta-supervised fits on equal labeling budgets.
+
+    Both arms use the same points and the same simulated paths, because the
+    pathwise delta comes from those paths. The training step count is fixed, so
+    a smaller set is not also handed fewer gradient steps.
+    """
+    domain = load_domain(config)
+    section = config["differential"]
+    train = load_dataset(out / "data" / "train.npz")
+    torch.set_num_threads(config["simulation"]["torch_threads"])
+    for size in section["n_points"]:
+        steps_per_epoch = max(size // section["batch_size"], 1)
+        epochs = max(section["steps"] // steps_per_epoch, 1)
+        for arm, delta_weight in (("price_only", 0.0), ("price_delta", 1.0)):
+            for seed in section["seeds"]:
+                path = out / "models" / "differential" / f"{arm}_{size}_seed{seed}.pt"
+                if path.exists():
+                    continue
+                spec = {
+                    "base": None, "width": section["width"], "depth": section["depth"],
+                    "arm": arm, "n_points": size,
+                }
+                settings = TrainConfig(
+                    width=section["width"], depth=section["depth"], epochs=epochs,
+                    batch_size=section["batch_size"], delta_weight=delta_weight, seed=seed,
+                )
+                surface, record = train_surface(
+                    domain, train["points"][:size], train["price"][:size], train["delta"][:size],
+                    settings,
+                )
+                save_network(path, surface, spec, record)
+
+
 def fast_methods(config: dict, out: Path, seed: int) -> dict:
     """Surfaces by name. Networks use one training seed, the rest have no seed."""
     domain = load_domain(config)

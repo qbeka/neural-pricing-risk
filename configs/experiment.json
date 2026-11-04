@@ -180,5 +180,21 @@
       "n_underlyings": 8,
       "bespoke_maturities": false
     }
+  },
+  "differential": {
+    "n_points": [
+      1500,
+      6000,
+      24000
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "steps": 8000,
+    "batch_size": 512,
+    "width": 64,
+    "depth": 3
   }
 }

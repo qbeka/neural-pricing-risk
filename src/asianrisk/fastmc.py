@@ -122,10 +122,10 @@ class PathEngine:
             scale = self._tensor(discount[chosen])
             price_batches, delta_batches = scale * price_batches, scale * delta_batches
             root = self.batches**0.5
-            price[chosen] += price_batches.mean(dim=0).double().cpu().numpy()
-            delta[chosen] += delta_batches.mean(dim=0).double().cpu().numpy()
-            price_se[chosen] = (price_batches.std(dim=0) / root).double().cpu().numpy()
-            delta_se[chosen] = (delta_batches.std(dim=0) / root).double().cpu().numpy()
+            price[chosen] += price_batches.mean(dim=0).cpu().double().numpy()
+            delta[chosen] += delta_batches.mean(dim=0).cpu().double().numpy()
+            price_se[chosen] = (price_batches.std(dim=0) / root).cpu().double().numpy()
+            delta_se[chosen] = (delta_batches.std(dim=0) / root).cpu().double().numpy()
         return {
             "price": price,
             "delta": delta,

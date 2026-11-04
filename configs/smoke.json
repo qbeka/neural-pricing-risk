@@ -172,5 +172,18 @@
       "n_underlyings": 3,
       "bespoke_maturities": false
     }
+  },
+  "differential": {
+    "n_points": [
+      300,
+      600
+    ],
+    "seeds": [
+      0
+    ],
+    "steps": 40,
+    "batch_size": 128,
+    "width": 64,
+    "depth": 3
   }
 }

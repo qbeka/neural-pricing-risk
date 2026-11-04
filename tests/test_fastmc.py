@@ -66,3 +66,13 @@ def test_unit_count_must_divide_into_batches():
 def test_groups_share_one_average_per_distinct_vol_and_maturity():
     engine = PathEngine(0.03, 12, n_units=2**10, seed=5)
     assert engine.price(POINTS)["distinct_vol_maturity_pairs"] == 4
+
+
+def test_engine_runs_on_mps_in_32_bit_when_available():
+    torch = pytest.importorskip("torch")
+    if not torch.backends.mps.is_available():
+        pytest.skip("no MPS device")
+    cpu = PathEngine(0.03, 12, n_units=2**12, seed=6).price(POINTS)
+    mps = PathEngine(0.03, 12, n_units=2**12, seed=6, device="mps", dtype=torch.float32).price(POINTS)
+    assert np.allclose(mps["price"], cpu["price"], atol=2e-5)
+    assert np.allclose(mps["delta"], cpu["delta"], atol=2e-3)
