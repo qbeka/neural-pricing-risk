@@ -44,6 +44,11 @@ def label(row: dict) -> str:
     return row["method"]
 
 
+def _spread(values) -> float:
+    """Sample standard deviation across runs."""
+    return float(np.std(values, ddof=1)) if len(values) > 1 else 0.0
+
+
 def aggregate_book(book: dict) -> list[dict]:
     """Mean and spread across runs for each route. Denominator is `runs`."""
     groups = defaultdict(list)
@@ -58,13 +63,13 @@ def aggregate_book(book: dict) -> list[dict]:
             "runs": len(rows),
             "requests": book["requests"],
             "seconds_mean": float(np.mean(seconds)),
-            "seconds_sd": float(np.std(seconds, ddof=1)) if len(rows) > 1 else 0.0,
+            "seconds_sd": _spread(seconds),
             "cpu_seconds_mean": float(np.mean([row["cpu_seconds"] for row in rows])),
             "price_p99_bp": float(np.median([row["price_p99_bp"] for row in rows])),
-            "price_p99_sd": float(np.std([row["price_p99_bp"] for row in rows])),
+            "price_p99_sd": _spread([row["price_p99_bp"] for row in rows]),
             "price_median_bp": float(np.median([row["price_median_bp"] for row in rows])),
             "delta_p99": float(np.median([row["delta_p99"] for row in rows])),
-            "delta_p99_sd": float(np.std([row["delta_p99"] for row in rows])),
+            "delta_p99_sd": _spread([row["delta_p99"] for row in rows]),
             "delta_median": float(np.median([row["delta_median"] for row in rows])),
             # Worst single request. The gate reads p99, so a fast route can hide 1% here.
             "price_max_bp": float(np.max([row["price_max_bp"] for row in rows])),
@@ -72,6 +77,8 @@ def aggregate_book(book: dict) -> list[dict]:
             "book_error_max_bp": float(np.median(
                 [row["book_value_error_max_bp_of_gross"] for row in rows])),
             "fallback_rate": float(np.mean([row["fallback_rate"] for row in rows])),
+            "fallback_min": float(np.min([row["fallback_rate"] for row in rows])),
+            "fallback_max": float(np.max([row["fallback_rate"] for row in rows])),
             "simulated_requests": float(np.mean([row["simulated_requests"] for row in rows])),
         })
     return sorted(summary, key=lambda row: row["seconds_mean"])
@@ -84,14 +91,18 @@ def passes(row: dict, tolerance: dict) -> bool:
 def upfront_seconds(method: str, route: str, costs: dict) -> dict:
     """CPU and wall seconds to prepare a route. Calibration only counts for hybrids."""
     if method == "direct_mc":
-        return {"cpu": 0.0, "wall": 0.0}
+        return {"cpu": 0.0, "wall": 0.0, "label_wall": 0.0, "train_wall": 0.0, "calibration_wall": 0.0}
     cost = costs[method]
+    label_wall = cost.get("label_wall", 0.0)
+    train_wall = cost.get("train_wall", 0.0)
+    calibration_wall = cost["calibration_wall"] if route == "hybrid" else 0.0
     cpu = cost.get("label_cpu", 0.0) + cost.get("train_cpu_upper", 0.0)
-    wall = cost.get("label_wall", 0.0) + cost.get("train_wall", 0.0)
     if route == "hybrid":
         cpu += cost["calibration_cpu"]
-        wall += cost["calibration_wall"]
-    return {"cpu": cpu, "wall": wall}
+    return {
+        "cpu": cpu, "wall": label_wall + train_wall + calibration_wall,
+        "label_wall": label_wall, "train_wall": train_wall, "calibration_wall": calibration_wall,
+    }
 
 
 def verdict(summary: list[dict], tolerance: dict) -> dict:
@@ -230,6 +241,13 @@ def _format_seconds(value: float) -> str:
     return f"{value * 1e6:.1f} us"
 
 
+def _rate(row: dict) -> str:
+    """Mean share sent to simulation, with the range when seeds disagree."""
+    if row["fallback_max"] - row["fallback_min"] < 1e-9:
+        return f"{row['fallback_rate']:.1%}"
+    return f"{row['fallback_rate']:.1%} ({row['fallback_min']:.1%} to {row['fallback_max']:.1%})"
+
+
 def book_table(summary, tolerance) -> list[str]:
     lines = [
         "| Route | Wall time (s, mean +/- sd) | CPU (s) | Requests per second | p99 price (bp) | Max price (bp) | p99 delta | Max delta | Passes gate | Sent to simulation |",
@@ -240,8 +258,8 @@ def book_table(summary, tolerance) -> list[str]:
             f"| {label(row)} | {row['seconds_mean']:.4g} +/- {row['seconds_sd']:.2g} "
             f"| {row['cpu_seconds_mean']:.3g} | {row['requests'] / row['seconds_mean']:,.0f} "
             f"| {row['price_p99_bp']:.3f} | {row['price_max_bp']:.2f} "
-            f"| {row['delta_p99']:.5f} | {row['delta_max']:.4f} "
-            f"| {'yes' if passes(row, tolerance) else 'no'} | {row['fallback_rate']:.1%} |"
+            f"| {row['delta_p99']:.5f} | {row['delta_max']:.5f} "
+            f"| {'yes' if passes(row, tolerance) else 'no'} | {_rate(row)} |"
         )
     return lines
 
@@ -252,12 +270,14 @@ def point_table(rows, dataset) -> list[str]:
         if row["dataset"] == dataset:
             groups[row["method"], row["scope"]].append(row)
     lines = [
-        "| Route | Scope | n | Median price (bp) | p99 price (bp) | Median delta | p99 delta | Sent to simulation |",
-        "|---|---|---:|---:|---:|---:|---:|---:|",
+        "| Route | Scope | Seeds | n | Median price (bp) | p99 price (bp) | Median delta | p99 delta | Sent to simulation |",
+        "|---|---|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for (method, scope), members in sorted(groups.items()):
+        sizes = [m["n"] for m in members]
+        n_text = str(sizes[0]) if min(sizes) == max(sizes) else f"{min(sizes)} to {max(sizes)}"
         lines.append(
-            f"| {method} | {scope} | {members[0]['n']} "
+            f"| {method} | {scope} | {len(members)} | {n_text} "
             f"| {np.mean([m['price_median_bp'] for m in members]):.3f} "
             f"| {np.mean([m['price_p99_bp'] for m in members]):.3f} "
             f"| {np.mean([m['delta_median'] for m in members]):.5f} "
@@ -327,22 +347,27 @@ def _tables(run, summary) -> list[str]:
         ]
         lines += book_table(rows, tolerance) + [""]
     lines += ["## Upfront cost and recovery", "",
-              "| Route | Upfront wall (s) | Upfront CPU (s, upper) | Saves per job vs direct (s) | Jobs to recover vs direct | Saves per job vs comparator (s) | Jobs to recover vs comparator |",
-              "|---|---:|---:|---:|---:|---:|---:|"]
+              f"One job is {primary['requests']:,} queries.", "",
+              "| Route | Label wall (s) | Train wall (s) | Calibrate wall (s) | Upfront wall (s) | Upfront CPU (s, upper) | Saves per job vs direct (s) | Jobs to recover vs direct | Queries to recover vs direct | Saves per job vs comparator (s) | Jobs to recover vs comparator |",
+              "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|"]
 
     def jobs(value):
-        return "never" if value is None else f"{value:.1f}"
+        return "never" if value is None else f"{value:,.1f}"
+
+    def queries(value):
+        return "never" if value is None else f"{value * primary['requests']:,.0f}"
 
     for entry in summary["recovery"]:
         direct = entry["against_direct"]
         other = entry.get("against_comparator")
+        upfront = entry["upfront"]
         lines.append(
-            f"| {entry['route']} | {entry['upfront']['wall']:.0f} | {entry['upfront']['cpu']:.0f} "
+            f"| {entry['route']} | {upfront['label_wall']:.0f} | {upfront['train_wall']:.0f} "
+            f"| {upfront['calibration_wall']:.0f} | {upfront['wall']:.0f} | {upfront['cpu']:.0f} "
             f"| {direct['savings_per_job']:.3f} | {jobs(direct['jobs_to_recover'])} "
-            f"| {other['savings_per_job']:.4f} | {jobs(other['jobs_to_recover'])} |"
-            if other else
-            f"| {entry['route']} | {entry['upfront']['wall']:.0f} | {entry['upfront']['cpu']:.0f} "
-            f"| {direct['savings_per_job']:.3f} | {jobs(direct['jobs_to_recover'])} | comparator | comparator |"
+            f"| {queries(direct['jobs_to_recover'])} "
+            + (f"| {other['savings_per_job']:.4f} | {jobs(other['jobs_to_recover'])} |"
+               if other else "| comparator | comparator |")
         )
     lines += ["", "## Simulation ladder, primary book, one run", "",
               "| Antithetic pairs | Wall time (s) | p99 price (bp) | p99 delta |", "|---:|---:|---:|---:|"]
@@ -360,7 +385,7 @@ def _tables(run, summary) -> list[str]:
         ("stress_near_expiry", "Stress: near expiry"),
         ("stress_kink", "Stress: payoff kink"),
     ):
-        lines += ["", f"## {title}", "", "`fast_only` is the method alone on every point. `accepted` is the same method on the points it kept. `hybrid_all` adds simulation on the rest.", ""]
+        lines += ["", f"## {title}", "", "`fast_only` is the method alone on every point. `accepted` is the same method on the points it kept. `hybrid_all` adds simulation on the rest. Values are means across seeds, and a seed that accepted nothing has no `accepted` row.", ""]
         lines += point_table(run["points"]["rows"], dataset)
     lines += ["", "## Differential comparison, sealed test", "",
               "| Train points | Paths per point | Arm | Seeds | p99 price (bp) | p99 delta |",

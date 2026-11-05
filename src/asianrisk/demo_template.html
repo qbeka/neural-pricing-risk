@@ -126,7 +126,7 @@ footer { margin-top: 64px; font-size: 13px; color: var(--muted); }
   <main>
     <section id="shock" aria-labelledby="shockTitle">
       <h2 id="shockTitle">Try a shock</h2>
-      <p class="lead">Pick how far spot and volatility move, then pick a pricing route. Each answer was recorded by the benchmark. Nothing is computed live.</p>
+      <p class="lead">Pick how far spot and volatility move, then pick a pricing route. Each answer was recorded in run 0, with fallback on. Nothing is computed live.</p>
       <div class="matrix" id="matrix"></div>
       <div class="segments" id="routes" role="group" aria-label="Pricing route"></div>
       <div class="result">
@@ -164,7 +164,7 @@ footer { margin-top: 64px; font-size: 13px; color: var(--muted); }
 
     <section aria-labelledby="fallbackTitle">
       <h2 id="fallbackTitle">Where the fast answer is trusted</h2>
-      <p class="lead">Darker cells send more volatilities back to simulation. The rule was calibrated on data the models never saw, and it refuses anything outside the supported region.</p>
+      <p class="lead">Darker cells send more volatilities back to simulation. The rule was calibrated on data the models never saw, and it refuses anything outside the supported region. <span id="heatNote"></span></p>
       <div class="segments" id="heatRoutes" role="group" aria-label="Route for the fallback map" style="margin:0 0 12px"></div>
       <figure class="heat-wrap">
         <div class="heat" id="heat"></div>
@@ -237,11 +237,11 @@ function buildMatrix() {
   }
 }
 
-function segmented(rootId, names, key, onChange) {
+function segmented(rootId, names, key, onChange, suffix = "") {
   const root = $(rootId);
   for (const name of names) {
     const button = document.createElement("button");
-    button.textContent = DATA.route_names[name];
+    button.textContent = DATA.route_names[name] + suffix;
     button.dataset.name = name;
     button.addEventListener("click", () => { state[key] = name; onChange(); });
     root.append(button);
@@ -392,7 +392,8 @@ function hairlines() {
 
 fillHeader();
 buildMatrix();
-segmented("routes", DATA.routes, "route", render);
+segmented("routes", DATA.routes, "route", render, " + fallback");
+$("heatNote").textContent = DATA.heat_note;
 segmented("heatRoutes", DATA.heat_routes, "heat", renderHeat);
 render();
 renderHeat();

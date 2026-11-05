@@ -38,6 +38,8 @@
       "delta_max": 0.008121505113064087,
       "book_error_max_bp": 0.05611434998111684,
       "fallback_rate": 0.0,
+      "fallback_min": 0.0,
+      "fallback_max": 0.0,
       "simulated_requests": 0.0
     },
     {
@@ -58,6 +60,8 @@
       "delta_max": 0.005338096145291349,
       "book_error_max_bp": 0.009888160178318776,
       "fallback_rate": 0.0,
+      "fallback_min": 0.0,
+      "fallback_max": 0.0,
       "simulated_requests": 0.0
     },
     {
@@ -69,7 +73,7 @@
       "seconds_sd": 0.0014724987765548764,
       "cpu_seconds_mean": 0.012969200000043202,
       "price_p99_bp": 3.7129762197913845,
-      "price_p99_sd": 4.440892098500626e-16,
+      "price_p99_sd": 4.965068306494546e-16,
       "price_median_bp": 0.16809754061933996,
       "delta_p99": 0.0005079804437331169,
       "delta_p99_sd": 0.0,
@@ -78,6 +82,8 @@
       "delta_max": 0.0010382099786404586,
       "book_error_max_bp": 0.34049076134081896,
       "fallback_rate": 0.0,
+      "fallback_min": 0.0,
+      "fallback_max": 0.0,
       "simulated_requests": 0.0
     },
     {
@@ -89,15 +95,17 @@
       "seconds_sd": 0.002388698045699949,
       "cpu_seconds_mean": 0.04915500000015527,
       "price_p99_bp": 4.674143626724619,
-      "price_p99_sd": 0.450369123719806,
+      "price_p99_sd": 0.5035279878022496,
       "price_median_bp": 0.5890735614501623,
       "delta_p99": 0.012578460857290964,
-      "delta_p99_sd": 0.0015310969752780248,
+      "delta_p99_sd": 0.0017118184584329892,
       "delta_median": 0.000825972035686684,
       "price_max_bp": 49.24985432092009,
       "delta_max": 0.10889687614409183,
       "book_error_max_bp": 0.2506927483330631,
       "fallback_rate": 0.0,
+      "fallback_min": 0.0,
+      "fallback_max": 0.0,
       "simulated_requests": 0.0
     },
     {
@@ -109,15 +117,17 @@
       "seconds_sd": 0.003313486207709223,
       "cpu_seconds_mean": 0.05027599999993981,
       "price_p99_bp": 2.13214337883532,
-      "price_p99_sd": 0.2585083022700477,
+      "price_p99_sd": 0.2890210683119449,
       "price_median_bp": 0.3039222926460444,
       "delta_p99": 0.004035619504107164,
-      "delta_p99_sd": 0.0008492567420820364,
+      "delta_p99_sd": 0.0009494979028227198,
       "delta_median": 0.0004360086932942153,
       "price_max_bp": 16.54409478346268,
       "delta_max": 0.04227199238811352,
       "book_error_max_bp": 0.07432111887864233,
       "fallback_rate": 0.0,
+      "fallback_min": 0.0,
+      "fallback_max": 0.0,
       "simulated_requests": 0.0
     },
     {
@@ -138,6 +148,8 @@
       "delta_max": 0.02539711096408903,
       "book_error_max_bp": 6.793546653939357,
       "fallback_rate": 0.0,
+      "fallback_min": 0.0,
+      "fallback_max": 0.0,
       "simulated_requests": 0.0
     },
     {
@@ -158,6 +170,8 @@
       "delta_max": 0.001040372655210453,
       "book_error_max_bp": 0.006891839899708715,
       "fallback_rate": 0.0,
+      "fallback_min": 0.0,
+      "fallback_max": 0.0,
       "simulated_requests": 0.0
     },
     {
@@ -169,15 +183,17 @@
       "seconds_sd": 0.007950444497068802,
       "cpu_seconds_mean": 0.06445579999990514,
       "price_p99_bp": 0.06886544906983205,
-      "price_p99_sd": 0.012017745037747907,
+      "price_p99_sd": 0.013436247420332547,
       "price_median_bp": 0.010036933820514727,
       "delta_p99": 0.00011036199210923321,
-      "delta_p99_sd": 1.7994048929981317e-05,
+      "delta_p99_sd": 2.011795829894779e-05,
       "delta_median": 1.7554753136750367e-05,
       "price_max_bp": 0.18992115943389232,
       "delta_max": 0.0004134536620405971,
       "book_error_max_bp": 0.0030830221040834714,
       "fallback_rate": 0.0,
+      "fallback_min": 0.0,
+      "fallback_max": 0.0,
       "simulated_requests": 0.0
     },
     {
@@ -189,15 +205,17 @@
       "seconds_sd": 0.19030832659988214,
       "cpu_seconds_mean": 0.431955999999991,
       "price_p99_bp": 0.06886544906983205,
-      "price_p99_sd": 0.012017745037747907,
+      "price_p99_sd": 0.013436247420332547,
       "price_median_bp": 0.010036933820514727,
       "delta_p99": 0.00012876389015106497,
-      "delta_p99_sd": 1.8289664812766765e-05,
+      "delta_p99_sd": 2.0448466903516224e-05,
       "delta_median": 1.7983799483478613e-05,
       "price_max_bp": 0.18992115943389232,
       "delta_max": 0.0004134536620405971,
       "book_error_max_bp": 0.0030830221040834714,
       "fallback_rate": 0.013857142857142901,
+      "fallback_min": 0.013857142857142901,
+      "fallback_max": 0.013857142857142901,
       "simulated_requests": 291.0
     },
     {
@@ -209,15 +227,17 @@
       "seconds_sd": 0.04033795632424496,
       "cpu_seconds_mean": 0.6858216000000539,
       "price_p99_bp": 0.1304515674527795,
-      "price_p99_sd": 0.0025363735318523852,
+      "price_p99_sd": 0.002835751816776581,
       "price_median_bp": 0.007942081132195078,
       "delta_p99": 0.0005208716871186929,
-      "delta_p99_sd": 5.399302140198765e-06,
+      "delta_p99_sd": 6.036603308272268e-06,
       "delta_median": 8.431600353001056e-05,
       "price_max_bp": 0.5954329901881883,
       "delta_max": 0.0016353179862643175,
       "book_error_max_bp": 0.007701121589152012,
       "fallback_rate": 0.020333333333333314,
+      "fallback_min": 0.020333333333333314,
+      "fallback_max": 0.020333333333333314,
       "simulated_requests": 427.0
     },
     {
@@ -229,15 +249,17 @@
       "seconds_sd": 0.15731573288842182,
       "cpu_seconds_mean": 2.5491439999999783,
       "price_p99_bp": 0.8758693774132275,
-      "price_p99_sd": 0.0004023271638302184,
+      "price_p99_sd": 0.00044981544375953146,
       "price_median_bp": 0.07412702930535003,
       "delta_p99": 0.0008405785923710882,
-      "delta_p99_sd": 2.147921267295152e-05,
+      "delta_p99_sd": 2.4014489819947278e-05,
       "delta_median": 3.2991020690861794e-05,
       "price_max_bp": 1.7495128163080853,
       "delta_max": 0.0016353179862643175,
       "book_error_max_bp": 0.0480250316630491,
       "fallback_rate": 0.24819047619047616,
+      "fallback_min": 0.24819047619047618,
+      "fallback_max": 0.24819047619047618,
       "simulated_requests": 5212.0
     },
     {
@@ -249,15 +271,17 @@
       "seconds_sd": 0.0865387348809932,
       "cpu_seconds_mean": 3.148457000000053,
       "price_p99_bp": 0.21590220026342002,
-      "price_p99_sd": 0.026110400772720095,
+      "price_p99_sd": 0.029192315523782587,
       "price_median_bp": 0.010699620810400781,
       "delta_p99": 0.0008169293792114275,
-      "delta_p99_sd": 4.002896497290483e-05,
+      "delta_p99_sd": 4.475374337418661e-05,
       "delta_median": 0.00013541367518288272,
       "price_max_bp": 0.9536242705998621,
       "delta_max": 0.0016353179862643175,
       "book_error_max_bp": 0.013088607260593434,
       "fallback_rate": 0.21566666666666667,
+      "fallback_min": 0.21566666666666667,
+      "fallback_max": 0.21566666666666667,
       "simulated_requests": 4529.0
     },
     {
@@ -269,15 +293,17 @@
       "seconds_sd": 0.45574021314844604,
       "cpu_seconds_mean": 4.645209599999907,
       "price_p99_bp": 0.8667484426037468,
-      "price_p99_sd": 0.000427231292664132,
+      "price_p99_sd": 0.00047765910625605323,
       "price_median_bp": 0.17277454461816708,
       "delta_p99": 0.0006751071341744864,
-      "delta_p99_sd": 1.4508131886607168e-05,
+      "delta_p99_sd": 1.622058456249295e-05,
       "delta_median": 0.00012631728603637593,
       "price_max_bp": 1.0858334211887033,
       "delta_max": 0.0016353179862643175,
       "book_error_max_bp": 0.04768471895221605,
       "fallback_rate": 0.41852380952380946,
+      "fallback_min": 0.4185238095238095,
+      "fallback_max": 0.4185238095238095,
       "simulated_requests": 8789.0
     },
     {
@@ -289,15 +315,17 @@
       "seconds_sd": 0.2481439006544151,
       "cpu_seconds_mean": 6.987031600000046,
       "price_p99_bp": 0.2749886773389377,
-      "price_p99_sd": 0.11214270703595047,
+      "price_p99_sd": 0.1253793580566146,
       "price_median_bp": 0.008245159793425494,
       "delta_p99": 0.0008737825260367942,
-      "delta_p99_sd": 3.4221599199652064e-05,
+      "delta_p99_sd": 3.826091105458721e-05,
       "delta_median": 0.00015678100205046563,
       "price_max_bp": 1.6411287378348405,
       "delta_max": 0.0016353179862643175,
       "book_error_max_bp": 0.016689956610223097,
       "fallback_rate": 0.9937904761904761,
+      "fallback_min": 0.9790952380952381,
+      "fallback_max": 1.0,
       "simulated_requests": 20869.6
     },
     {
@@ -309,15 +337,17 @@
       "seconds_sd": 0.21960421489052329,
       "cpu_seconds_mean": 7.103723799999898,
       "price_p99_bp": 0.6319568607221687,
-      "price_p99_sd": 0.21849390033628535,
+      "price_p99_sd": 0.2442836069104991,
       "price_median_bp": 0.008345228270255009,
       "delta_p99": 0.0008741019610076496,
-      "delta_p99_sd": 3.8683446704493784e-05,
+      "delta_p99_sd": 4.3249408217619164e-05,
       "delta_median": 0.0001584843337811559,
       "price_max_bp": 1.5675223021655027,
       "delta_max": 0.0027982019705850014,
       "book_error_max_bp": 0.016658232535183667,
       "fallback_rate": 0.8775619047619048,
+      "fallback_min": 0.7476666666666667,
+      "fallback_max": 1.0,
       "simulated_requests": 18428.8
     },
     {
@@ -329,15 +359,17 @@
       "seconds_sd": 0.7776097253302771,
       "cpu_seconds_mean": 7.206827200000044,
       "price_p99_bp": 0.29339826353823373,
-      "price_p99_sd": 0.05733447509408349,
+      "price_p99_sd": 0.06410189188231967,
       "price_median_bp": 0.008435757112568165,
       "delta_p99": 0.0009407052104587541,
-      "delta_p99_sd": 3.593685332987456e-05,
+      "delta_p99_sd": 4.017862347151959e-05,
       "delta_median": 0.00015940829758856467,
       "price_max_bp": 6.154235441256928,
       "delta_max": 0.002408994539244702,
       "book_error_max_bp": 0.026945301147465486,
       "fallback_rate": 0.9821904761904762,
+      "fallback_min": 0.9821904761904762,
+      "fallback_max": 0.9821904761904762,
       "simulated_requests": 20626.0
     },
     {
@@ -349,15 +381,17 @@
       "seconds_sd": 0.4509804937122828,
       "cpu_seconds_mean": 7.315538199999901,
       "price_p99_bp": 0.2440391778532001,
-      "price_p99_sd": 0.04143723536092309,
+      "price_p99_sd": 0.04632823753334104,
       "price_median_bp": 0.008209255049837494,
       "delta_p99": 0.0008737819774690711,
-      "delta_p99_sd": 3.297349488705426e-05,
+      "delta_p99_sd": 3.686548801159754e-05,
       "delta_median": 0.00015709459782204532,
       "price_max_bp": 0.9536242705998621,
       "delta_max": 0.0016353179862643175,
       "book_error_max_bp": 0.016689956610223097,
       "fallback_rate": 1.0,
+      "fallback_min": 1.0,
+      "fallback_max": 1.0,
       "simulated_requests": 21000.0
     }
   ],
@@ -380,6 +414,8 @@
       "delta_max": 0.0045688622053744465,
       "book_error_max_bp": 0.0872852239973089,
       "fallback_rate": 0.0,
+      "fallback_min": 0.0,
+      "fallback_max": 0.0,
       "simulated_requests": 0.0
     },
     {
@@ -400,6 +436,8 @@
       "delta_max": 0.0040802728981365055,
       "book_error_max_bp": 0.005396905275147394,
       "fallback_rate": 0.0,
+      "fallback_min": 0.0,
+      "fallback_max": 0.0,
       "simulated_requests": 0.0
     },
     {
@@ -420,6 +458,8 @@
       "delta_max": 0.0007022339676518996,
       "book_error_max_bp": 0.04688322587593364,
       "fallback_rate": 0.0,
+      "fallback_min": 0.0,
+      "fallback_max": 0.0,
       "simulated_requests": 0.0
     },
     {
@@ -431,15 +471,17 @@
       "seconds_sd": 0.000615977670228541,
       "cpu_seconds_mean": 0.04406440000020666,
       "price_p99_bp": 1.7093568176877187,
-      "price_p99_sd": 0.27091026699982124,
+      "price_p99_sd": 0.30288688640710915,
       "price_median_bp": 0.29563848444458596,
       "delta_p99": 0.0024031966562868376,
-      "delta_p99_sd": 0.00039449937830450207,
+      "delta_p99_sd": 0.00044106371348513615,
       "delta_median": 0.0004343261509565117,
       "price_max_bp": 13.399525256375709,
       "delta_max": 0.035641489884418454,
       "book_error_max_bp": 0.08808412350073705,
       "fallback_rate": 0.0,
+      "fallback_min": 0.0,
+      "fallback_max": 0.0,
       "simulated_requests": 0.0
     },
     {
@@ -451,7 +493,7 @@
       "seconds_sd": 0.0013878970788532771,
       "cpu_seconds_mean": 0.013380400000460212,
       "price_p99_bp": 59.73702168273103,
-      "price_p99_sd": 7.105427357601002e-15,
+      "price_p99_sd": 7.944109290391274e-15,
       "price_median_bp": 3.3769572986392,
       "delta_p99": 0.015519502344687972,
       "delta_p99_sd": 0.0,
@@ -460,6 +502,8 @@
       "delta_max": 0.02026457933281639,
       "book_error_max_bp": 1.1662903840326841,
       "fallback_rate": 0.0,
+      "fallback_min": 0.0,
+      "fallback_max": 0.0,
       "simulated_requests": 0.0
     },
     {
@@ -471,15 +515,17 @@
       "seconds_sd": 0.0039645938850746635,
       "cpu_seconds_mean": 0.043583199999920906,
       "price_p99_bp": 3.14820569386808,
-      "price_p99_sd": 0.6215362556583615,
+      "price_p99_sd": 0.6948986590663923,
       "price_median_bp": 0.5232884895867845,
       "delta_p99": 0.00756598021747992,
-      "delta_p99_sd": 0.0007245398591587959,
+      "delta_p99_sd": 0.0008100601887435957,
       "delta_median": 0.0008414268694267035,
       "price_max_bp": 48.78726995821703,
       "delta_max": 0.0909444103701923,
       "book_error_max_bp": 0.2599150744562829,
       "fallback_rate": 0.0,
+      "fallback_min": 0.0,
+      "fallback_max": 0.0,
       "simulated_requests": 0.0
     },
     {
@@ -491,7 +537,7 @@
       "seconds_sd": 0.0005324747696767261,
       "cpu_seconds_mean": 0.014587199999732547,
       "price_p99_bp": 0.11187721643804018,
-      "price_p99_sd": 1.3877787807814457e-17,
+      "price_p99_sd": 1.5515838457795457e-17,
       "price_median_bp": 0.008068994247579847,
       "delta_p99": 0.0004950761650253542,
       "delta_p99_sd": 0.0,
@@ -500,6 +546,8 @@
       "delta_max": 0.0008863834961137518,
       "book_error_max_bp": 0.006455863166645972,
       "fallback_rate": 0.0,
+      "fallback_min": 0.0,
+      "fallback_max": 0.0,
       "simulated_requests": 0.0
     },
     {
@@ -511,15 +559,17 @@
       "seconds_sd": 0.0018442075617058245,
       "cpu_seconds_mean": 0.05029099999992468,
       "price_p99_bp": 0.05648884494407201,
-      "price_p99_sd": 0.01277339568398674,
+      "price_p99_sd": 0.014281090526448386,
       "price_median_bp": 0.010074413457766829,
       "delta_p99": 0.00011017636196623628,
-      "delta_p99_sd": 1.7977643302046528e-05,
+      "delta_p99_sd": 2.0099616249309908e-05,
       "delta_median": 2.0173648105914488e-05,
       "price_max_bp": 0.165329016273974,
       "delta_max": 0.00028018366513331283,
       "book_error_max_bp": 0.0021246139483486245,
       "fallback_rate": 0.0,
+      "fallback_min": 0.0,
+      "fallback_max": 0.0,
       "simulated_requests": 0.0
     },
     {
@@ -531,15 +581,17 @@
       "seconds_sd": 0.13661283898263007,
       "cpu_seconds_mean": 0.8056207999998151,
       "price_p99_bp": 0.05648884494407201,
-      "price_p99_sd": 0.01277339568398674,
+      "price_p99_sd": 0.014281090526448386,
       "price_median_bp": 0.010074413457766829,
       "delta_p99": 0.00011811893793693439,
-      "delta_p99_sd": 1.7943237959243677e-05,
+      "delta_p99_sd": 2.0061149906661733e-05,
       "delta_median": 2.0501400677941373e-05,
       "price_max_bp": 0.165329016273974,
       "delta_max": 0.0004539168859520881,
       "book_error_max_bp": 0.0021246139483486245,
       "fallback_rate": 0.007952380952380933,
+      "fallback_min": 0.007952380952380933,
+      "fallback_max": 0.007952380952380933,
       "simulated_requests": 167.0
     },
     {
@@ -551,15 +603,17 @@
       "seconds_sd": 0.10864131667557356,
       "cpu_seconds_mean": 0.9618027999997139,
       "price_p99_bp": 0.11377651546887455,
-      "price_p99_sd": 0.0010429570081839086,
+      "price_p99_sd": 0.0011660613839545122,
       "price_median_bp": 0.00807129965177747,
       "delta_p99": 0.0004982311185167653,
-      "delta_p99_sd": 1.6585577513158182e-06,
+      "delta_p99_sd": 1.8543239382756804e-06,
       "delta_median": 8.486698996792302e-05,
       "price_max_bp": 0.3411692521844423,
       "delta_max": 0.001227629433488836,
       "book_error_max_bp": 0.006455863166645972,
       "fallback_rate": 0.009571428571428564,
+      "fallback_min": 0.009571428571428564,
+      "fallback_max": 0.009571428571428564,
       "simulated_requests": 201.0
     },
     {
@@ -574,12 +628,14 @@
       "price_p99_sd": 0.0,
       "price_median_bp": 0.08797865125934057,
       "delta_p99": 0.0007789012425345724,
-      "delta_p99_sd": 2.9726169211285e-05,
+      "delta_p99_sd": 3.3234867533547286e-05,
       "delta_median": 3.1874275415171016e-05,
       "price_max_bp": 1.5224092677784684,
       "delta_max": 0.001799802564648595,
       "book_error_max_bp": 0.02594907961777524,
       "fallback_rate": 0.1862380952380952,
+      "fallback_min": 0.1862380952380952,
+      "fallback_max": 0.1862380952380952,
       "simulated_requests": 3911.0
     },
     {
@@ -591,15 +647,17 @@
       "seconds_sd": 0.10164285635007578,
       "cpu_seconds_mean": 14.996337599999606,
       "price_p99_bp": 0.16031996484166797,
-      "price_p99_sd": 0.013962119429848945,
+      "price_p99_sd": 0.015610124077556423,
       "price_median_bp": 0.009122221812235543,
       "delta_p99": 0.0007625156805791001,
-      "delta_p99_sd": 3.1348067208276845e-05,
+      "delta_p99_sd": 3.504820462046954e-05,
       "delta_median": 0.0001421433434174238,
       "price_max_bp": 0.5820244411053332,
       "delta_max": 0.001799802564648595,
       "book_error_max_bp": 0.006610031170295362,
       "fallback_rate": 0.2853809523809524,
+      "fallback_min": 0.2853809523809524,
+      "fallback_max": 0.2853809523809524,
       "simulated_requests": 5993.0
     },
     {
@@ -614,12 +672,14 @@
       "price_p99_sd": 0.0,
       "price_median_bp": 0.14712726719899594,
       "delta_p99": 0.0006591427967761527,
-      "delta_p99_sd": 2.7163314086118385e-05,
+      "delta_p99_sd": 3.036950839536914e-05,
       "delta_median": 0.0001337918211790079,
       "price_max_bp": 1.1599563536529578,
       "delta_max": 0.001799802564648595,
       "book_error_max_bp": 0.032953770752802716,
       "fallback_rate": 0.43180952380952375,
+      "fallback_min": 0.43180952380952375,
+      "fallback_max": 0.43180952380952375,
       "simulated_requests": 9068.0
     },
     {
@@ -631,15 +691,17 @@
       "seconds_sd": 0.6677585426250455,
       "cpu_seconds_mean": 30.460029999999826,
       "price_p99_bp": 0.566203812065012,
-      "price_p99_sd": 0.19644131306910814,
+      "price_p99_sd": 0.21962806480592184,
       "price_median_bp": 0.008232351499382062,
       "delta_p99": 0.0008241591890663194,
-      "delta_p99_sd": 5.6155377346639504e-05,
+      "delta_p99_sd": 6.278362052461886e-05,
       "delta_median": 0.00016617989745637551,
       "price_max_bp": 1.362287531012432,
       "delta_max": 0.001799802564648595,
       "book_error_max_bp": 0.018812815507512456,
       "fallback_rate": 0.8882380952380953,
+      "fallback_min": 0.7662857142857142,
+      "fallback_max": 1.0,
       "simulated_requests": 18653.0
     },
     {
@@ -651,15 +713,17 @@
       "seconds_sd": 0.6479420335165046,
       "cpu_seconds_mean": 30.955735600000118,
       "price_p99_bp": 0.1940644463347542,
-      "price_p99_sd": 0.028999073015655696,
+      "price_p99_sd": 0.03242194927374298,
       "price_median_bp": 0.008063761306256745,
       "delta_p99": 0.0008313044665883288,
-      "delta_p99_sd": 4.2594685377691286e-05,
+      "delta_p99_sd": 4.762230599236701e-05,
       "delta_median": 0.00015947615536082704,
       "price_max_bp": 0.582853496803315,
       "delta_max": 0.001799802564648595,
       "book_error_max_bp": 0.0074833839468897625,
       "fallback_rate": 1.0,
+      "fallback_min": 1.0,
+      "fallback_max": 1.0,
       "simulated_requests": 21000.0
     },
     {
@@ -671,15 +735,17 @@
       "seconds_sd": 0.5551814114733102,
       "cpu_seconds_mean": 31.0335412000004,
       "price_p99_bp": 0.2636040823680371,
-      "price_p99_sd": 0.04281072370178833,
+      "price_p99_sd": 0.04786384418158007,
       "price_median_bp": 0.008357609838267627,
       "delta_p99": 0.0009195612199700155,
-      "delta_p99_sd": 5.4334732008504706e-05,
+      "delta_p99_sd": 6.07480771551251e-05,
       "delta_median": 0.00016258367605487267,
       "price_max_bp": 6.122280745754494,
       "delta_max": 0.002472746828011907,
       "book_error_max_bp": 0.015471925764429403,
       "fallback_rate": 0.9802380952380952,
+      "fallback_min": 0.9802380952380952,
+      "fallback_max": 0.9802380952380952,
       "simulated_requests": 20585.0
     },
     {
@@ -691,15 +757,17 @@
       "seconds_sd": 1.4628367221967773,
       "cpu_seconds_mean": 32.00168219999978,
       "price_p99_bp": 0.19823397441973278,
-      "price_p99_sd": 0.027898123371247214,
+      "price_p99_sd": 0.031191050151392185,
       "price_median_bp": 0.008068228628740903,
       "delta_p99": 0.0008313044665883288,
-      "delta_p99_sd": 4.2562135251160996e-05,
+      "delta_p99_sd": 4.758591384456803e-05,
       "delta_median": 0.00015967117674225983,
       "price_max_bp": 1.2903054259066904,
       "delta_max": 0.001799802564648595,
       "book_error_max_bp": 0.00880994491990221,
       "fallback_rate": 0.9986476190476191,
+      "fallback_min": 0.9951428571428571,
+      "fallback_max": 1.0,
       "simulated_requests": 20971.6
     }
   ],
@@ -708,7 +776,10 @@
       "route": "grid_cubic",
       "upfront": {
         "cpu": 578.5094069567858,
-        "wall": 39.44559004201437
+        "wall": 39.44559004201437,
+        "label_wall": 39.44559004201437,
+        "train_wall": 0.0,
+        "calibration_wall": 0.0
       },
       "against_direct": {
         "savings_per_job": 3.4082760499964935,
@@ -720,7 +791,10 @@
       "route": "corrected_grid",
       "upfront": {
         "cpu": 31.292184499878203,
-        "wall": 6.718848458986031
+        "wall": 6.718848458986031,
+        "label_wall": 6.718848458986031,
+        "train_wall": 0.0,
+        "calibration_wall": 0.0
       },
       "against_direct": {
         "savings_per_job": 3.3987452332046812,
@@ -737,7 +811,10 @@
       "route": "nn_residual",
       "upfront": {
         "cpu": 553.6503913183161,
-        "wall": 83.95971398664057
+        "wall": 83.95971398664057,
+        "label_wall": 4.292628111640225,
+        "train_wall": 79.66708587500034,
+        "calibration_wall": 0.0
       },
       "against_direct": {
         "savings_per_job": 3.3891770751972214,
@@ -754,7 +831,10 @@
       "route": "nn_residual + fallback",
       "upfront": {
         "cpu": 3737.562933509679,
-        "wall": 270.3992429026426
+        "wall": 270.3992429026426,
+        "label_wall": 4.292628111640225,
+        "train_wall": 79.66708587500034,
+        "calibration_wall": 186.43952891600202
       },
       "against_direct": {
         "savings_per_job": 3.1550475247961,
@@ -771,7 +851,10 @@
       "route": "corrected_grid + fallback",
       "upfront": {
         "cpu": 3215.2047266912414,
-        "wall": 193.15837737498805
+        "wall": 193.15837737498805,
+        "label_wall": 6.718848458986031,
+        "train_wall": 0.0,
+        "calibration_wall": 186.43952891600202
       },
       "against_direct": {
         "savings_per_job": 3.0952273002068975,
@@ -788,7 +871,10 @@
       "route": "lower_bound + fallback",
       "upfront": {
         "cpu": 3183.912542191363,
-        "wall": 186.43952891600202
+        "wall": 186.43952891600202,
+        "label_wall": 0.0,
+        "train_wall": 0.0,
+        "calibration_wall": 186.43952891600202
       },
       "against_direct": {
         "savings_per_job": 2.264108391397167,
@@ -805,7 +891,10 @@
       "route": "grid_cubic + fallback",
       "upfront": {
         "cpu": 3762.421949148149,
-        "wall": 225.8851189580164
+        "wall": 225.8851189580164,
+        "label_wall": 39.44559004201437,
+        "train_wall": 0.0,
+        "calibration_wall": 186.43952891600202
       },
       "against_direct": {
         "savings_per_job": 2.090061183006037,
@@ -822,7 +911,10 @@
       "route": "grid_linear + fallback",
       "upfront": {
         "cpu": 9244.704111549712,
-        "wall": 529.6392246659962
+        "wall": 529.6392246659962,
+        "label_wall": 343.19969574999413,
+        "train_wall": 0.0,
+        "calibration_wall": 186.43952891600202
       },
       "against_direct": {
         "savings_per_job": 1.2787276416085658,
@@ -839,7 +931,10 @@
       "route": "nn_price + fallback",
       "upfront": {
         "cpu": 5638.195385284949,
-        "wall": 553.9099132662056
+        "wall": 553.9099132662056,
+        "label_wall": 21.463140558201122,
+        "train_wall": 346.00724379200255,
+        "calibration_wall": 186.43952891600202
       },
       "against_direct": {
         "savings_per_job": 0.37619804979767624,
@@ -856,7 +951,10 @@
       "route": "nn_diff + fallback",
       "upfront": {
         "cpu": 6306.842485780939,
-        "wall": 665.3510966822039
+        "wall": 665.3510966822039,
+        "label_wall": 21.463140558201122,
+        "train_wall": 457.4484272080008,
+        "calibration_wall": 186.43952891600202
       },
       "against_direct": {
         "savings_per_job": 0.3097729084023739,
@@ -873,7 +971,10 @@
       "route": "moment_matched + fallback",
       "upfront": {
         "cpu": 3183.912542191363,
-        "wall": 186.43952891600202
+        "wall": 186.43952891600202,
+        "label_wall": 0.0,
+        "train_wall": 0.0,
+        "calibration_wall": 186.43952891600202
       },
       "against_direct": {
         "savings_per_job": 0.06943194979103273,

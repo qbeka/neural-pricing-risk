@@ -106,7 +106,10 @@ def _headline_stats(run, summary) -> list[dict]:
     if best_neural:
         stats.append({
             "value": _multiple(direct["seconds_mean"] / best_neural["seconds_mean"]),
-            "label": "best neural route against simulation",
+            "label": (
+                "best neural route against simulation"
+                if best_neural["route"] == "hybrid" else "best neural route, no fallback, against simulation"
+            ),
         })
     panel = run["variance_reduction"]
     gains = [row["efficiency_gain_vs_plain"] for row in panel if row["estimator"] == "conditional_control"]
@@ -231,6 +234,15 @@ def _rigor(run, tolerance) -> list[dict]:
     return rows
 
 
+def _heat_note(summary) -> str:
+    """The map shows one seed, so say how far the seeds moved."""
+    neural = _find(summary["primary"], "nn_diff", "hybrid")
+    return (
+        f"Network maps show run 0 only. Across runs, Neural sent {neural['fallback_min']:.0%} to "
+        f"{neural['fallback_max']:.0%} of book requests to simulation."
+    )
+
+
 def build_data(run_dir: Path) -> dict:
     run = load_run(run_dir)
     summary = write_report(run_dir)
@@ -282,6 +294,7 @@ def build_data(run_dir: Path) -> dict:
         "scenarios": _scenarios(book),
         "routes": list(ROUTES),
         "heat_routes": list(HEAT_ROUTES),
+        "heat_note": _heat_note(summary),
         "route_names": ROUTE_NAMES,
         "contracts": book["contracts"],
         "gross": book["gross_notional"],

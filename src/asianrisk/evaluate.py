@@ -219,7 +219,8 @@ def benchmark_book(config, out, books_dir, book_name, log2_units, seeds) -> dict
             "run": run, "method": "direct_mc", "route": "simulation", "seconds": direct_seconds,
             "cpu_seconds": direct_cpu, "fallback_rate": 1.0, "simulated_requests": len(points), **summary,
         })
-        # Each run visits the routes in its own order, so no route always runs first.
+        # Surfaces run in a new order each run. Direct simulation always runs first,
+        # and each hybrid runs right after its fast route.
         for name, surface in random.Random(seed).sample(list(surfaces.items()), len(surfaces)):
             answer, seconds, cpu_seconds = _timed(lambda: surface(points))
             summary, value = _book_summary(*answer, strikes, quantities, n_scenarios, reference)
