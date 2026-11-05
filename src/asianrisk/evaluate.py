@@ -487,8 +487,8 @@ def reuse_speedup(config, log2_units, requests=64) -> dict:
     engine = _engine(config, log2_units, 41)
     x = np.linspace(-0.3, 0.3, requests)
     points = np.column_stack([x, np.full(requests, 0.3), np.full(requests, 1.0)])
-    _, shared_seconds = _timed(lambda: engine.price(points))
-    _, direct_seconds = _timed(lambda: engine.price_without_sorting(points), repeats=1)
+    _, shared_seconds, _ = _timed(lambda: engine.price(points))
+    _, direct_seconds, _ = _timed(lambda: engine.price_without_sorting(points), repeats=1)
     return {
         "requests": requests, "log2_units": log2_units,
         "direct_seconds": direct_seconds, "shared_seconds": shared_seconds,
