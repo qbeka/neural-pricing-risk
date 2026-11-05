@@ -81,3 +81,7 @@ Grid labels here used 2^15 pairs, network labels 2^14. Errors below about 0.2 bp
 **Cubic spline boundary.** A padded spline dropped to first order at the box edge, where the worst error sets the p99. A not-a-knot tensor-product spline fixed it. `tests/test_surfaces.py` checks the convergence order.
 
 **Simulation size.** On the development book, 2^15 antithetic pairs is the first ladder step to pass, and delta is the limiting output. Price alone would pass at 2^10.
+
+**Fallback bins.** The first plan used six bins per axis, which is 216 cells for 30,000 calibration points. A cell needs at least 99 points before the rank exists, and 62 cells had fewer, so those cells sent every request to simulation for every method. That was 29.2% of the development book, whatever the method's error. For n up to 198 the rank equals n, so the median cell allowed no misses at all. Four bins per axis cut that floor to 2.2%. The cost is a coarser screen: on validation, `nn_diff` keeps a slightly higher p99 delta among accepted points, 0.00104 against 0.00085. The gate applies to the whole job, so the change was made on development data before the freeze.
+
+**A hybrid pays for paths as soon as one request falls back.** The kink region alone sends about 2.2% of requests to simulation, because no fast method is calibrated there. So every hybrid builds paths, about 7 s for the whole job at 2^15 on a busy machine, whatever the network's own speed. A fast method with no fallback does not pay this. This shaped the expected result before the sealed run, and the report states it.
