@@ -76,7 +76,7 @@
   },
   "fallback": {
     "coverage": 0.99,
-    "bins": 6
+    "bins": 4
   },
   "simulation": {
     "ladder_log2_units": [
@@ -192,7 +192,7 @@
       1,
       2
     ],
-    "steps": 8000,
+    "steps": 58000,
     "batch_size": 512,
     "width": 64,
     "depth": 3
