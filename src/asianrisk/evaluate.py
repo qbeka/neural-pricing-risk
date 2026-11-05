@@ -10,7 +10,10 @@ through timing noise and through the simulation answers on rejected requests.
 
 import hashlib
 import json
+import os
 import platform
+import random
+import shutil
 import subprocess
 import time
 from pathlib import Path
@@ -30,7 +33,7 @@ from asianrisk.portfolio import all_requests, load_book, shock_grid
 from asianrisk.reference import SimulationConfig, price_reference
 
 SEALED_SETS = ("test", "stress_near_expiry", "stress_kink")
-TIMING_REPEATS = 5
+TIMING_REPEATS = 3
 
 
 def sha256(path: Path) -> str:
@@ -147,13 +150,18 @@ def _fallback_heatmap(domain, config, rules, cells=24) -> dict:
 
 
 def _timed(work, repeats=TIMING_REPEATS):
-    """Run `work` several times and return its last result and the median seconds."""
-    seconds = []
+    """Run `work` several times. Returns its last result and median wall and CPU seconds.
+
+    CPU seconds cover every thread in this process, so they show the work behind
+    a wall time: closed forms and grids use one NumPy thread, PyTorch uses six.
+    """
+    wall, cpu = [], []
     for _ in range(repeats):
-        started = time.perf_counter()
+        wall_started, cpu_started = time.perf_counter(), time.process_time()
         result = work()
-        seconds.append(time.perf_counter() - started)
-    return result, float(np.median(seconds))
+        wall.append(time.perf_counter() - wall_started)
+        cpu.append(time.process_time() - cpu_started)
+    return result, float(np.median(wall)), float(np.median(cpu))
 
 
 def _book_summary(price, delta, strikes, quantities, scenario_count, reference):
@@ -175,6 +183,7 @@ def _book_summary(price, delta, strikes, quantities, scenario_count, reference):
 def benchmark_book(config, out, books_dir, book_name, log2_units, seeds) -> dict:
     """Full portfolio repricing, timed end to end for every route."""
     torch.set_num_threads(config["simulation"]["torch_threads"])
+    load_before = os.getloadavg()
     book_path = Path(books_dir) / f"book_{book_name}.json"
     book = load_book(book_path)
     scenarios = shock_grid()
@@ -202,33 +211,34 @@ def benchmark_book(config, out, books_dir, book_name, log2_units, seeds) -> dict
         def direct():
             return _engine(config, log2_units, simulation_seed).price(points)
 
-        simulated, direct_seconds = _timed(direct, repeats=1)
+        simulated, direct_seconds, direct_cpu = _timed(direct)
         summary, value = _book_summary(
             simulated["price"], simulated["delta"], strikes, quantities, n_scenarios, reference
         )
         rows.append({
             "run": run, "method": "direct_mc", "route": "simulation", "seconds": direct_seconds,
-            "fallback_rate": 1.0, "simulated_requests": len(points), **summary,
+            "cpu_seconds": direct_cpu, "fallback_rate": 1.0, "simulated_requests": len(points), **summary,
         })
-        for name, surface in surfaces.items():
-            answer, seconds = _timed(lambda: surface(points))
+        # Each run visits the routes in its own order, so no route always runs first.
+        for name, surface in random.Random(seed).sample(list(surfaces.items()), len(surfaces)):
+            answer, seconds, cpu_seconds = _timed(lambda: surface(points))
             summary, value = _book_summary(*answer, strikes, quantities, n_scenarios, reference)
             rows.append({
                 "run": run, "method": name, "route": "fast_only", "seconds": seconds,
-                "fallback_rate": 0.0, "simulated_requests": 0, **summary,
+                "cpu_seconds": cpu_seconds, "fallback_rate": 0.0, "simulated_requests": 0, **summary,
             })
             rule = rules[name]
 
             def simulate(rejected_points):
                 return _engine(config, log2_units, simulation_seed).price(rejected_points)
 
-            (price, delta, accepted), seconds = _timed(
-                lambda: _routed(surface, rule, points, simulate), repeats=1
+            (price, delta, accepted), seconds, cpu_seconds = _timed(
+                lambda: _routed(surface, rule, points, simulate)
             )
             summary, value = _book_summary(price, delta, strikes, quantities, n_scenarios, reference)
             rows.append({
                 "run": run, "method": name, "route": "hybrid", "seconds": seconds,
-                "fallback_rate": float(1.0 - accepted.mean()),
+                "cpu_seconds": cpu_seconds, "fallback_rate": float(1.0 - accepted.mean()),
                 "simulated_requests": int((~accepted).sum()), **summary,
             })
             if run == 0:
@@ -244,7 +254,7 @@ def benchmark_book(config, out, books_dir, book_name, log2_units, seeds) -> dict
     latency = _single_request_latency(config, out, seeds[0], points, log2_units)
     ladder = []
     for step in config["simulation"]["ladder_log2_units"]:
-        result, seconds = _timed(lambda: _engine(config, step, 2500).price(points), repeats=1)
+        result, seconds, _ = _timed(lambda: _engine(config, step, 2500).price(points), repeats=1)
         summary, _ = _book_summary(
             result["price"], result["delta"], strikes, quantities, n_scenarios, reference
         )
@@ -277,6 +287,7 @@ def benchmark_book(config, out, books_dir, book_name, log2_units, seeds) -> dict
         "scenarios_run0": scenario_rows,
         "latency": latency,
         "simulation_ladder": ladder,
+        "load_average": {"before": list(load_before), "after": list(os.getloadavg())},
         "target_price_sample": target_price[:3].tolist(),
         "target_delta_sample": target_delta[:3].tolist(),
     }
@@ -324,7 +335,7 @@ def accelerator_sensitivity(config, books_dir, log2_units) -> dict:
         def work():
             return _engine(config, log2_units, 4000, device, dtype).price(points)
 
-        result, seconds = _timed(work, repeats=3)
+        result, seconds, _ = _timed(work, repeats=3)
         if baseline is None:
             baseline = result
         rows.append({
@@ -373,12 +384,16 @@ def upfront_costs(config, out) -> dict:
             json.loads((out / "models" / f"{name}_seed{seed}.json").read_text())["record"]
             for seed in config["network_seeds"]
         ]
-        train_wall = float(np.mean([fit["wall_seconds"] for fit in fits]))
+        # Other work on the machine only ever adds time, so the fastest seed is the
+        # best estimate of the real cost. The mean stays in the record.
+        walls = [fit["wall_seconds"] for fit in fits]
+        train_wall = float(np.min(walls))
         share = spec["n_points"] / train["n_points"]
         costs[name] = {
             "label_cpu": train["cpu_seconds"] * share,
             "label_wall": train["wall_seconds"] * share,
             "train_wall": train_wall,
+            "train_wall_mean": float(np.mean(walls)),
             "train_cpu_upper": train_wall * threads,
             "parameters": fits[0]["parameters"],
         }
@@ -518,9 +533,23 @@ def evaluate_differential(config, out) -> list[dict]:
 
 
 def run_sealed_evaluation(config, config_path, out, books_dir, run_dir, freeze) -> None:
-    """Every sealed measurement, written as raw JSON with a manifest."""
-    raw = Path(run_dir) / "raw"
-    raw.mkdir(parents=True, exist_ok=True)
+    """Every sealed measurement, written as raw JSON with a manifest.
+
+    All of it goes to a side directory that takes the run's name only when the
+    last file is written. A crash therefore leaves no run, and a finished run is
+    never replaced.
+    """
+    run_dir = Path(run_dir)
+    if run_dir.exists():
+        raise SystemExit(f"{run_dir} already exists: a recorded run is never replaced")
+    partial = run_dir.with_name(run_dir.name + ".partial")
+    if partial.exists():
+        shutil.rmtree(partial)
+    raw = partial / "raw"
+    raw.mkdir(parents=True)
+    commit = git_commit()
+    dirty = tree_is_dirty()
+    load_at_start = os.getloadavg()
     log2_units = freeze["simulation_log2_units"]
     seeds = config["network_seeds"][: config["simulation"]["runs"]]
     started = time.perf_counter()
@@ -544,7 +573,8 @@ def run_sealed_evaluation(config, config_path, out, books_dir, run_dir, freeze) 
         write(f"book_{book_name}", benchmark_book(config, out, books_dir, book_name, log2_units, seeds))
     write("accelerator", accelerator_sensitivity(config, books_dir, log2_units))
     manifest = {
-        "commit": git_commit(),
+        "commit": commit,
+        "dirty": dirty,
         "command": f"python -m asianrisk evaluate --config {config_path} --run {run_dir}",
         "config_sha256": sha256(config_path),
         "freeze": freeze,
@@ -556,13 +586,17 @@ def run_sealed_evaluation(config, config_path, out, books_dir, run_dir, freeze) 
             path.name: sha256(path) for path in sorted((out / "data").glob("*.npz"))
         },
         "models": {
-            path.name: sha256(path) for path in sorted((out / "models").glob("*.pt"))
+            str(path.relative_to(out / "models")): sha256(path)
+            for path in sorted((out / "models").rglob("*"))
+            if path.suffix in (".pt", ".npz")
         },
         "seeds": {"network": seeds, "simulation_log2_units": log2_units},
         "machine": machine_record(),
+        "load_average": {"start": list(load_at_start), "end": list(os.getloadavg())},
         "elapsed_seconds": time.perf_counter() - started,
     }
-    (Path(run_dir) / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
+    (partial / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
+    os.replace(partial, run_dir)
 
 
 def machine_record() -> dict:
@@ -580,3 +614,19 @@ def git_commit() -> str:
     return subprocess.run(
         ["git", "rev-parse", "HEAD"], capture_output=True, text=True, check=False
     ).stdout.strip()
+
+
+def tree_is_dirty() -> bool:
+    """True if tracked or untracked files differ from HEAD, or git cannot tell."""
+    status = subprocess.run(
+        ["git", "status", "--porcelain"], capture_output=True, text=True, check=False
+    )
+    return status.returncode != 0 or bool(status.stdout.strip())
+
+
+def code_changed_since(commit: str) -> bool:
+    """True if anything that shapes a result differs between `commit` and HEAD."""
+    return subprocess.run(
+        ["git", "diff", "--quiet", commit, "HEAD", "--", "src", "configs", "pyproject.toml", "uv.lock"],
+        capture_output=True, check=False,
+    ).returncode != 0

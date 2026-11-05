@@ -11,8 +11,15 @@ from asianrisk.contract import Contract, Market
 from asianrisk.demo import write_demo
 from asianrisk.domain import load_domain, sample_dataset
 from asianrisk.labels import generate_labels, save_dataset
-from asianrisk.evaluate import git_commit, run_sealed_evaluation, sha256
+from asianrisk.evaluate import (
+    code_changed_since,
+    git_commit,
+    run_sealed_evaluation,
+    sha256,
+    tree_is_dirty,
+)
 from asianrisk.pipeline import (
+    expected_models,
     fit_differential,
     fit_grids,
     fit_networks,
@@ -58,6 +65,37 @@ def require_freeze(freeze_path: Path, config_path: Path) -> None:
         raise SystemExit(f"sealed set refused: {config_path} does not match the freeze")
 
 
+def pinned_files(out: Path) -> dict:
+    """Hash of every development input a sealed run depends on, by relative path."""
+    paths = [out / "simulation_ladder.json"]
+    paths += [path for path in (out / "models").rglob("*") if path.is_file()]
+    paths += [
+        path for path in (out / "data").glob("*")
+        if path.is_file() and path.stem not in SEALED
+    ]
+    return {str(path.relative_to(out)): sha256(path) for path in sorted(paths)}
+
+
+def require_pins(freeze_record: dict, out: Path, books: Path, allow_dirty: bool) -> None:
+    """Refuse a sealed run if anything the freeze pinned has changed."""
+    for name, digest in freeze_record["books"].items():
+        if sha256(books / f"book_{name}.json") != digest:
+            raise SystemExit(f"sealed run refused: book {name} changed after the freeze")
+    current = pinned_files(out)
+    for name, digest in freeze_record["pinned"].items():
+        if current.get(name) != digest:
+            raise SystemExit(f"sealed run refused: {name} changed after the freeze")
+    extra = sorted(set(current) - set(freeze_record["pinned"]))
+    if extra:
+        raise SystemExit(f"sealed run refused: {extra[0]} appeared after the freeze")
+    if allow_dirty:
+        return
+    if tree_is_dirty():
+        raise SystemExit("sealed run refused: commit or remove local changes first")
+    if code_changed_since(freeze_record["commit"]):
+        raise SystemExit("sealed run refused: code or configs changed after the freeze")
+
+
 def labels(args) -> None:
     """Generate labels for named datasets. Sealed sets need a matching freeze."""
     config = json.loads(Path(args.config).read_text())
@@ -89,8 +127,11 @@ def fit(args) -> None:
 def tune(args) -> None:
     """Pick the simulation size on the development book and save the ladder."""
     config = json.loads(Path(args.config).read_text())
-    result = select_simulation_units(config, Path(args.out), Path(args.books))
     path = Path(args.out) / "simulation_ladder.json"
+    if path.exists():
+        print(f"{path} exists, keeping it")
+        return
+    result = select_simulation_units(config, Path(args.out), Path(args.books))
     path.write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps(result, indent=2))
 
@@ -103,6 +144,16 @@ def freeze(args) -> None:
     path = Path(args.freeze)
     if path.exists():
         raise SystemExit(f"{path} already exists: a freeze is never replaced")
+    missing = [
+        name for name in expected_models(config) if not (out / "models" / name).exists()
+    ]
+    if missing:
+        raise SystemExit(f"freeze refused: the fit is incomplete, {missing[0]} is missing")
+    sealed = [name for name in SEALED if (out / "data" / f"{name}.npz").exists()]
+    if sealed:
+        raise SystemExit(f"freeze refused: sealed labels for {sealed[0]} already exist")
+    if tree_is_dirty() and not args.allow_dirty:
+        raise SystemExit("freeze refused: commit or remove local changes first")
     ladder = json.loads((out / "simulation_ladder.json").read_text())
     record = {
         **json.loads(Path(args.statement).read_text()),
@@ -114,7 +165,7 @@ def freeze(args) -> None:
         },
         "simulation_log2_units": ladder["chosen_log2_units"],
         "simulation_ladder_sha256": sha256(out / "simulation_ladder.json"),
-        "models": {p.name: sha256(p) for p in sorted((out / "models").glob("*.pt"))},
+        "pinned": pinned_files(out),
     }
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(record, indent=2) + "\n")
@@ -128,11 +179,12 @@ def evaluate(args) -> None:
     require_freeze(freeze_path, config_path)
     config = json.loads(config_path.read_text())
     out = Path(args.out)
+    freeze_record = json.loads(freeze_path.read_text())
+    if Path(args.run).exists():
+        raise SystemExit(f"{args.run} already exists: a recorded run is never replaced")
+    require_pins(freeze_record, out, Path(args.books), args.allow_dirty)
     generate_datasets(config, out, SEALED)
-    run_sealed_evaluation(
-        config, config_path, out, Path(args.books), Path(args.run),
-        json.loads(freeze_path.read_text()),
-    )
+    run_sealed_evaluation(config, config_path, out, Path(args.books), Path(args.run), freeze_record)
 
 
 def report(args) -> None:
@@ -156,10 +208,14 @@ def smoke(args) -> None:
         run_dir = root / "run"
         fit(argparse.Namespace(**shared))
         tune(argparse.Namespace(**shared))
+        # The scratch run may start from a working tree with local changes.
         freeze(argparse.Namespace(
-            **shared, statement="configs/freeze_statement.json", freeze=str(freeze_path)
+            **shared, statement="configs/freeze_statement.json", freeze=str(freeze_path),
+            allow_dirty=True,
         ))
-        evaluate(argparse.Namespace(**shared, freeze=str(freeze_path), run=str(run_dir)))
+        evaluate(argparse.Namespace(
+            **shared, freeze=str(freeze_path), run=str(run_dir), allow_dirty=True
+        ))
         report(argparse.Namespace(run=str(run_dir)))
         demo(argparse.Namespace(run=str(run_dir), target=str(root / "site" / "index.html")))
         page = root / "site" / "index.html"
@@ -207,7 +263,7 @@ def main() -> None:
     freeze_command.add_argument("--books", default="configs")
     freeze_command.add_argument("--statement", default="configs/freeze_statement.json")
     freeze_command.add_argument("--freeze", default="results/freeze.json")
-    freeze_command.set_defaults(handler=freeze)
+    freeze_command.set_defaults(handler=freeze, allow_dirty=False)
 
     evaluate_command = commands.add_parser("evaluate", help="run the sealed evaluation")
     evaluate_command.add_argument("--config", default="configs/experiment.json")
@@ -215,7 +271,7 @@ def main() -> None:
     evaluate_command.add_argument("--books", default="configs")
     evaluate_command.add_argument("--freeze", default="results/freeze.json")
     evaluate_command.add_argument("--run", default="results/run")
-    evaluate_command.set_defaults(handler=evaluate)
+    evaluate_command.set_defaults(handler=evaluate, allow_dirty=False)
 
     report_command = commands.add_parser("report", help="rebuild a report from a recorded run")
     report_command.add_argument("--run", default="results/run")

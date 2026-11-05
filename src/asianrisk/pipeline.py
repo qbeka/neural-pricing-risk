@@ -133,6 +133,22 @@ def fit_differential(config: dict, out: Path) -> None:
                 save_network(path, surface, spec, record)
 
 
+def expected_models(config: dict) -> list[str]:
+    """Paths under `models/` that a complete fit must have written."""
+    names = [f"{name}.npz" for name in config["grids"]]
+    names += [
+        f"{name}_seed{seed}.pt" for name in config["networks"] for seed in config["network_seeds"]
+    ]
+    section = config["differential"]
+    names += [
+        f"differential/{arm}_{size}_seed{seed}.pt"
+        for size in section["n_points"]
+        for arm in ("price_only", "price_delta")
+        for seed in section["seeds"]
+    ]
+    return names
+
+
 def fast_methods(config: dict, out: Path, seed: int) -> dict:
     """Surfaces by name. Networks use one training seed, the rest have no seed."""
     domain = load_domain(config)

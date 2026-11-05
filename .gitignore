@@ -6,3 +6,4 @@ __pycache__/
 # Regenerated from saved configs. Keep large arrays out of Git.
 artifacts/
 site/_smoke_preview.html
+results/*.partial/

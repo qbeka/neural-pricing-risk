@@ -17,8 +17,8 @@ smoke:
 
 # Labels development data and fits every surface. Skips anything already saved.
 fit:
-	uv run python -m asianrisk labels
 	uv run python -m asianrisk fit
+	uv run python -m asianrisk tune
 
 # Pins the experiment config. Sealed labels refuse to exist without this file.
 freeze:
@@ -36,4 +36,4 @@ report:
 demo:
 	uv run python -m asianrisk demo
 
-benchmark: fit evaluate report demo
+benchmark: fit freeze evaluate report demo
