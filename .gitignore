@@ -7,3 +7,4 @@ __pycache__/
 artifacts/
 site/_smoke_preview.html
 results/*.partial/
+.coverage
