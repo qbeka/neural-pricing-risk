@@ -43,7 +43,7 @@ Measured with 2^17 antithetic pairs on the same seed. It costs about 45% more pe
 
 **Delta estimator: pathwise, not bumped.** The payoff is Lipschitz in spot, so the pathwise derivative is unbiased. A bumped price on common random numbers agrees within statistical error in `tests/test_reference.py`.
 
-## First independent review (commit 4635f21)
+## First independent review (commit fce55d7)
 
 A separate agent, a fresh Claude instance with only the acceptance criteria and the commit hash, reproduced the suite from a clean clone and tried to break the numerics. It is independent of this session's reasoning but not of its maker.
 
