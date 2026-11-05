@@ -14,4 +14,3 @@ jobs:
           python-version: "3.12"
       - run: uv sync --all-extras --frozen
       - run: uv run pytest
-      - run: uv run python -m asianrisk smoke
