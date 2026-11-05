@@ -17,45 +17,47 @@ The fixed job is 500 contracts by 42 shock scenarios, or 21,000 repricings. The 
 
 ## Primary book
 
-Five runs. Wall time is the mean of the runs, each the median of 3 repeats. Errors are the median across runs, and the worst request is the largest from any run.
+Five runs, each pairing one network seed with one simulation seed. Wall time is the mean of the runs, each the median of 3 repeats. Errors are the median across runs, and the worst request is the largest from any run.
 
 | Route | Wall time (s) | Sd (s) | Requests/s | Median price (bp) | p99 price (bp) | Worst price (bp) | Median delta | p99 delta | Worst delta | Sent to simulation | Passes |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| grid_linear | 0.0078 | 0.0015 | 2,691,353 | 0.432 | 1.386 | 3.91 | 0.00015 | 0.00128 | 0.0081 | 0% | No |
-| **grid_cubic** | **0.0110** | 0.0005 | 1,909,648 | 0.011 | 0.168 | 0.50 | 0.00013 | 0.00076 | 0.0053 | 0% | Yes |
-| lower_bound | 0.0132 | 0.0015 | 1,586,710 | 0.168 | 3.713 | 8.65 | 0.00003 | 0.00051 | 0.0010 | 0% | No |
-| nn_price | 0.0143 | 0.0024 | 1,473,118 | 0.589 | 4.674 | 49.25 | 0.00083 | 0.01258 | 0.1089 | 0% | No |
-| nn_diff | 0.0150 | 0.0033 | 1,404,395 | 0.304 | 2.132 | 16.54 | 0.00044 | 0.00404 | 0.0423 | 0% | No |
-| moment_matched | 0.0153 | 0.0019 | 1,369,632 | 3.425 | 79.092 | 163.41 | 0.00238 | 0.01740 | 0.0254 | 0% | No |
-| corrected_grid | 0.0205 | 0.0023 | 1,023,013 | 0.008 | 0.126 | 0.33 | 0.00008 | 0.00051 | 0.0010 | 0% | Yes |
-| nn_residual | 0.0301 | 0.0080 | 697,773 | 0.010 | 0.069 | 0.19 | 0.00002 | 0.00011 | 0.0004 | 0% | Yes |
-| nn_residual + fallback | 0.2642 | 0.1903 | 79,478 | 0.010 | 0.069 | 0.19 | 0.00002 | 0.00013 | 0.0004 | 1.4% | Yes |
-| corrected_grid + fallback | 0.3240 | 0.0403 | 64,806 | 0.008 | 0.130 | 0.60 | 0.00008 | 0.00052 | 0.0016 | 2.0% | Yes |
-| lower_bound + fallback | 1.1552 | 0.1573 | 18,179 | 0.074 | 0.876 | 1.75 | 0.00003 | 0.00084 | 0.0016 | 24.8% | Yes |
-| grid_cubic + fallback | 1.3292 | 0.0865 | 15,799 | 0.011 | 0.216 | 0.95 | 0.00014 | 0.00082 | 0.0016 | 21.6% | Yes |
-| grid_linear + fallback | 2.1405 | 0.4557 | 9,811 | 0.173 | 0.867 | 1.09 | 0.00013 | 0.00068 | 0.0016 | 41.9% | Yes |
-| nn_price + fallback | 3.0431 | 0.2481 | 6,901 | 0.008 | 0.275 | 1.64 | 0.00016 | 0.00087 | 0.0016 | 99.4% | Yes |
-| nn_diff + fallback | 3.1095 | 0.2196 | 6,753 | 0.008 | 0.632 | 1.57 | 0.00016 | 0.00087 | 0.0028 | 87.8% | Yes |
-| moment_matched + fallback | 3.3498 | 0.7776 | 6,269 | 0.008 | 0.293 | 6.15 | 0.00016 | 0.00094 | 0.0024 | 98.2% | Yes |
-| direct_mc | 3.4193 | 0.4510 | 6,142 | 0.008 | 0.244 | 0.95 | 0.00016 | 0.00087 | 0.0016 | 100% | Yes |
+| grid_linear | 0.0078 | 0.0015 | 2,691,353 | 0.432 | 1.386 | 3.91 | 0.00015 | 0.00128 | 0.00812 | 0.0% | No |
+| **grid_cubic** | **0.0110** | 0.0005 | 1,909,648 | 0.011 | 0.168 | 0.50 | 0.00013 | 0.00076 | 0.00534 | 0.0% | Yes |
+| lower_bound | 0.0132 | 0.0015 | 1,586,710 | 0.168 | 3.713 | 8.65 | 0.00003 | 0.00051 | 0.00104 | 0.0% | No |
+| nn_price | 0.0143 | 0.0024 | 1,473,118 | 0.589 | 4.674 | 49.25 | 0.00083 | 0.01258 | 0.10890 | 0.0% | No |
+| nn_diff | 0.0150 | 0.0033 | 1,404,395 | 0.304 | 2.132 | 16.54 | 0.00044 | 0.00404 | 0.04227 | 0.0% | No |
+| moment_matched | 0.0153 | 0.0019 | 1,369,632 | 3.425 | 79.092 | 163.41 | 0.00238 | 0.01740 | 0.02540 | 0.0% | No |
+| corrected_grid | 0.0205 | 0.0023 | 1,023,013 | 0.008 | 0.126 | 0.33 | 0.00008 | 0.00051 | 0.00104 | 0.0% | Yes |
+| nn_residual | 0.0301 | 0.0080 | 697,773 | 0.010 | 0.069 | 0.19 | 0.00002 | 0.00011 | 0.00041 | 0.0% | Yes |
+| nn_residual + fallback | 0.2642 | 0.1903 | 79,478 | 0.010 | 0.069 | 0.19 | 0.00002 | 0.00013 | 0.00041 | 1.4% | Yes |
+| corrected_grid + fallback | 0.3240 | 0.0403 | 64,806 | 0.008 | 0.130 | 0.60 | 0.00008 | 0.00052 | 0.00164 | 2.0% | Yes |
+| lower_bound + fallback | 1.1552 | 0.1573 | 18,179 | 0.074 | 0.876 | 1.75 | 0.00003 | 0.00084 | 0.00164 | 24.8% | Yes |
+| grid_cubic + fallback | 1.3292 | 0.0865 | 15,799 | 0.011 | 0.216 | 0.95 | 0.00014 | 0.00082 | 0.00164 | 21.6% | Yes |
+| grid_linear + fallback | 2.1405 | 0.4557 | 9,811 | 0.173 | 0.867 | 1.09 | 0.00013 | 0.00068 | 0.00164 | 41.9% | Yes |
+| nn_price + fallback | 3.0431 | 0.2481 | 6,901 | 0.008 | 0.275 | 1.64 | 0.00016 | 0.00087 | 0.00164 | 99.4% (97.9% to 100.0%) | Yes |
+| nn_diff + fallback | 3.1095 | 0.2196 | 6,753 | 0.008 | 0.632 | 1.57 | 0.00016 | 0.00087 | 0.00280 | 87.8% (74.8% to 100.0%) | Yes |
+| moment_matched + fallback | 3.3498 | 0.7776 | 6,269 | 0.008 | 0.293 | 6.15 | 0.00016 | 0.00094 | 0.00241 | 98.2% | Yes |
+| direct_mc | 3.4193 | 0.4510 | 6,142 | 0.008 | 0.244 | 0.95 | 0.00016 | 0.00087 | 0.00164 | 100.0% | Yes |
 
-Spread across runs in the p99 errors: 0.218 bp and 0.00004 delta for `nn_diff` with fallback, 0.012 bp and 0.00002 for `nn_residual` with fallback. Grids and closed forms have no seed, so their spread is zero.
+Sample standard deviation across runs in the p99 errors: 0.244 bp and 0.00004 delta for `nn_diff` with fallback, 0.013 bp and 0.00002 for `nn_residual` with fallback. Grids and closed forms have no seed, so their spread is near zero. Shares sent to simulation depend on the network seed, so the table gives their range. In one `nn_diff` run the rule accepted nothing.
 
 ![Accuracy against compute](../results/run/plots/accuracy_vs_compute.png)
 
 ## Why the networks lost
 
-1. **The problem has three inputs.** Homogeneity reduces each request to log moneyness, vol and maturity, and the price is smooth almost everywhere on that box. A 9,537 node table is close to ideal for that shape. A network earns its keep in many dimensions, and this project does not test that.
-2. **Fallback has a fixed entry price.** A hybrid builds simulation paths as soon as one request falls back, and requests near the payoff kink always fall back. That cost `nn_residual` about 0.16 s per job in its fastest run, against 11 ms for the whole job on the cubic grid.
-3. **The raw network is too rough for its fallback rule.** `nn_diff` alone has a p99 delta error of 0.00404, four times the tolerance, so 87.8% of requests went to simulation. At 3.11 s it barely beats direct simulation at 3.42 s.
+These are explanations of the measurements. The run did not test them as causes.
+
+1. **The problem has three inputs.** Homogeneity reduces each request to log moneyness, vol and maturity, and the price is smooth almost everywhere on that box. That suits a table, and a 9,537 node grid passed the gate. A network may do better in many dimensions, and this project does not test that.
+2. **Fallback has a fixed entry price.** A hybrid builds simulation paths as soon as one request falls back, and requests near the payoff kink always fall back. That added about 0.14 s to `nn_residual` in its fastest run, against 11 ms for the whole job on the cubic grid.
+3. **The raw network is too rough for its fallback rule.** `nn_diff` alone has a p99 delta error of 0.00404, four times the tolerance, so 87.8% of requests went to simulation. At 3.11 s it cannot be told apart from direct simulation at 3.42 s: the gap is 0.31 s, and the spreads are 0.22 and 0.45 s.
 
 ## What did work
 
 These are observations, not hypotheses. The freeze did not rule on them.
 
-**Learning the correction beat everything on accuracy.** `nn_residual` learns the gap between the price and a closed-form lower bound. With no fallback at all it has the lowest error of any route on the book: p99 0.069 bp and 0.00011 delta. Its worst of 21,000 requests missed by 0.19 bp and 0.0004 delta. It is the only route tested whose worst request sits clearly inside both tolerances. It takes 30.1 ms, 114 times faster than simulation, but it is still 2.7 times slower than the comparator.
+**Learning the correction beat everything on accuracy.** `nn_residual` learns the gap between the price and a closed-form lower bound. With no fallback at all it has the lowest error of any route on the book: p99 0.069 bp and 0.00011 delta. Its worst of 21,000 requests missed by 0.19 bp and 0.0004 delta. With and without fallback, it is the only route whose worst request sits clearly inside both tolerances. It takes 30.1 ms, 114 times faster than simulation, but it is still 2.7 times slower than the comparator.
 
-**The fastest route is the brittle one.** The gate reads the p99, so it lets a route hide 1% of requests. The cubic grid's worst delta error is 0.0053, five times the tolerance. Stress makes this plainer:
+**The fastest route is the brittle one.** The gate reads the p99, so it lets a route hide 1% of requests. The cubic grid's worst delta error is 0.0053, five times the tolerance. Corrected grid and the lower bound reach 0.00104, just over it. Stress makes this plainer:
 
 | Route, no fallback | Near expiry p99 price (bp) | Near expiry p99 delta | Kink p99 price (bp) | Kink p99 delta |
 |---|---:|---:|---:|---:|
@@ -67,7 +69,7 @@ These are observations, not hypotheses. The freeze did not rule on them.
 | nn_residual | 0.040 | 0.00010 | 0.007 | 0.00009 |
 | lower_bound | 0.033 | 0.00009 | 0.006 | 0.00009 |
 
-Stress sets are reported apart from ordinary traffic, and each has 2,500 points. Near-expiry points lie below the fitted maturities, so this is extrapolation. The fallback rule sends every stress point to simulation, which gives p99 0.005 bp and 0.00037 delta near expiry, and 0.001 bp and 0.00038 at the kink. The routes built on the lower bound hold up because the closed form is right there and the correction is small.
+Stress sets are reported apart from ordinary traffic, and each has 2,500 points. Near-expiry points lie below the fitted maturities, so this is extrapolation. The fallback rule sends every stress point to simulation, which gives p99 0.005 bp and 0.00037 delta near expiry, and 0.001 bp and 0.00038 at the kink. The lower bound alone is already this accurate on both stress sets, so the correction network adds nothing there. It only has to avoid spoiling the bound, and it does.
 
 If I had to run this book, I would use the corrected grid. It is 1.9 times slower than the cubic grid, is cheap to build, and it holds up under stress.
 
@@ -79,13 +81,15 @@ If I had to run this book, I would use the corrected grid. It is 1.9 times slowe
 | 6,000 | 32,768 | 4.57, 0.00884 | 1.71, 0.00310 |
 | 24,000 | 32,768 | 4.25, 0.00883 | 1.79, 0.00311 |
 
-Delta supervision cut price error about 2.4 times and delta error about 2.8 times, and it did so at 1,500 points. More points changed almost nothing, so this network is limited by its size and training steps, not by its data. Each row is the mean of 3 seeds on the sealed test.
+Delta supervision cut price error about 2.5 times and delta error about 2.8 times, and it did so at 1,500 points. More points changed almost nothing, which suggests its size or training steps limit this network, not its data. Neither arm got below 1.71 bp. Each row is the mean of 3 seeds on the sealed test.
 
 ## Fallback
 
 The fallback rule splits the box into 64 cells and accepts a cell only if the rank `ceil((n + 1) * 0.99)` of its calibration errors is within tolerance. Requests in the kink region always go to simulation.
 
 ![Fallback by moneyness and maturity](../results/run/plots/fallback_heatmap.png)
+
+The heatmap shows run 0 only, which is the most favorable seed for `nn_diff`: its book fallback rate was 74.8% there and 100% in run 2.
 
 The sealed ordinary test has 20,000 points. Means across seeds:
 
@@ -99,11 +103,13 @@ The sealed ordinary test has 20,000 points. Means across seeds:
 | nn_price | 0.530, 3.932 | 0.00086, 0.00780 | 1.015, 0.00126 | 0.481, 0.00104 | 99.0% |
 | nn_residual | 0.014, 0.125 | 0.00004, 0.00031 | 0.125, 0.00031 | 0.125, 0.00031 | 0.0% |
 
+`nn_diff` accepted points exist in 4 of 5 seeds, with p99 delta 0.00085 to 0.00116. `nn_price` accepted points exist in 2 of 5 seeds. Their accepted columns average only those seeds.
+
 For scale, `direct_mc` alone on this set has a p99 of 0.357 bp and 0.00102 delta, so simulation at the chosen size sits on the delta tolerance. That is why a hybrid can miss 0.001 here even with a perfect fast method.
 
 ## Failure specimen
 
-This is the worst answer `nn_diff` gave on a point its rule accepted, on the sealed test.
+This is the worst answer `nn_diff` with seed 0 gave on a point its rule accepted, on the sealed test. Seed 0 is the mildest case. Across seeds, the worst accepted delta error ranged from 0.00124 to 0.00179, and the worst accepted price error from 0.92 to 1.72 bp.
 
 | | Value |
 |---|---|
@@ -118,7 +124,7 @@ Unsupported points fail far harder if you skip the rule. At ln(S/K) = 0.01104, v
 
 ## Latency and throughput
 
-Median over 300 requests, one at a time, including the routing decision. This is Python call overhead, so read it as an order of magnitude.
+Median over 300 requests, one at a time, including the routing decision, and over 30 requests for `direct_mc`. This is Python call overhead, so read it as an order of magnitude.
 
 | Route | Latency |
 |---|---:|
@@ -134,16 +140,16 @@ The whole-job order differs from the single-request order because batches favor 
 
 ## Upfront cost and payback
 
-Upfront wall time is labeling plus training. Hybrid routes add 186 s to label the calibration set. Network training uses the fastest of 5 seeds, because other work on the machine only ever adds time.
+Upfront wall time is labeling plus training, and hybrid routes add 186 s to label the calibration set. Network training uses the fastest of 5 seeds, because other work on the machine only ever adds time. One job is 21,000 queries.
 
-| Route | Upfront wall (s) | Saves per job vs direct (s) | Jobs to recover vs direct | Saves per job vs comparator (s) | Jobs to recover vs comparator |
-|---|---:|---:|---:|---:|---:|
-| grid_cubic | 39 | 3.408 | 11.6 | | Comparator |
-| corrected_grid | 7 | 3.399 | 2.0 | -0.0095 | Never |
-| nn_residual | 84 | 3.389 | 24.8 | -0.0191 | Never |
-| nn_residual + fallback | 270 | 3.155 | 85.7 | -0.2532 | Never |
-| corrected_grid + fallback | 193 | 3.095 | 62.4 | -0.3130 | Never |
-| nn_diff + fallback | 665 | 0.310 | 2,147.9 | -3.0985 | Never |
+| Route | Label wall (s) | Train wall (s) | Calibrate wall (s) | Upfront wall (s) | Saves per job vs direct (s) | Jobs to recover vs direct | Queries to recover vs direct | Saves per job vs comparator (s) | Jobs to recover vs comparator |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| grid_cubic | 39 | 0 | 0 | 39 | 3.408 | 11.6 | 243,043 | Comparator | Comparator |
+| corrected_grid | 7 | 0 | 0 | 7 | 3.399 | 2.0 | 41,514 | -0.0095 | Never |
+| nn_residual | 4 | 80 | 0 | 84 | 3.389 | 24.8 | 520,231 | -0.0191 | Never |
+| nn_residual + fallback | 4 | 80 | 186 | 270 | 3.155 | 85.7 | 1,799,778 | -0.2532 | Never |
+| corrected_grid + fallback | 7 | 0 | 186 | 193 | 3.095 | 62.4 | 1,310,510 | -0.3130 | Never |
+| nn_diff + fallback | 21 | 457 | 186 | 665 | 0.310 | 2,147.9 | 45,105,213 | -3.0985 | Never |
 
 Never means savings are not positive, so no number of jobs pays the cost back.
 
@@ -173,15 +179,16 @@ Direct simulation slows down 3.7 times. Grids do not notice, which makes the gap
 | Book reference | 8 independent replicates of 2^19 antithetic pairs. Standard error: median 0.0012 bp and max 0.039 bp on price, median 0.000021 and max 0.00008 on delta |
 | Label noise | 2,000 sealed points relabeled with new seeds: p99 gap 0.12 bp and 0.00034 delta |
 | Path reuse | 20.6 times faster per query after one sort, on 64 requests at 2^15 pairs |
-| Network delta | Checked against autograd in the tests, and against a finite difference in the pre-freeze review (gap 3e-9) |
+| Network delta | Checked against autograd in the tests |
 
 Direct simulation on the GPU took 1.43 s in 32-bit, against 2.56 s on six CPU threads in 64-bit, median of 3 repeats. Price moved by at most 0.0044 bp. The verdict uses 64-bit on the CPU, as frozen. The GPU would not change the verdict, since the comparator is 130 times faster than that.
 
 ## What the numbers leave out
 
-- **One machine with other work on it.** Load average was 8 to 15 on 18 cores during the primary book, and higher before the run. Timings are noisy, and the spread across runs includes that noise. Treat ratios as better evidence than absolute times.
+- **One machine with other work on it.** Load average was 9 to 16 on 18 cores during the primary book, and higher before the run. Timings are noisy, and the spread across runs includes that noise. Treat ratios as better evidence than absolute times.
 - **One spike is in the data.** `nn_residual` with fallback took 0.603 s in run 1, against 0.161 to 0.205 s in the others, which explains its large spread. It stays in, as the rule requires. Its fastest run is still about 15 times slower than the comparator.
-- **Thread counts differ.** Closed forms and grids use one NumPy thread and PyTorch uses six, as frozen. This helps only the networks. CPU seconds are in `results/run/tables.md`.
+- **Thread counts differ.** Closed forms and grids use one NumPy thread and PyTorch uses six, as frozen. This helps networks and simulation, not grids or closed forms. CPU seconds are in `results/run/tables.md`.
+- **Route order was only partly shuffled.** The freeze says route order is shuffled per run. Surfaces were shuffled, but direct simulation ran first in all 5 runs, and each hybrid ran right after its own fast route.
 - **Python everywhere.** A compiled grid or a batched network would change the constants, and the single-request numbers most of all.
 - **Upfront cost leaves things out.** It omits validation labels, tuning and discarded experiments.
 - **The gate reads the p99.** A route can pass while 1% of requests are worse. That is why the worst request is reported.
