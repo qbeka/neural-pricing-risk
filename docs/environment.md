@@ -27,3 +27,5 @@ Time for one payoff evaluation on 2^19 paths with 12 fixings. Best of 5 repeats,
 | PyTorch MPS | 32-bit | GPU | 2.1 |
 
 Moving the 2^19 by 12 array to the GPU took 3.0 ms and back took 1.0 ms. The GPU gives no speedup over six CPU threads at the same precision on this workload, and it adds transfers and removes 64-bit floats. PyTorch on the CPU in 64-bit is the primary engine.
+
+The sealed run later measured the whole job, not one kernel. There the GPU took 1.43 s in 32-bit against 2.56 s on six CPU threads in 64-bit, with price changing by at most 0.0044 bp. So the GPU does help a full job on this machine, and the earlier kernel timing understated it. The primary engine stayed on the CPU because the plan needed 64-bit floats, and the verdict would not change: the comparator is 130 times faster than the GPU run.

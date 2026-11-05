@@ -85,3 +85,17 @@ Grid labels here used 2^15 pairs, network labels 2^14. Errors below about 0.2 bp
 **Fallback bins.** The first plan used six bins per axis, which is 216 cells for 30,000 calibration points. A cell needs at least 99 points before the rank exists, and 62 cells had fewer, so those cells sent every request to simulation for every method. That was 29.2% of the development book, whatever the method's error. For n up to 198 the rank equals n, so the median cell allowed no misses at all. Four bins per axis cut that floor to 2.2%. The cost is a coarser screen: on validation, `nn_diff` keeps a slightly higher p99 delta among accepted points, 0.00104 against 0.00085. The gate applies to the whole job, so the change was made on development data before the freeze.
 
 **A hybrid pays for paths as soon as one request falls back.** The kink region alone sends about 2.2% of requests to simulation, because no fast method is calibrated there. So every hybrid builds paths, about 7 s for the whole job at 2^15 on a busy machine, whatever the network's own speed. A fast method with no fallback does not pay this. This shaped the expected result before the sealed run, and the report states it.
+
+## Sealed run
+
+Commit `1dc8022`, recorded in `results/run`, measured on 2026-11-05. Neither hypothesis holds. The full reading is in [benchmark-report.md](benchmark-report.md).
+
+**What surprised me.** Three things did not match what I expected before the run.
+
+- The correction network accepted every supported cell on ordinary traffic. Its 1.4% fallback on the book is all kink requests.
+- More differential training data did almost nothing. 1,500 points did as well as 24,000, so training steps or network size are the limit, and that makes the network's label budget a poor place to look for savings.
+- The GPU beat the CPU on the full job, 1.43 s against 2.56 s, although the earlier kernel timing showed no gain.
+
+**One run has a timing spike.** `nn_residual` with fallback took 0.603 s in run 1 and 0.161 to 0.205 s in the others. Wall time exceeded CPU time, which points to contention on a shared machine. The run stays in, because the rule reads the mean.
+
+**A surprise in the tooling.** A background wait on `pgrep -f "asianrisk fit"` matched its own command line and never exited. `[a]sianrisk fit` does not match itself.
