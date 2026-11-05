@@ -100,8 +100,6 @@ Each request is one contract under one scenario. Homogeneity reduces it to three
 | [docs/benchmark-report.md](docs/benchmark-report.md) | Every result, and what it means |
 | [docs/research-notes.md](docs/research-notes.md) | What was tried, including what failed |
 | [docs/reviews.md](docs/reviews.md) | Independent review findings |
-| [docs/interview.md](docs/interview.md) | A five minute walkthrough |
-| [docs/resume.md](docs/resume.md) | Resume bullets, each linked to the run |
 | [docs/environment.md](docs/environment.md) | The machine and locked versions |
 | [docs/checkpoint.md](docs/checkpoint.md) | What passed, and the next command |
 | `results/freeze.json` | The frozen plan and hashes |
