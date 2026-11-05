@@ -1,6 +1,6 @@
 # Benchmark report
 
-Every number here comes from the sealed run in `results/run`, measured on 2026-11-05 on one Apple M5 Pro at commit `1dc8022`. `results/run/tables.md` has the full generated tables, and `results/run/raw` has the measurements. Rebuild them with `make report`.
+Every number here comes from the sealed run in `results/run`, measured on one Apple M5 Pro at commit `1dc8022`. `results/run/tables.md` has the full generated tables, and `results/run/raw` has the measurements. Rebuild them with `make report`.
 
 ## The answer
 

@@ -15,7 +15,7 @@ A research tool that reprices a book of arithmetic-average Asian calls under spo
 | **Differential training** | On equal paths, delta labels cut p99 price error about 2.5 times and delta error about 2.8 times |
 | **Correctness** | 110 tests, 92% line coverage. 24 random contracts agree with QuantLib within 2.36 standard errors |
 
-Measured on 2026-11-05 on one Apple M5 Pro with other work on the machine. These are synthetic contracts under geometric Brownian motion. [What the numbers leave out](#what-the-numbers-leave-out) has the details, and [docs/benchmark-report.md](docs/benchmark-report.md) has every result.
+Measured on one Apple M5 Pro with other work on the machine. These are synthetic contracts under geometric Brownian motion. [What the numbers leave out](#what-the-numbers-leave-out) has the details, and [docs/benchmark-report.md](docs/benchmark-report.md) has every result.
 
 ## Run it
 
