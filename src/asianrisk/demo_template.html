@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Asian Book Repricing</title>
 <style>
+/* One weight only, embedded so the page works offline. Hierarchy comes from size and colour. */
+@font-face {
+  font-family: "Geist Serif";
+  src: url("data:font/woff2;base64,__FONT__") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
 /* The tokens of qendrimbeka.com and kobamoney.com: four text tones, one hairline,
    one warm wash, and forest as the only accent. */
 :root {
@@ -16,25 +23,26 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { margin: 0; background: #fff; color: var(--ink); font-size: 16px; line-height: 24px;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Geist Serif", Georgia, "Times New Roman", serif;
+  font-synthesis: none;
   -webkit-font-smoothing: antialiased; }
 ::selection { background: #1d3a2a26; }
 #ridge { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
 .page { max-width: 720px; margin: 0 auto; padding: 80px 24px 80px; }
-h1 { font-size: clamp(2.25rem, 1.6rem + 2.6vw, 3rem); font-weight: 600; line-height: 1.04; letter-spacing: -0.032em; margin: 0; }
+h1 { font-size: clamp(2.25rem, 1.6rem + 2.6vw, 3rem); font-weight: 400; line-height: 1.04; letter-spacing: -0.032em; margin: 0; }
 .subtitle { margin: 12px 0 0; max-width: 36rem; font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem); line-height: 1.5; color: var(--body); }
-h2 { font-size: 1.5rem; font-weight: 600; line-height: 1.15; letter-spacing: -0.028em; margin: 0 0 8px; }
+h2 { font-size: 1.5rem; font-weight: 400; line-height: 1.15; letter-spacing: -0.028em; margin: 0 0 8px; }
 section { margin-top: 80px; }
 .lead { margin: 0 0 24px; font-size: 15.5px; line-height: 1.65; color: var(--body); }
 .pills { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 10px; }
-.pill { display: inline-flex; height: 44px; align-items: center; padding: 0 20px; border-radius: 999px; font-size: 15px; font-weight: 600; letter-spacing: -0.012em; text-decoration: none; transition: background-color 0.15s; }
+.pill { display: inline-flex; height: 44px; align-items: center; padding: 0 20px; border-radius: 999px; font-size: 15px; font-weight: 400; letter-spacing: -0.012em; text-decoration: none; transition: background-color 0.15s; }
 .pill.dark { background: #121412; color: #fff; border: 1px solid #ffffff26; box-shadow: 0 1px 2px #0000002e; }
 .pill.dark:hover { background: #2a2d2a; }
 .pill.ghost { background: #fff; color: var(--ink); border: 1px solid var(--line-strong); }
 .pill.ghost:hover { background: var(--tile); }
 .stats { margin: 40px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
 .stat { border-radius: 18px; background: var(--tile); padding: 14px 16px; min-width: 0; }
-.stat dd { margin: 0; font-size: 1.5rem; font-weight: 600; line-height: 1; letter-spacing: -0.028em; font-variant-numeric: tabular-nums; }
+.stat dd { margin: 0; font-size: 1.5rem; font-weight: 400; line-height: 1; letter-spacing: -0.028em; font-variant-numeric: tabular-nums; }
 .stat dt { margin-top: 6px; font-size: 13px; line-height: 1.35; color: var(--muted); }
 .matrix { display: grid; grid-template-columns: 56px repeat(6, minmax(0, 1fr)); gap: 4px; margin-top: 8px; }
 .matrix span { font-size: 12.5px; color: var(--muted); display: flex; align-items: center; justify-content: center; font-variant-numeric: tabular-nums; }
@@ -43,13 +51,13 @@ section { margin-top: 80px; }
 .matrix button[aria-pressed="true"] { background: var(--forest); color: #fff; }
 :focus-visible { outline: 2px solid var(--forest); outline-offset: 3px; border-radius: 6px; }
 .segments { display: flex; flex-wrap: wrap; gap: 6px; margin: 20px 0 0; }
-.segments button { height: 32px; padding: 0 12px; font: inherit; font-size: 13px; font-weight: 600; color: var(--ink); background: #fff; border: 1px solid var(--line-strong); border-radius: 999px; cursor: pointer; transition: background-color 0.15s; }
+.segments button { height: 32px; padding: 0 12px; font: inherit; font-size: 13px; font-weight: 400; color: var(--ink); background: #fff; border: 1px solid var(--line-strong); border-radius: 999px; cursor: pointer; transition: background-color 0.15s; }
 .segments button:hover { background: var(--tile); }
 .segments button[aria-pressed="true"] { background: #121412; border-color: #121412; color: #fff; }
 .result { margin-top: 20px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 .result .card { border: 1px solid var(--line); border-radius: 18px; padding: 16px; background: #fffffff2; min-width: 0; }
 .card h3 { margin: 0; font-size: 13px; font-weight: 400; color: var(--muted); }
-.card .value { margin-top: 6px; font-size: 1.375rem; line-height: 1.2; font-weight: 600; letter-spacing: -0.024em; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.card .value { margin-top: 6px; font-size: 1.375rem; line-height: 1.2; font-weight: 400; letter-spacing: -0.024em; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
 .card .sub { margin-top: 6px; font-size: 13px; line-height: 1.4; color: var(--muted); }
 .share { display: flex; gap: 2px; height: 4px; margin-top: 10px; }
 .share i { display: block; border-radius: 2px; min-width: 2px; }
@@ -58,7 +66,7 @@ section { margin-top: 80px; }
 .rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
 .rows li { display: grid; grid-template-columns: 148px 1fr; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--line); background: #fffffff2; }
 .rows .when { font-size: 13px; line-height: 1.9; color: var(--muted); margin: 0; font-variant-numeric: tabular-nums; }
-.rows .title { margin: 0; font-weight: 600; letter-spacing: -0.012em; }
+.rows .title { margin: 0; font-weight: 400; letter-spacing: -0.012em; }
 .rows .text { margin: 4px 0 0; font-size: 15px; line-height: 1.6; color: var(--body); }
 .table-wrap { overflow-x: auto; background: #fffffff2; }
 table { border-collapse: collapse; width: 100%; font-size: 14px; font-variant-numeric: tabular-nums; }
@@ -66,8 +74,8 @@ th, td { text-align: right; padding: 10px 0 10px 16px; border-bottom: 1px solid 
 th:first-child, td:first-child { text-align: left; padding-left: 0; }
 th { font-size: 13px; font-weight: 400; color: var(--muted); }
 td { color: var(--body); }
-td:first-child { color: var(--ink); font-weight: 500; }
-tr.selected td { color: var(--ink); font-weight: 600; }
+td:first-child { color: var(--ink); font-weight: 400; }
+tr.selected td { color: var(--ink); font-weight: 400; }
 figure { margin: 0; position: relative; background: #fffffff2; }
 figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
 svg text { font-family: inherit; }
@@ -83,7 +91,7 @@ svg text { font-family: inherit; }
 .dash li { display: flex; gap: 12px; font-size: 15px; line-height: 1.55; color: var(--body); margin-bottom: 8px; }
 .dash li::before { content: ""; flex: none; width: 12px; height: 1px; margin-top: 0.75em; background: var(--quiet); }
 details.more { margin-top: 12px; }
-details.more summary { cursor: pointer; font-size: 13px; font-weight: 600; color: var(--ink); padding: 6px 0; list-style: none; text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 4px; }
+details.more summary { cursor: pointer; font-size: 13px; font-weight: 400; color: var(--ink); padding: 6px 0; list-style: none; text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 4px; }
 details.more summary::-webkit-details-marker { display: none; }
 footer { margin-top: 64px; font-size: 13px; color: var(--muted); }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
@@ -253,7 +261,7 @@ function render() {
   $("value").textContent = money.format(row.value);
   $("valueSub").textContent = `Long and short, ${DATA.contracts} contracts, in currency`;
   $("error").textContent = (Math.abs(error) / DATA.gross * 1e4).toFixed(3) + " bp";
-  $("errorSub").textContent = `of gross notional. Reference ${money.format(scenario.reference_value)} ± ${money.format(scenario.reference_se)}`;
+  $("errorSub").textContent = `of gross notional. Reference ${money.format(scenario.reference_value)} ± ${scenario.reference_se.toFixed(2)}`;
   $("counts").textContent = `${row.accepted} fast`;
   $("countsSub").textContent = `${row.rejected} sent to simulation`;
   $("share").innerHTML = (row.accepted ? `<i class="fast" style="flex:${row.accepted} 0 0"></i>` : "") + (row.rejected ? `<i class="sim" style="flex:${row.rejected} 0 0"></i>` : "");

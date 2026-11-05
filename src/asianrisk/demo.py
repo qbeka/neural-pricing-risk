@@ -4,6 +4,7 @@ Every number on the page comes from the run's raw JSON, and every sentence that
 states a result is built from those numbers, so the page cannot drift from the run.
 """
 
+import base64
 import json
 from importlib.resources import files
 from pathlib import Path
@@ -155,6 +156,45 @@ def _findings(run, summary) -> list[dict]:
     return rows
 
 
+def _stress_p99(run, method: str, dataset: str) -> float:
+    rows = run["points"]["rows"]
+    return float(np.mean([
+        row["price_p99_bp"] for row in rows
+        if row["method"] == method and row["dataset"] == dataset and row["scope"] == "fast_only"
+    ]))
+
+
+def _exploratory(run, summary) -> list[dict]:
+    """Observations outside the frozen rule. They are labeled that way on the page."""
+    tolerance = summary["tolerance"]
+    fast = [r for r in summary["primary"] if r["route"] == "fast_only" and passes(r, tolerance)]
+    if not fast:
+        return []
+    best = min(fast, key=lambda row: row["price_p99_bp"])
+    quickest = min(fast, key=lambda row: row["seconds_mean"])
+    rows = [{
+        "tag": "Not a hypothesis",
+        "title": f"Most accurate fast route: {ROUTE_NAMES[best['method']]}",
+        "text": (
+            f"Its worst of {best['requests']:,} requests missed by {best['price_max_bp']:.2f} bp and "
+            f"{best['delta_max']:.4f} delta. {ROUTE_NAMES[quickest['method']]} reached "
+            f"{quickest['price_max_bp']:.2f} bp and {quickest['delta_max']:.4f}."
+        ),
+    }]
+    if best is not quickest:
+        expiry = "stress_near_expiry"
+        rows.append({
+            "tag": "Not a hypothesis",
+            "title": "The fastest route is the brittle one",
+            "text": (
+                f"Below the fitted maturities, p99 price error was {_stress_p99(run, quickest['method'], expiry):,.0f} bp "
+                f"for {ROUTE_NAMES[quickest['method']]} and {_stress_p99(run, best['method'], expiry):.2f} bp for "
+                f"{ROUTE_NAMES[best['method']]}, which leans on a closed form."
+            ),
+        })
+    return rows
+
+
 def _rigor(run, tolerance) -> list[dict]:
     panel = run["quantlib_panel"]
     rows = []
@@ -229,11 +269,13 @@ def build_data(run_dir: Path) -> dict:
             "No non-neural route met the accuracy gate, so the rule has nothing to compare "
             "against and neither hypothesis is supported."
         )
+    supported = primary["supported"] or outcome["secondary"]["supported"]
+    answer = "A frozen test says yes." if supported else "A frozen test says no."
     manifest = run["manifest"]
     return {
         "headline": (
-            "A research comparison of simulation, closed forms, interpolation and small neural "
-            "networks, measured on the whole portfolio job at matched accuracy."
+            "Can a small neural network with simulation fallback beat the fastest numerical "
+            f"baseline on a whole portfolio job? {answer}"
         ),
         "stats": _headline_stats(run, summary),
         "chips": list(CHIPS),
@@ -244,7 +286,7 @@ def build_data(run_dir: Path) -> dict:
         "contracts": book["contracts"],
         "gross": book["gross_notional"],
         "verdict": verdict,
-        "findings": _findings(run, summary),
+        "findings": _findings(run, summary) + _exploratory(run, summary),
         "rigor": _rigor(run, tolerance),
         "bench": bench,
         "bench_note": (
@@ -277,6 +319,8 @@ def build_data(run_dir: Path) -> dict:
 
 def write_demo(run_dir: Path, target: Path) -> None:
     template = (files("asianrisk") / "demo_template.html").read_text()
+    font = (files("asianrisk") / "fonts" / "GeistSerif-Regular.woff2").read_bytes()
+    template = template.replace("__FONT__", base64.b64encode(font).decode())
     data = build_data(Path(run_dir))
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(template.replace("__DATA__", json.dumps(data, separators=(",", ":"))))

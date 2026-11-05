@@ -22,6 +22,13 @@ TEXT_PRIMARY = "#0b0b0b"
 TEXT_SECONDARY = "#52514e"
 GRID = "#e4e3df"
 NEURAL = ("nn_price", "nn_diff", "nn_residual")
+# Routes named on the accuracy plot, with each label's offset in points.
+PLOT_LABELS = {
+    "grid_linear": (7, 5), "grid_cubic": (7, 5), "corrected_grid": (-10, -13), "lower_bound": (7, -11),
+    "moment_matched": (7, 5), "nn_price": (7, 5), "nn_diff": (7, -11), "nn_residual": (7, 5),
+    "nn_residual + fallback": (-30, -13), "corrected_grid + fallback": (7, 5),
+    "nn_diff + fallback": (-78, -13), "direct_mc": (8, 0),
+}
 
 
 def load_run(run_dir: Path) -> dict:
@@ -147,10 +154,10 @@ def plot_accuracy_vs_compute(summary, ladder, tolerance, path: Path) -> None:
         [row["seconds"] for row in ladder], [row["price_p99_bp"] for row in ladder],
         color=FAMILY_COLORS["simulation"], linewidth=2, zorder=2,
     )
-    for row in (ladder[0], ladder[-1]):
+    for row, offset in ((ladder[0], (0, 8)), (ladder[-1], (0, -14))):
         axis.annotate(
             f"2^{row['log2_units']} pairs", (row["seconds"], row["price_p99_bp"]),
-            xytext=(0, 8), textcoords="offset points", fontsize=7.5, color=TEXT_SECONDARY, ha="center",
+            xytext=offset, textcoords="offset points", fontsize=7.5, color=TEXT_SECONDARY, ha="center",
         )
     for row in summary:
         family = _family(row)
@@ -160,14 +167,14 @@ def plot_accuracy_vs_compute(summary, ladder, tolerance, path: Path) -> None:
             label=family if family not in seen else None,
         )
         seen.add(family)
-    labelled = sorted(summary, key=lambda row: (row["seconds_mean"], row["price_p99_bp"]))
-    for index, row in enumerate(labelled):
-        passing = passes(row, tolerance)
-        if not passing and row["route"] == "hybrid":
+    # The cluster near direct simulation cannot hold every label. The table has them all.
+    for row in summary:
+        if label(row) not in PLOT_LABELS:
             continue
         axis.annotate(
-            label(row), (row["seconds_mean"], row["price_p99_bp"]), xytext=(7, 6 if index % 2 else -12),
-            textcoords="offset points", fontsize=7.5, color=TEXT_SECONDARY,
+            label(row), (row["seconds_mean"], row["price_p99_bp"]),
+            xytext=PLOT_LABELS[label(row)], textcoords="offset points",
+            fontsize=7.5, color=TEXT_SECONDARY,
         )
     axis.axhline(tolerance["price_bp"], color=TEXT_SECONDARY, linewidth=1, linestyle=(0, (4, 3)), zorder=1)
     axis.text(
