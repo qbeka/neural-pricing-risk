@@ -52,12 +52,16 @@ def aggregate_book(book: dict) -> list[dict]:
             "requests": book["requests"],
             "seconds_mean": float(np.mean(seconds)),
             "seconds_sd": float(np.std(seconds, ddof=1)) if len(rows) > 1 else 0.0,
+            "cpu_seconds_mean": float(np.mean([row["cpu_seconds"] for row in rows])),
             "price_p99_bp": float(np.median([row["price_p99_bp"] for row in rows])),
             "price_p99_sd": float(np.std([row["price_p99_bp"] for row in rows])),
             "price_median_bp": float(np.median([row["price_median_bp"] for row in rows])),
             "delta_p99": float(np.median([row["delta_p99"] for row in rows])),
             "delta_p99_sd": float(np.std([row["delta_p99"] for row in rows])),
             "delta_median": float(np.median([row["delta_median"] for row in rows])),
+            # Worst single request. The gate reads p99, so a fast route can hide 1% here.
+            "price_max_bp": float(np.max([row["price_max_bp"] for row in rows])),
+            "delta_max": float(np.max([row["delta_max"] for row in rows])),
             "book_error_max_bp": float(np.median(
                 [row["book_value_error_max_bp_of_gross"] for row in rows])),
             "fallback_rate": float(np.mean([row["fallback_rate"] for row in rows])),
@@ -97,7 +101,8 @@ def verdict(summary: list[dict], tolerance: dict) -> dict:
             "seconds_mean": route["seconds_mean"],
         }
         if comparator is None:
-            return {**result, "supported": route in passing, "speedup": None}
+            # With nothing to beat, the rule cannot support a hypothesis.
+            return {**result, "supported": False, "stretch": False, "speedup": None}
         margin = route["seconds_sd"] + comparator["seconds_sd"]
         result["speedup"] = comparator["seconds_mean"] / route["seconds_mean"]
         result["supported"] = (
@@ -220,13 +225,15 @@ def _format_seconds(value: float) -> str:
 
 def book_table(summary, tolerance) -> list[str]:
     lines = [
-        "| Route | Wall time (s, mean +/- sd) | Requests per second | p99 price (bp) | p99 delta | Passes gate | Sent to simulation |",
-        "|---|---|---:|---:|---:|---|---:|",
+        "| Route | Wall time (s, mean +/- sd) | CPU (s) | Requests per second | p99 price (bp) | Max price (bp) | p99 delta | Max delta | Passes gate | Sent to simulation |",
+        "|---|---|---:|---:|---:|---:|---:|---:|---|---:|",
     ]
     for row in summary:
         lines.append(
             f"| {label(row)} | {row['seconds_mean']:.4g} +/- {row['seconds_sd']:.2g} "
-            f"| {row['requests'] / row['seconds_mean']:,.0f} | {row['price_p99_bp']:.3f} | {row['delta_p99']:.5f} "
+            f"| {row['cpu_seconds_mean']:.3g} | {row['requests'] / row['seconds_mean']:,.0f} "
+            f"| {row['price_p99_bp']:.3f} | {row['price_max_bp']:.2f} "
+            f"| {row['delta_p99']:.5f} | {row['delta_max']:.4f} "
             f"| {'yes' if passes(row, tolerance) else 'no'} | {row['fallback_rate']:.1%} |"
         )
     return lines

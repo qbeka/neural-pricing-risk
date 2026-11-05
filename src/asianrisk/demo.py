@@ -25,6 +25,8 @@ ROUTE_NAMES = {
     "grid_linear": "Linear grid",
     "grid_cubic": "Cubic grid",
 }
+# Largest gap, in standard errors, still called agreement across the panel.
+QUANTLIB_AGREEMENT_Z = 3.5
 CHIPS = (
     "PyTorch", "NumPy", "SciPy", "QuantLib", "Monte Carlo", "Control variates",
     "Pathwise Greeks", "Differential ML", "Calibrated fallback", "Sealed evaluation",
@@ -95,7 +97,10 @@ def _headline_stats(run, summary) -> list[dict]:
     if fastest:
         stats.append({
             "value": _multiple(direct["seconds_mean"] / fastest["seconds_mean"]),
-            "label": "faster than tuned simulation, same accuracy",
+            "label": (
+                "faster than tuned simulation, both inside the gate"
+                if passes(direct, tolerance) else "faster than tuned simulation"
+            ),
         })
     if best_neural:
         stats.append({
@@ -150,20 +155,27 @@ def _findings(run, summary) -> list[dict]:
     return rows
 
 
-def _rigor(run) -> list[dict]:
+def _rigor(run, tolerance) -> list[dict]:
     panel = run["quantlib_panel"]
     rows = []
     if "skipped" not in panel:
         rows.append({
             "tag": "Independent check",
-            "title": f"Agrees with QuantLib on {panel['contracts']} random contracts",
+            "title": (
+                f"{'Agrees with' if panel['max_abs_z'] <= QUANTLIB_AGREEMENT_Z else 'Differs from'} "
+                f"QuantLib on {panel['contracts']} random contracts"
+            ),
             "text": f"Largest gap {panel['max_abs_z']:.2f} standard errors, on independent seeds. Geometric formula within {panel['max_geometric_gap']:.0e} of QuantLib.",
         })
     noise = run["label_noise"]
     rows.append({
         "tag": "Measured noise",
         "title": "References were relabeled with new seeds",
-        "text": f"On {noise['n']:,} sealed points the p99 gap was {noise['price_gap_p99_bp']:.3f} bp and {noise['delta_gap_p99']:.5f} delta, well inside the tolerances.",
+        "text": (
+            f"On {noise['n']:,} sealed points the p99 gap was {noise['price_gap_p99_bp']:.3f} bp and "
+            f"{noise['delta_gap_p99']:.5f} delta: {noise['price_gap_p99_bp'] / tolerance['price_bp']:.0%} and "
+            f"{noise['delta_gap_p99'] / tolerance['delta']:.0%} of the tolerances."
+        ),
     })
     rows.append({
         "tag": "Sealed test",
@@ -206,11 +218,17 @@ def build_data(run_dir: Path) -> dict:
     heatmap = run["points"]["heatmap"]
     outcome = summary["verdict"]
     primary = outcome["primary"]
-    comparator = _comparator_name(outcome["comparator"]) if outcome["comparator"] else "no route"
-    verdict = (
-        f"The neural route with fallback {'beat' if primary['supported'] else 'did not beat'} "
-        f"the fastest non-neural route that met the accuracy gate, which was {comparator}."
-    )
+    if outcome["comparator"]:
+        verdict = (
+            f"The neural route with fallback {'beat' if primary['supported'] else 'did not beat'} "
+            f"the fastest non-neural route that met the accuracy gate, which was "
+            f"{_comparator_name(outcome['comparator'])}."
+        )
+    else:
+        verdict = (
+            "No non-neural route met the accuracy gate, so the rule has nothing to compare "
+            "against and neither hypothesis is supported."
+        )
     manifest = run["manifest"]
     return {
         "headline": (
@@ -227,7 +245,7 @@ def build_data(run_dir: Path) -> dict:
         "gross": book["gross_notional"],
         "verdict": verdict,
         "findings": _findings(run, summary),
-        "rigor": _rigor(run),
+        "rigor": _rigor(run, tolerance),
         "bench": bench,
         "bench_note": (
             f"{book['requests']:,} requests per job, {summary['primary'][0]['runs']} runs on one machine. "

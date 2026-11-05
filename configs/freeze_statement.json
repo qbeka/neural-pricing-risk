@@ -5,11 +5,12 @@
     "stretch": "A hybrid that passes the gate is at least ten times faster than the fastest non-neural route that passes it."
   },
   "accuracy_gate": "Over all contract and scenario pairs, the median across runs of the 99th percentile absolute price error divided by strike is at most tolerance.price_bp basis points, and of the 99th percentile absolute delta error is at most tolerance.delta, both against the book reference.",
-  "decision_rule": "Comparator is the fastest route with no network, fast_only or hybrid, that passes the gate on the primary book. A hypothesis holds only if its route passes the gate and its mean wall time is below the comparator's by more than the sum of the two standard deviations across runs. Otherwise it is reported as not supported. The bespoke book is a sensitivity run and does not change the verdict.",
+  "decision_rule": "Comparator is the fastest route with no network, whether direct simulation, fast_only or hybrid, that passes the gate on the primary book. A hypothesis holds only if its route passes the gate and its mean wall time is below the comparator's by more than the sum of the two standard deviations across runs. Otherwise it is reported as not supported. If no route without a network passes, there is no comparator and neither hypothesis is supported. The bespoke book is a sensitivity run and does not change the verdict.",
+  "not_hypotheses": "Network routes without fallback are measured and reported, but they are not hypotheses, because the research question is a network plus selective fallback.",
   "workload": "42 scenarios: spot shifts -20, -10, -5, 0, 5, 10, 20 percent crossed with vol shifts -30, -15, 0, 15, 30, 50 percent, on a 500 contract book. Primary book uses standard tenors, so vol and maturity pairs repeat. Bespoke book uses whole-day maturities.",
   "baselines": ["direct_mc", "lower_bound", "moment_matched", "grid_linear", "grid_cubic", "corrected_grid"],
   "neural_routes": ["nn_price", "nn_diff", "nn_residual"],
-  "comparison_conditions": "Same machine, 64-bit floats, the whole job as one batch, six PyTorch threads where PyTorch is used. Hybrid wall time includes building simulation paths.",
+  "comparison_conditions": "Same machine, 64-bit floats, the whole job as one batch, six PyTorch threads where PyTorch is used, one NumPy thread for closed forms and grids. Each run times every route as the median of three repeats, in a route order shuffled per run. Wall and CPU seconds are both recorded. Hybrid wall time includes building simulation paths.",
   "metrics": ["median and 99th percentile absolute price error over strike", "median and 99th percentile absolute delta error", "fallback rate", "portfolio wall time", "single-request latency", "upfront labeling and training cost", "jobs to recover the upfront cost"],
   "unit_of_replication": "One run, pairing a network training seed with a simulation seed."
 }
