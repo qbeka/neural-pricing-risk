@@ -1,0 +1,25 @@
+{
+ "rows": [
+  {
+   "device": "cpu",
+   "dtype": "torch.float64",
+   "seconds": 2.5614781669864897,
+   "max_price_change_bp": 0.0,
+   "max_delta_change": 0.0
+  },
+  {
+   "device": "cpu",
+   "dtype": "torch.float32",
+   "seconds": 2.3499805830069818,
+   "max_price_change_bp": 0.0037647196503287628,
+   "max_delta_change": 2.9785328822362622e-05
+  },
+  {
+   "device": "mps",
+   "dtype": "torch.float32",
+   "seconds": 1.4287919999915175,
+   "max_price_change_bp": 0.0044401054152820585,
+   "max_delta_change": 3.0140384966625966e-05
+  }
+ ]
+}

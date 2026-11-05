@@ -1,0 +1,7 @@
+{
+ "requests": 64,
+ "log2_units": 15,
+ "direct_seconds": 0.14310991700040177,
+ "shared_seconds": 0.006930834002560005,
+ "speedup": 20.648296719780337
+}

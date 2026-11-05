@@ -1,0 +1,178 @@
+[
+ {
+  "spot": 100.0,
+  "vol": 0.2,
+  "maturity": 1.0,
+  "estimator": "plain",
+  "strike": 100.0,
+  "price_se": 0.022741026842299394,
+  "delta_se": 0.0014971822185547137,
+  "seconds": 0.025015292019816115,
+  "efficiency_gain_vs_plain": 1.0
+ },
+ {
+  "spot": 100.0,
+  "vol": 0.2,
+  "maturity": 1.0,
+  "estimator": "antithetic",
+  "strike": 100.0,
+  "price_se": 0.011745411911172135,
+  "delta_se": 0.00028301769948520705,
+  "seconds": 0.03490424997289665,
+  "efficiency_gain_vs_plain": 2.6866488327993117
+ },
+ {
+  "spot": 100.0,
+  "vol": 0.2,
+  "maturity": 1.0,
+  "estimator": "geometric_control",
+  "strike": 100.0,
+  "price_se": 0.00045086041998565723,
+  "delta_se": 0.00015805891515141869,
+  "seconds": 0.03577216700068675,
+  "efficiency_gain_vs_plain": 1779.0831507504201
+ },
+ {
+  "spot": 100.0,
+  "vol": 0.2,
+  "maturity": 1.0,
+  "estimator": "conditional_control",
+  "strike": 100.0,
+  "price_se": 2.276107893532082e-05,
+  "delta_se": 0.00011672504206732131,
+  "seconds": 0.05241379200015217,
+  "efficiency_gain_vs_plain": 476424.8961042981
+ },
+ {
+  "spot": 100.0,
+  "vol": 0.6,
+  "maturity": 1.0,
+  "estimator": "plain",
+  "strike": 100.0,
+  "price_se": 0.07782090627056731,
+  "delta_se": 0.0019065673703263042,
+  "seconds": 0.020781458006240427,
+  "efficiency_gain_vs_plain": 1.0
+ },
+ {
+  "spot": 100.0,
+  "vol": 0.6,
+  "maturity": 1.0,
+  "estimator": "antithetic",
+  "strike": 100.0,
+  "price_se": 0.04652936332177123,
+  "delta_se": 0.0007574246622231976,
+  "seconds": 0.033585416997084394,
+  "efficiency_gain_vs_plain": 1.7308666789868692
+ },
+ {
+  "spot": 100.0,
+  "vol": 0.6,
+  "maturity": 1.0,
+  "estimator": "geometric_control",
+  "strike": 100.0,
+  "price_se": 0.0047537347136716685,
+  "delta_se": 0.00026136900209261824,
+  "seconds": 0.03432691699708812,
+  "efficiency_gain_vs_plain": 162.24222682484267
+ },
+ {
+  "spot": 100.0,
+  "vol": 0.6,
+  "maturity": 1.0,
+  "estimator": "conditional_control",
+  "strike": 100.0,
+  "price_se": 0.0003640943933381162,
+  "delta_se": 0.00020379792566872445,
+  "seconds": 0.05156774999340996,
+  "efficiency_gain_vs_plain": 18410.36576581521
+ },
+ {
+  "spot": 100.0,
+  "vol": 0.7,
+  "maturity": 2.5,
+  "estimator": "plain",
+  "strike": 100.0,
+  "price_se": 0.1841019343183905,
+  "delta_se": 0.00270636201333906,
+  "seconds": 0.02101141700404696,
+  "efficiency_gain_vs_plain": 1.0
+ },
+ {
+  "spot": 100.0,
+  "vol": 0.7,
+  "maturity": 2.5,
+  "estimator": "antithetic",
+  "strike": 100.0,
+  "price_se": 0.11905273425109505,
+  "delta_se": 0.0014907074304703553,
+  "seconds": 0.03279250001651235,
+  "efficiency_gain_vs_plain": 1.5322116828355747
+ },
+ {
+  "spot": 100.0,
+  "vol": 0.7,
+  "maturity": 2.5,
+  "estimator": "geometric_control",
+  "strike": 100.0,
+  "price_se": 0.025160591566636404,
+  "delta_se": 0.00046134953671566795,
+  "seconds": 0.033714208024321124,
+  "efficiency_gain_vs_plain": 33.367017360605495
+ },
+ {
+  "spot": 100.0,
+  "vol": 0.7,
+  "maturity": 2.5,
+  "estimator": "conditional_control",
+  "strike": 100.0,
+  "price_se": 0.001552746407380356,
+  "delta_se": 0.00027131266043755605,
+  "seconds": 0.05161120800767094,
+  "efficiency_gain_vs_plain": 5723.042285998813
+ },
+ {
+  "spot": 140.0,
+  "vol": 0.7,
+  "maturity": 2.5,
+  "estimator": "plain",
+  "strike": 100.0,
+  "price_se": 0.28307896581250863,
+  "delta_se": 0.0025684935274862737,
+  "seconds": 0.020696084015071392,
+  "efficiency_gain_vs_plain": 1.0
+ },
+ {
+  "spot": 140.0,
+  "vol": 0.7,
+  "maturity": 2.5,
+  "estimator": "antithetic",
+  "strike": 100.0,
+  "price_se": 0.16907286779142372,
+  "delta_se": 0.0011601033212334127,
+  "seconds": 0.03316241697757505,
+  "efficiency_gain_vs_plain": 1.7494815438854876
+ },
+ {
+  "spot": 140.0,
+  "vol": 0.7,
+  "maturity": 2.5,
+  "estimator": "geometric_control",
+  "strike": 100.0,
+  "price_se": 0.037399090725681414,
+  "delta_se": 0.00041241052800685286,
+  "seconds": 0.0344068749982398,
+  "efficiency_gain_vs_plain": 34.46164964020732
+ },
+ {
+  "spot": 140.0,
+  "vol": 0.7,
+  "maturity": 2.5,
+  "estimator": "conditional_control",
+  "strike": 100.0,
+  "price_se": 0.0021543414162079793,
+  "delta_se": 0.00022636742157400392,
+  "seconds": 0.051748166006291285,
+  "efficiency_gain_vs_plain": 6905.249186415521
+ }
+]

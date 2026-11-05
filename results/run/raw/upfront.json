@@ -1,0 +1,58 @@
+{
+ "lower_bound": {
+  "calibration_cpu": 3183.912542191363,
+  "calibration_wall": 186.43952891600202
+ },
+ "moment_matched": {
+  "calibration_cpu": 3183.912542191363,
+  "calibration_wall": 186.43952891600202
+ },
+ "grid_linear": {
+  "label_cpu": 6060.791569358349,
+  "label_wall": 343.19969574999413,
+  "calibration_cpu": 3183.912542191363,
+  "calibration_wall": 186.43952891600202
+ },
+ "grid_cubic": {
+  "label_cpu": 578.5094069567858,
+  "label_wall": 39.44559004201437,
+  "calibration_cpu": 3183.912542191363,
+  "calibration_wall": 186.43952891600202
+ },
+ "corrected_grid": {
+  "label_cpu": 31.292184499878203,
+  "label_wall": 6.718848458986031,
+  "calibration_cpu": 3183.912542191363,
+  "calibration_wall": 186.43952891600202
+ },
+ "nn_price": {
+  "label_cpu": 378.2393803415704,
+  "label_wall": 21.463140558201122,
+  "train_wall": 346.00724379200255,
+  "train_wall_mean": 398.3445983498008,
+  "train_cpu_upper": 2076.0434627520153,
+  "parameters": 8641,
+  "calibration_cpu": 3183.912542191363,
+  "calibration_wall": 186.43952891600202
+ },
+ "nn_diff": {
+  "label_cpu": 378.2393803415704,
+  "label_wall": 21.463140558201122,
+  "train_wall": 457.4484272080008,
+  "train_wall_mean": 483.1615413414023,
+  "train_cpu_upper": 2744.6905632480048,
+  "parameters": 8641,
+  "calibration_cpu": 3183.912542191363,
+  "calibration_wall": 186.43952891600202
+ },
+ "nn_residual": {
+  "label_cpu": 75.64787606831408,
+  "label_wall": 4.292628111640225,
+  "train_wall": 79.66708587500034,
+  "train_wall_mean": 96.55871617520461,
+  "train_cpu_upper": 478.00251525000203,
+  "parameters": 8641,
+  "calibration_cpu": 3183.912542191363,
+  "calibration_wall": 186.43952891600202
+ }
+}
