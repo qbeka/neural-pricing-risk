@@ -2,7 +2,7 @@
 
 A research tool that reprices a book of arithmetic-average Asian calls under spot and volatility shocks. It tests one question: can a small neural network with Monte Carlo fallback beat the fastest credible numerical baseline at the same price and delta error, on the whole portfolio job?
 
-**The answer is no, and the reason is the useful part.** A frozen test gave the network every advantage it could fairly get, and a plain cubic grid beat it by 24 times. The network that came closest learns the error of a closed-form bound, and that same network turned out to be the most accurate fast route in the study.
+**The answer is no, and the reason is the useful part.** In a frozen, sealed test, a plain cubic grid beat the best neural route with fallback by 24 times. That closest network learns the error of a closed-form bound, and without fallback it was the most accurate fast route in the study.
 
 | | |
 |---|---|
@@ -52,7 +52,7 @@ make smoke
 | `make coverage` | Runs the tests and prints line coverage | 2 min |
 | `make report` | Rebuilds tables, plots and the verdict from recorded raw data. Runs no pricer | Seconds |
 | `make demo` | Rebuilds the page from the recorded run | Seconds |
-| `make fit` | Labels development data, fits every surface and picks the simulation size | About 2 hours |
+| `make fit` | Labels development data, fits every surface and picks the simulation size | A few hours |
 | `make freeze` | Pins the plan, code, models and data | Seconds |
 | `make evaluate` | Labels the sealed sets and takes every measurement. Close other work first | About 1.5 hours |
 
@@ -78,7 +78,7 @@ Each request is one contract under one scenario. Homogeneity reduces it to three
 | Tamper checks | `evaluate` refuses changed models, data, books, code or a dirty tree, and it never replaces a recorded run |
 | Whole-job accounting | Hybrid wall time includes fallback and building simulation paths. Upfront cost includes labels, training and calibration |
 | Independent check | QuantLib prices the same contracts on separate seeds |
-| Independent review | A reviewer with no access to my conclusions found seven defects before the freeze, all fixed. See [docs/reviews.md](docs/reviews.md) |
+| Independent review | A reviewer with no access to the author's conclusions found seven defects before the freeze, all fixed. See [docs/reviews.md](docs/reviews.md) |
 | Stress kept apart | Near-expiry and kink sets are reported separately from ordinary traffic |
 
 ## What the numbers leave out
