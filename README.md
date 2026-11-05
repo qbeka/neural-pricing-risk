@@ -2,17 +2,17 @@
 
 A research tool that reprices a book of arithmetic-average Asian calls under spot and volatility shocks. It tests one question: can a small neural network with Monte Carlo fallback beat the fastest credible numerical baseline at the same price and delta error, on the whole portfolio job?
 
-**The answer is no, and the reason is the useful part.** In a frozen, sealed test, a plain cubic grid beat the best neural route with fallback by 24 times. That closest network learns the error of a closed-form bound, and without fallback it was the most accurate fast route in the study.
+**The answer is no, and the reason is the useful part.** In a frozen, sealed test, a plain cubic grid beat the best neural route with fallback by 24 times. That closest network learns the error of a closed-form bound. Without fallback, it was the most accurate fast route in the study, an observation outside the frozen hypotheses.
 
 | | |
 |---|---|
 | **Fastest route at the accuracy gate** | Cubic grid: 21,000 repricings in 11.0 ms, 311 times faster than tuned simulation (3.42 s), at p99 0.17 bp and 0.00076 delta |
-| **Primary hypothesis** | Not supported. Neural with fallback took 3.11 s, because 87.8% of requests fell back |
+| **Primary hypothesis** | Not supported. Neural with fallback took 3.11 s, with 74.8% to 100% of requests falling back across seeds |
 | **Secondary hypothesis** | Not supported. Neural correction with fallback took 264 ms, 24 times slower than the cubic grid |
-| **Most accurate fast route** | Neural correction with no fallback: p99 0.069 bp and 0.00011 delta, worst of 21,000 requests 0.19 bp and 0.0004 delta, in 30.1 ms |
-| **Stress** | Near expiry, the cubic grid's p99 was 228 bp. The neural correction's was 0.04 bp |
+| **Most accurate fast route** | An observation, not a hypothesis. Neural correction with no fallback: p99 0.069 bp and 0.00011 delta, worst of 21,000 requests 0.19 bp and 0.0004 delta, in 30.1 ms |
+| **Stress** | Near expiry, the cubic grid's p99 was 228 bp. The lower bound alone was 0.033 bp, and the neural correction kept that at 0.040 bp |
 | **Simulation** | Control variates and antithetic pairs cut variance 5,723 to 476,425 times per unit of compute, against plain Monte Carlo |
-| **Differential training** | On equal paths, delta labels cut p99 price error about 2.4 times and delta error about 2.8 times |
+| **Differential training** | On equal paths, delta labels cut p99 price error about 2.5 times and delta error about 2.8 times |
 | **Correctness** | 110 tests, 92% line coverage. 24 random contracts agree with QuantLib within 2.36 standard errors |
 
 Measured on 2026-11-05 on one Apple M5 Pro with other work on the machine. These are synthetic contracts under geometric Brownian motion. [What the numbers leave out](#what-the-numbers-leave-out) has the details, and [docs/benchmark-report.md](docs/benchmark-report.md) has every result.
@@ -35,7 +35,7 @@ Open `site/index.html` for the offline demo. Pick a shock and a route to see wha
 
 ## Check it
 
-Run the correctness suite. It takes about 2 minutes, and it includes a run of every stage on a tiny config.
+Run the correctness suite. It takes about one minute, and it includes a run of every stage on a tiny config.
 
 ```bash
 make test
@@ -49,14 +49,14 @@ make smoke
 
 | Command | What it does | Time |
 |---|---|---:|
-| `make coverage` | Runs the tests and prints line coverage | 2 min |
+| `make coverage` | Runs the tests and prints line coverage | 1 min |
 | `make report` | Rebuilds tables, plots and the verdict from recorded raw data. Runs no pricer | Seconds |
 | `make demo` | Rebuilds the page from the recorded run | Seconds |
 | `make fit` | Labels development data, fits every surface and picks the simulation size | A few hours |
 | `make freeze` | Pins the plan, code, models and data | Seconds |
 | `make evaluate` | Labels the sealed sets and takes every measurement. Close other work first | About 1.5 hours |
 
-`make freeze` and `make evaluate` refuse to replace the recorded run. To repeat the experiment, move `results/freeze.json` and `results/run` aside first.
+`make freeze` and `make evaluate` refuse to replace the recorded run, and they need a clean tree. To repeat the experiment, use a fresh clone with no sealed labels, delete `results/freeze.json` and `results/run`, and commit that first.
 
 ## How it works
 
@@ -78,15 +78,17 @@ Each request is one contract under one scenario. Homogeneity reduces it to three
 | Tamper checks | `evaluate` refuses changed models, data, books, code or a dirty tree, and it never replaces a recorded run |
 | Whole-job accounting | Hybrid wall time includes fallback and building simulation paths. Upfront cost includes labels, training and calibration |
 | Independent check | QuantLib prices the same contracts on separate seeds |
-| Independent review | A reviewer with no access to the author's conclusions found seven defects before the freeze, all fixed. See [docs/reviews.md](docs/reviews.md) |
+| Independent review | A separate AI agent (a fresh Claude instance) with no access to the author's conclusions found seven defects before the freeze, all fixed. See [docs/reviews.md](docs/reviews.md) |
 | Stress kept apart | Near-expiry and kink sets are reported separately from ordinary traffic |
 
 ## What the numbers leave out
 
-- One machine ran everything, with other work on it. Load average was 8 to 15 on 18 cores during the primary book, so trust ratios over absolute times.
+- One machine ran everything, with other work on it. Load average was 9 to 16 on 18 cores during the primary book, so trust ratios over absolute times.
 - The gate reads the p99, so a route can hide 1% of requests. The cubic grid's worst delta error is 0.0053, five times the tolerance.
 - Everything runs in Python. Compiled code would change the constants, and single-request latency most of all.
-- Closed forms and grids use one thread, and PyTorch uses six. This helps only the networks.
+- Closed forms and grids use one thread, and PyTorch uses six. This helps networks and simulation, not grids or closed forms.
+- The freeze says route order is shuffled, but direct simulation ran first in every run.
+- The fallback maps show one seed, and fallback rates moved across seeds.
 - The test has three input dimensions. Networks may win with more, such as varying rate, fixing history or a local volatility surface. That is a future target, and nothing here measures it.
 - The claim is numerical accuracy under geometric Brownian motion at inception. It says nothing about market prices, skew, jumps or moving rates.
 - Upfront cost omits validation labels, tuning and discarded experiments.
