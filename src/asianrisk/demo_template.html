@@ -204,6 +204,7 @@ body {
 .hint { margin: 0; font-size: 13px; line-height: 20px; color: var(--muted); white-space: nowrap; }
 .key { display: grid; grid-template-columns: repeat(5, 26px); column-gap: 2px; flex: none; margin: 4px 0 0; }
 .key-label { position: absolute; right: 100%; top: -4px; margin-right: 10px; font-size: 12px; line-height: 20px; color: var(--muted); white-space: nowrap; }
+.key-label .short { display: none; }
 .key-wrap { position: relative; flex: none; }
 .key i { display: block; height: 8px; }
 .key i:first-of-type { border-radius: 4px 0 0 4px; }
@@ -279,6 +280,9 @@ body {
   .stage { grid-template-columns: minmax(0, 1fr) 300px; }
   .compare { padding-right: 16px; padding-left: 16px; }
   .figure, .gap b { font-size: 17px; }
+  .key-label .long, .wide { display: none; }
+  .key-label .short { display: inline; }
+  .key { grid-template-columns: repeat(5, 18px); }
 }
 @media (max-width: 767px) {
   :root { --stage-height: clamp(430px, calc(100svh - 106px), 720px); }
@@ -289,8 +293,8 @@ body {
   .stage { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; }
   .map-side { position: relative; padding: 10px 12px 12px 8px; }
   .map-head { height: 30px; margin-bottom: 2px; }
-  .key-label, .wide { display: none; }
-  .key { grid-template-columns: repeat(5, 18px); margin-top: 2px; }
+  .key-label { top: -6px; margin-right: 8px; font-size: 11px; }
+  .key { margin-top: 2px; }
   .map { grid-template-columns: 38px repeat(var(--cols), minmax(0, 1fr)); grid-template-rows: 16px 16px repeat(var(--rows), minmax(0, 1fr)); }
   .tick.row { padding-right: 6px; }
   .axis, .tick { font-size: 11px; line-height: 16px; }
@@ -349,7 +353,7 @@ body {
         <div class="map-head">
           <p class="hint" id="hint" aria-hidden="true">Pick a recorded shock</p>
           <div class="key-wrap">
-            <span class="key-label">Gap between the two values</span>
+            <span class="key-label"><span class="long">Gap between the two values</span><span class="short">Gap</span></span>
             <div class="key" id="key" aria-hidden="true"></div>
           </div>
         </div>
@@ -575,7 +579,7 @@ function renderCompare(announce) {
   const shock = cases[state.row][state.col];
   $("case").textContent = nameOf(shock);
   $("reference").textContent = `Reference ${money(shock.reference)} \u00b1 ${shock.reference_se.toFixed(2)}`;
-  const parts = [nameOf(shock)];
+  const parts = [`${nameOf(shock)}.`];
   for (const [key, label] of [["neural", "Neural"], ["grid", "Cubic grid"]]) {
     const route = shock[key], error = route.value - shock.reference;
     $(`${key}-value`).textContent = money(route.value);
