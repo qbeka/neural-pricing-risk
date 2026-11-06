@@ -218,7 +218,12 @@ body {
 .axis { font-size: 12px; line-height: 18px; color: var(--muted); white-space: nowrap; }
 .tick { display: flex; align-items: center; justify-content: center; font-size: 12px; line-height: 18px; color: var(--muted); }
 .tick.row { justify-content: flex-end; padding-right: 8px; }
+.tick.near { color: var(--ink); }
 .tick.on { color: var(--ink); font-weight: 500; }
+.control.outline[aria-disabled='true'], .control.outline[aria-disabled='true']:active { border-color: var(--line); }
+@media (hover: hover) {
+  .control.outline[aria-disabled='true']:hover, .control.outline[aria-disabled='true']:active { border-color: var(--line); }
+}
 .cell {
   appearance: none; position: relative; display: block; width: 100%; height: 100%; min-width: 0; min-height: 0;
   margin: 0; padding: 0; border: 0; border-radius: 0; cursor: pointer;
@@ -237,7 +242,8 @@ body {
 .cell:active { box-shadow: inset 0 0 0 2px var(--ink); }
 .cell[aria-selected='true'] { z-index: 2; box-shadow: inset 0 0 0 2px var(--ink), inset 0 0 0 4px #fff; }
 .cell[aria-selected='true']:active { box-shadow: inset 0 0 0 3px var(--ink), inset 0 0 0 5px #fff; }
-.cell:focus-visible { z-index: 3; }
+.cell:focus-visible { z-index: 3; box-shadow: 0 0 0 2px #fff; }
+.cell[aria-selected='true']:focus-visible { box-shadow: inset 0 0 0 2px var(--ink), inset 0 0 0 4px #fff, 0 0 0 2px #fff; }
 @media (hover: hover) {
   .cell:hover { box-shadow: inset 0 0 0 1px var(--ink), inset 0 0 0 2px #ffffffb3; }
   .cell:active { box-shadow: inset 0 0 0 2px var(--ink); }
@@ -341,7 +347,7 @@ body {
     <section class="stage" aria-label="Recorded shocks, Neural against Cubic grid">
       <div class="map-side">
         <div class="map-head">
-          <p class="hint" id="hint">Pick a recorded shock</p>
+          <p class="hint" id="hint" aria-hidden="true">Pick a recorded shock</p>
           <div class="key-wrap">
             <span class="key-label">Gap between the two values</span>
             <div class="key" id="key" aria-hidden="true"></div>
@@ -456,6 +462,7 @@ const el = (tag, className, text) => {
   return node;
 };
 const place = (node, row, col) => { node.style.gridRow = row; node.style.gridColumn = col; return node; };
+const HINT = "Pick a recorded shock";
 const cells = [], rowTicks = [], colTicks = [];
 const crossH = el("div", "cross h"), crossV = el("div", "cross v");
 
@@ -594,6 +601,82 @@ function select(row, col) {
   renderCompare(true);
 }
 
+function focusSelected() {
+  cells[state.row][state.col].focus({preventScroll: true});
+}
+
+function showHover(cell) {
+  document.querySelectorAll(".tick.near").forEach(tick => tick.classList.remove("near"));
+  if (!cell) {
+    $("hint").textContent = HINT;
+    return;
+  }
+  const row = +cell.dataset.row, col = +cell.dataset.col, shock = cases[row][col];
+  rowTicks[row].classList.add("near");
+  colTicks[col].classList.add("near");
+  $("hint").textContent = `${nameOf(shock)}, values ${money(gapOf(shock))} apart`;
+}
+
+/* A mouse can sweep across the map. Each cell it enters is a jump to that recorded case. */
+function bindPointer() {
+  const map = $("map");
+  let sweep = null, pressHandled = false;
+  map.addEventListener("pointerdown", event => {
+    pressHandled = false;
+    const cell = event.target.closest(".cell");
+    if (!cell || event.button !== 0 || event.pointerType === "touch") return;
+    pressHandled = true;
+    sweep = {row: state.row, col: state.col};
+    select(+cell.dataset.row, +cell.dataset.col);
+  });
+  map.addEventListener("pointerover", event => {
+    const cell = event.target.closest(".cell");
+    if (event.pointerType === "touch") return;
+    showHover(cell);
+    if (cell && sweep && event.buttons & 1) {
+      select(+cell.dataset.row, +cell.dataset.col);
+      focusSelected();
+    }
+  });
+  map.addEventListener("pointerleave", () => showHover(null));
+  const endSweep = () => { sweep = null; };
+  addEventListener("pointerup", endSweep);
+  addEventListener("pointercancel", endSweep);
+  addEventListener("blur", endSweep);
+  addEventListener("keydown", event => {
+    if (event.key !== "Escape" || !sweep) return;
+    select(sweep.row, sweep.col);
+    focusSelected();
+    sweep = null;
+  });
+  map.addEventListener("click", event => {
+    if (event.detail > 0 && pressHandled) return;
+    const cell = event.target.closest(".cell");
+    if (cell) select(+cell.dataset.row, +cell.dataset.col);
+  });
+}
+
+function bindKeys() {
+  const lastRow = DATA.spots.length - 1, lastCol = DATA.vols.length - 1;
+  const targets = {
+    ArrowUp: () => [Math.max(state.row - 1, 0), state.col],
+    ArrowDown: () => [Math.min(state.row + 1, lastRow), state.col],
+    ArrowLeft: () => [state.row, Math.max(state.col - 1, 0)],
+    ArrowRight: () => [state.row, Math.min(state.col + 1, lastCol)],
+    Home: () => [state.row, 0],
+    End: () => [state.row, lastCol],
+    PageUp: () => [0, state.col],
+    PageDown: () => [lastRow, state.col],
+  };
+  $("map").addEventListener("keydown", event => {
+    const target = targets[event.key];
+    if (!target || event.altKey || event.ctrlKey || event.metaKey) return;
+    event.preventDefault();
+    select(...target());
+    focusSelected();
+  });
+}
+
 function start() {
   cells.flat().forEach(cell => { cell.setAttribute("aria-selected", "false"); cell.tabIndex = -1; });
   paintSelection();
@@ -601,10 +684,8 @@ function start() {
   $("source").firstChild.textContent = `Recorded in the first of ${DATA.runs} runs`;
   $("book").textContent = ` on a book of ${DATA.positions} positions`;
   $("reset").addEventListener("click", () => select(home.row, home.col));
-  $("map").addEventListener("click", event => {
-    const cell = event.target.closest(".cell");
-    if (cell) select(+cell.dataset.row, +cell.dataset.col);
-  });
+  bindPointer();
+  bindKeys();
 }
 
 fillDetails();
