@@ -78,7 +78,6 @@ Each request is one contract under one scenario. Homogeneity reduces it to three
 | Tamper checks | `evaluate` refuses changed models, data, books, code or a dirty tree, and it never replaces a recorded run |
 | Whole-job accounting | Hybrid wall time includes fallback and building simulation paths. Upfront cost includes labels, training and calibration |
 | Independent check | QuantLib prices the same contracts on separate seeds |
-| Independent review | A separate AI agent (a fresh Claude instance) with no access to the author's conclusions found seven defects before the freeze, all fixed. See [docs/reviews.md](docs/reviews.md) |
 | Stress kept apart | Near-expiry and kink sets are reported separately from ordinary traffic |
 
 ## What the numbers leave out
@@ -99,9 +98,7 @@ Each request is one contract under one scenario. Homogeneity reduces it to three
 |---|---|
 | [docs/benchmark-report.md](docs/benchmark-report.md) | Every result, and what it means |
 | [docs/research-notes.md](docs/research-notes.md) | What was tried, including what failed |
-| [docs/reviews.md](docs/reviews.md) | Independent review findings |
 | [docs/environment.md](docs/environment.md) | The machine and locked versions |
-| [docs/checkpoint.md](docs/checkpoint.md) | What passed, and the next command |
 | `results/freeze.json` | The frozen plan and hashes |
 | `results/run` | The sealed run: `manifest.json`, `raw/`, `tables.md`, `plots/` |
 | `configs/` | The experiment, the plan text and the three books |

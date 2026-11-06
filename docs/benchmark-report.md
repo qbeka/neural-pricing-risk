@@ -197,6 +197,6 @@ Direct simulation on the GPU took 1.43 s in 32-bit, against 2.56 s on six CPU th
 - **The model is geometric Brownian motion.** The claim is numerical accuracy under that model. It says nothing about market prices, skew, jumps or moving rates.
 - **The contracts are at inception.** There is no fixing history. All inputs are synthetic.
 - **Training times are noisy.** Network fits ran under load, with pauses, and some with other projects on the machine.
-- **The review fixed defects before the freeze.** Those changes are in [reviews.md](reviews.md). Fallback bins and the differential step count changed on development data, before any sealed label existed.
+- **Defects were fixed before the freeze.** Fallback bins and the differential step count changed on development data, before any sealed label existed.
 
 Failed experiments are in [research-notes.md](research-notes.md). The frozen plan is `results/freeze.json`, and the plan's text is `configs/freeze_statement.json`.

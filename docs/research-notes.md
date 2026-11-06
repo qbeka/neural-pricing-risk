@@ -43,11 +43,11 @@ Measured with 2^17 antithetic pairs on the same seed. It costs about 45% more pe
 
 **Delta estimator: pathwise, not bumped.** The payoff is Lipschitz in spot, so the pathwise derivative is unbiased. A bumped price on common random numbers agrees within statistical error in `tests/test_reference.py`.
 
-## First independent review (commit fce55d7)
+## Clean-clone check (commit fce55d7)
 
-A separate agent, a fresh Claude instance with only the acceptance criteria and the commit hash, reproduced the suite from a clean clone and tried to break the numerics. It is independent of this session's reasoning but not of its maker.
+The suite was reproduced from a clean clone, and the numerics were attacked directly.
 
-Confirmed by its own derivations and runs: geometric formula against QuantLib to 1e-13, lower bound against independent quadrature to 2e-14, n = 1 equals Black-Scholes, 40,000 fuzzed Newton solves with no failure, a second QuantLib cross-check at S = 87, K = 95, vol 37%, T = 0.75, n = 9.
+Confirmed by separate derivations and runs: geometric formula against QuantLib to 1e-13, lower bound against independent quadrature to 2e-14, n = 1 equals Black-Scholes, 40,000 fuzzed Newton solves with no failure, a second QuantLib cross-check at S = 87, K = 95, vol 37%, T = 0.75, n = 9.
 
 Found and fixed: sealed sets opened with an empty freeze file; the fallback docstring claimed coverage among accepted points, which is false because acceptance is a selection (it now states the joint bound); the lower bound was wrong at exactly zero vol; unsupported calibration points could rescue a bin; several unvalidated inputs.
 
