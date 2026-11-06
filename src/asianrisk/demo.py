@@ -29,9 +29,9 @@ GAP_STEPS = (1, 2, 3, 5)
 # Largest gap, in standard errors, still called agreement across the panel.
 QUANTLIB_AGREEMENT_Z = 3.5
 ASSUMPTIONS = (
-    "Pricing model: risk-neutral geometric Brownian motion with constant rate and constant volatility, dividend yield zero.",
-    "Contract: arithmetic-average Asian call at inception, 12 equally spaced future fixings with the last at maturity, no fixing history, payoff max(average - strike, 0) discounted to today.",
-    "Simulation: exact lognormal transitions on fixing dates, antithetic pairs, a control variate with a closed-form mean, and pathwise delta.",
+    "The pricing model is risk-neutral geometric Brownian motion with constant rate and constant volatility and a dividend yield of zero.",
+    "Each contract is an arithmetic-average Asian call at inception with 12 equally spaced future fixings, the last at maturity, and no fixing history, and its payoff max(average - strike, 0) is discounted to today.",
+    "The simulation uses exact lognormal transitions on fixing dates, antithetic pairs, a control variate with a closed-form mean, and pathwise delta.",
     "A shock moves spot and volatility and leaves time unchanged, so every contract stays at inception.",
     "The claim is numerical accuracy under this model. It says nothing about market prices or about risks the model leaves out, such as skew, jumps or moving rates.",
     "The fallback rule was calibrated on ordinary traffic, so it gives no guarantee in stress regions. All inputs are synthetic, and the timings come from one machine.",
@@ -95,7 +95,7 @@ def _headline_rows(summary) -> list[dict]:
             "scope": (
                 f"{_seconds(outcome['comparator_seconds'])} against {_seconds(direct['seconds_mean'])} "
                 f"for the whole job of {direct['requests']:,} repricings, with no fallback. "
-                f"Mean of {direct['runs']} runs on one machine, with synthetic contracts."
+                f"That is the mean of {direct['runs']} runs on one machine with synthetic contracts."
             ),
         })
     rows.append({
@@ -125,8 +125,8 @@ def _hypothesis_rows(summary) -> list[dict]:
             "label": label,
             "value": f"{'Supported' if result['supported'] else 'Not supported'}: {ROUTE_NAMES[method]} + fallback",
             "scope": (
-                f"{_seconds(row['seconds_mean'])}{against}. {row['fallback_rate']:.1%} of requests "
-                f"sent to simulation, p99 {row['price_p99_bp']:.2f} bp of strike and {row['delta_p99']:.5f} delta."
+                f"It took {_seconds(row['seconds_mean'])}{against}, sent {row['fallback_rate']:.1%} of requests "
+                f"to simulation and reached p99 {row['price_p99_bp']:.2f} bp of strike and {row['delta_p99']:.5f} delta."
             ),
         })
     return rows
@@ -180,7 +180,7 @@ def _check_rows(run, summary) -> list[dict]:
     rows = [{
         "label": "Simulation baseline",
         "value": f"{min(gains):,.0f}x to {max(gains):,.0f}x efficiency gain",
-        "scope": "Against plain simulation, so the network had to beat a tuned engine.",
+        "scope": "That gain is against plain simulation, so the network had to beat a tuned engine.",
     }]
     panel = run["quantlib_panel"]
     if "skipped" not in panel:
@@ -188,15 +188,15 @@ def _check_rows(run, summary) -> list[dict]:
         rows.append({
             "label": "Outside check",
             "value": f"{verb} QuantLib on {panel['contracts']} random contracts",
-            "scope": f"Largest gap {panel['max_abs_z']:.2f} standard errors, on separate seeds.",
+            "scope": f"The largest gap was {panel['max_abs_z']:.2f} standard errors on separate seeds.",
         })
     noise = run["label_noise"]
     rows.append({
         "label": "Reference noise",
         "value": f"{noise['price_gap_p99_bp']:.3f} bp and {noise['delta_gap_p99']:.5f} delta",
         "scope": (
-            f"p99 gap after relabeling {noise['n']:,} sealed points with new seeds, "
-            f"{noise['price_gap_p99_bp'] / tolerance['price_bp']:.0%} and "
+            f"That p99 gap came from relabeling {noise['n']:,} sealed points with new seeds, "
+            f"and it is {noise['price_gap_p99_bp'] / tolerance['price_bp']:.0%} and "
             f"{noise['delta_gap_p99'] / tolerance['delta']:.0%} of the tolerances."
         ),
     })
