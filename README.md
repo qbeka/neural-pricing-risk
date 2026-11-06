@@ -31,7 +31,7 @@ Price one contract through simulation and two closed forms.
 uv run python -m asianrisk price --spot 100 --strike 100 --vol 0.2 --maturity 1
 ```
 
-Open `site/index.html` for the offline demo. Pick a shock and a route to see what the benchmark recorded.
+[Open the live demo](https://www.qendrimbeka.com/projects/neural-pricing-risk/index.html). Pick a shock and a route to see what the benchmark recorded. `site/index.html` is the same page offline.
 
 ## Check it
 
