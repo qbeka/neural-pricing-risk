@@ -9,12 +9,8 @@ import json
 from importlib.resources import files
 from pathlib import Path
 
-import numpy as np
+from asianrisk.report import load_run, passes, write_report
 
-from asianrisk.report import NEURAL, load_run, passes, write_report
-
-ROUTES = ("nn_diff", "nn_residual", "corrected_grid", "lower_bound", "grid_cubic")
-HEAT_ROUTES = ("nn_diff", "nn_residual", "corrected_grid", "lower_bound")
 ROUTE_NAMES = {
     "direct_mc": "Tuned simulation",
     "nn_price": "Neural, price only",
@@ -26,12 +22,12 @@ ROUTE_NAMES = {
     "grid_linear": "Linear grid",
     "grid_cubic": "Cubic grid",
 }
+# The two routes the map compares. Scenario rows exist only with fallback on.
+COMPARED = {"neural": "nn_diff", "grid": "grid_cubic"}
+# Edges of the map's colour steps, in book value units.
+GAP_STEPS = (1, 2, 3, 5)
 # Largest gap, in standard errors, still called agreement across the panel.
 QUANTLIB_AGREEMENT_Z = 3.5
-CHIPS = (
-    "PyTorch", "NumPy", "SciPy", "QuantLib", "Monte Carlo", "Control variates",
-    "Pathwise Greeks", "Differential ML", "Calibrated fallback", "Sealed evaluation",
-)
 ASSUMPTIONS = (
     "Pricing model: risk-neutral geometric Brownian motion with constant rate and constant volatility, dividend yield zero.",
     "Contract: arithmetic-average Asian call at inception, 12 equally spaced future fixings with the last at maturity, no fixing history, payoff max(average - strike, 0) discounted to today.",
@@ -40,11 +36,6 @@ ASSUMPTIONS = (
     "The claim is numerical accuracy under this model. It says nothing about market prices or about risks the model leaves out, such as skew, jumps or moving rates.",
     "The fallback rule was calibrated on ordinary traffic, so it gives no guarantee in stress regions. All inputs are synthetic, and the timings come from one machine.",
 )
-
-
-def _route_name(row: dict) -> str:
-    name = ROUTE_NAMES[row["method"]]
-    return f"{name} + fallback" if row["route"] == "hybrid" else name
 
 
 def _seconds(value: float) -> str:
@@ -63,59 +54,22 @@ def _find(summary, method, route):
     return next(row for row in summary if row["method"] == method and row["route"] == route)
 
 
-def _family(row) -> str:
-    if row["method"] == "direct_mc":
-        return "simulation"
-    return "neural" if row["method"] in NEURAL else "fixed"
-
-
 def _scenarios(book) -> list[dict]:
     scenarios = {}
     for row in book["scenarios_run0"]:
         entry = scenarios.setdefault(row["scenario_id"], {
-            "scenario_id": row["scenario_id"], "spot_shift": row["spot_shift"],
-            "vol_shift": row["vol_shift"], "routes": {},
+            "spot": row["spot_shift"], "vol": row["vol_shift"],
         })
-        if row["method"] in ROUTES:
-            entry["routes"][row["method"]] = {
-                "value": row["value"], "accepted": row["accepted"], "rejected": row["rejected"],
-            }
+        for key, method in COMPARED.items():
+            if row["method"] == method:
+                entry[key] = {
+                    "value": row["value"], "fast": row["accepted"], "simulated": row["rejected"],
+                }
     reference = book["reference"]
     for index, scenario_id in enumerate(reference["scenario_ids"]):
-        scenarios[scenario_id]["reference_value"] = reference["value"][index]
+        scenarios[scenario_id]["reference"] = reference["value"][index]
         scenarios[scenario_id]["reference_se"] = reference["value_se"][index]
     return list(scenarios.values())
-
-
-def _headline_stats(run, summary) -> list[dict]:
-    direct = _find(summary["primary"], "direct_mc", "simulation")
-    tolerance = summary["tolerance"]
-    passing = [row for row in summary["primary"] if passes(row, tolerance) and row["method"] != "direct_mc"]
-    fastest = min(passing, key=lambda row: row["seconds_mean"]) if passing else None
-    neural = [row for row in passing if row["method"] in NEURAL]
-    best_neural = min(neural, key=lambda row: row["seconds_mean"]) if neural else None
-    stats = []
-    if fastest:
-        stats.append({
-            "value": _multiple(direct["seconds_mean"] / fastest["seconds_mean"]),
-            "label": (
-                "faster than tuned simulation, both inside the gate"
-                if passes(direct, tolerance) else "faster than tuned simulation"
-            ),
-        })
-    if best_neural:
-        stats.append({
-            "value": _multiple(direct["seconds_mean"] / best_neural["seconds_mean"]),
-            "label": (
-                "best neural route against simulation"
-                if best_neural["route"] == "hybrid" else "best neural route, no fallback, against simulation"
-            ),
-        })
-    panel = run["variance_reduction"]
-    gains = [row["efficiency_gain_vs_plain"] for row in panel if row["estimator"] == "conditional_control"]
-    stats.append({"value": f"{min(gains):,.0f}x", "label": "minimum simulation efficiency gain"})
-    stats.append({"value": f"{direct['requests']:,}", "label": "repricings in one portfolio job"})
-    return stats[:4]
 
 
 def _comparator_name(comparator: str) -> str:
@@ -124,50 +78,69 @@ def _comparator_name(comparator: str) -> str:
     return ROUTE_NAMES[method] + suffix
 
 
-def _findings(run, summary) -> list[dict]:
+def _headline_rows(summary) -> list[dict]:
+    """The fastest route that met the gate, named beside its multiple and its baseline."""
     outcome = summary["verdict"]
-    primary = outcome["primary"]
-    secondary = outcome["secondary"]
-    tolerance = summary["tolerance"]
     direct = _find(summary["primary"], "direct_mc", "simulation")
+    grid = _find(summary["primary"], COMPARED["grid"], "hybrid")
     rows = []
     comparator = outcome["comparator"]
     if comparator:
         rows.append({
-            "tag": "Fastest at the gate",
-            "title": _comparator_name(comparator),
-            "text": f"{_seconds(outcome['comparator_seconds'])} for the whole job, against {_seconds(direct['seconds_mean'])} for tuned simulation.",
+            "label": "Fastest at the gate",
+            "value": (
+                f"{_comparator_name(comparator)}, "
+                f"{_multiple(direct['seconds_mean'] / outcome['comparator_seconds'])} faster than tuned simulation"
+            ),
+            "scope": (
+                f"{_seconds(outcome['comparator_seconds'])} against {_seconds(direct['seconds_mean'])} "
+                f"for the whole job of {direct['requests']:,} repricings, with no fallback. "
+                f"Mean of {direct['runs']} runs on one machine, with synthetic contracts."
+            ),
         })
-    neural = _find(summary["primary"], "nn_diff", "hybrid")
     rows.append({
-        "tag": "Primary hypothesis",
-        "title": f"{'Supported' if primary['supported'] else 'Not supported'}: neural with fallback",
-        "text": (
-            f"{_seconds(neural['seconds_mean'])}, {neural['fallback_rate']:.1%} of requests sent to simulation, "
-            f"p99 {neural['price_p99_bp']:.2f} bp and {neural['delta_p99']:.5f} delta."
-        ),
-    })
-    correction = _find(summary["primary"], "nn_residual", "hybrid")
-    rows.append({
-        "tag": "Secondary hypothesis",
-        "title": f"{'Supported' if secondary['supported'] else 'Not supported'}: neural correction with fallback",
-        "text": (
-            f"{_seconds(correction['seconds_mean'])}, {correction['fallback_rate']:.1%} sent to simulation, "
-            f"p99 {correction['price_p99_bp']:.2f} bp and {correction['delta_p99']:.5f} delta."
+        "label": f"{ROUTE_NAMES[grid['method']]} in the map",
+        "value": f"{_seconds(grid['seconds_mean'])} with fallback on",
+        "scope": (
+            f"It sent {grid['fallback_rate']:.1%} of requests to simulation, "
+            "so the multiple above does not describe the route in the map."
         ),
     })
     return rows
 
 
+def _hypothesis_rows(summary) -> list[dict]:
+    outcome = summary["verdict"]
+    against = (
+        f" against {_seconds(outcome['comparator_seconds'])} for {_comparator_name(outcome['comparator'])}"
+        if outcome["comparator"] else ""
+    )
+    rows = []
+    for label, method, result in (
+        ("Primary hypothesis", "nn_diff", outcome["primary"]),
+        ("Secondary hypothesis", "nn_residual", outcome["secondary"]),
+    ):
+        row = _find(summary["primary"], method, "hybrid")
+        rows.append({
+            "label": label,
+            "value": f"{'Supported' if result['supported'] else 'Not supported'}: {ROUTE_NAMES[method]} + fallback",
+            "scope": (
+                f"{_seconds(row['seconds_mean'])}{against}. {row['fallback_rate']:.1%} of requests "
+                f"sent to simulation, p99 {row['price_p99_bp']:.2f} bp of strike and {row['delta_p99']:.5f} delta."
+            ),
+        })
+    return rows
+
+
 def _stress_p99(run, method: str, dataset: str) -> float:
-    rows = run["points"]["rows"]
-    return float(np.mean([
-        row["price_p99_bp"] for row in rows
+    rows = [
+        row["price_p99_bp"] for row in run["points"]["rows"]
         if row["method"] == method and row["dataset"] == dataset and row["scope"] == "fast_only"
-    ]))
+    ]
+    return sum(rows) / len(rows)
 
 
-def _exploratory(run, summary) -> list[dict]:
+def _exploratory_rows(run, summary) -> list[dict]:
     """Observations outside the frozen rule. They are labeled that way on the page."""
     tolerance = summary["tolerance"]
     fast = [r for r in summary["primary"] if r["route"] == "fast_only" and passes(r, tolerance)]
@@ -176,9 +149,9 @@ def _exploratory(run, summary) -> list[dict]:
     best = min(fast, key=lambda row: row["price_p99_bp"])
     quickest = min(fast, key=lambda row: row["seconds_mean"])
     rows = [{
-        "tag": "Not a hypothesis",
-        "title": f"Most accurate fast route: {ROUTE_NAMES[best['method']]}",
-        "text": (
+        "label": "Outside the frozen rule",
+        "value": f"Most accurate fast route: {ROUTE_NAMES[best['method']]}",
+        "scope": (
             f"Its worst of {best['requests']:,} requests missed by {best['price_max_bp']:.2f} bp and "
             f"{best['delta_max']:.4f} delta. {ROUTE_NAMES[quickest['method']]} reached "
             f"{quickest['price_max_bp']:.2f} bp and {quickest['delta_max']:.4f}."
@@ -187,9 +160,9 @@ def _exploratory(run, summary) -> list[dict]:
     if best is not quickest:
         expiry = "stress_near_expiry"
         rows.append({
-            "tag": "Not a hypothesis",
-            "title": "The fastest route is the brittle one",
-            "text": (
+            "label": "Outside the frozen rule",
+            "value": "The fastest route is the brittle one",
+            "scope": (
                 f"Below the fitted maturities, p99 price error was {_stress_p99(run, quickest['method'], expiry):,.0f} bp "
                 f"for {ROUTE_NAMES[quickest['method']]} and {_stress_p99(run, best['method'], expiry):.2f} bp for "
                 f"{ROUTE_NAMES[best['method']]}, which leans on a closed form."
@@ -198,49 +171,53 @@ def _exploratory(run, summary) -> list[dict]:
     return rows
 
 
-def _rigor(run, tolerance) -> list[dict]:
+def _check_rows(run, summary) -> list[dict]:
+    tolerance = summary["tolerance"]
+    gains = [
+        row["efficiency_gain_vs_plain"] for row in run["variance_reduction"]
+        if row["estimator"] == "conditional_control"
+    ]
+    rows = [{
+        "label": "Simulation baseline",
+        "value": f"{min(gains):,.0f}x to {max(gains):,.0f}x efficiency gain",
+        "scope": "Against plain simulation, so the network had to beat a tuned engine.",
+    }]
     panel = run["quantlib_panel"]
-    rows = []
     if "skipped" not in panel:
+        verb = "Agrees with" if panel["max_abs_z"] <= QUANTLIB_AGREEMENT_Z else "Differs from"
         rows.append({
-            "tag": "Independent check",
-            "title": (
-                f"{'Agrees with' if panel['max_abs_z'] <= QUANTLIB_AGREEMENT_Z else 'Differs from'} "
-                f"QuantLib on {panel['contracts']} random contracts"
-            ),
-            "text": f"Largest gap {panel['max_abs_z']:.2f} standard errors, on independent seeds. Geometric formula within {panel['max_geometric_gap']:.0e} of QuantLib.",
+            "label": "Outside check",
+            "value": f"{verb} QuantLib on {panel['contracts']} random contracts",
+            "scope": f"Largest gap {panel['max_abs_z']:.2f} standard errors, on separate seeds.",
         })
     noise = run["label_noise"]
     rows.append({
-        "tag": "Measured noise",
-        "title": "References were relabeled with new seeds",
-        "text": (
-            f"On {noise['n']:,} sealed points the p99 gap was {noise['price_gap_p99_bp']:.3f} bp and "
-            f"{noise['delta_gap_p99']:.5f} delta: {noise['price_gap_p99_bp'] / tolerance['price_bp']:.0%} and "
+        "label": "Reference noise",
+        "value": f"{noise['price_gap_p99_bp']:.3f} bp and {noise['delta_gap_p99']:.5f} delta",
+        "scope": (
+            f"p99 gap after relabeling {noise['n']:,} sealed points with new seeds, "
+            f"{noise['price_gap_p99_bp'] / tolerance['price_bp']:.0%} and "
             f"{noise['delta_gap_p99'] / tolerance['delta']:.0%} of the tolerances."
         ),
-    })
-    rows.append({
-        "tag": "Sealed test",
-        "title": "Plan frozen before the test labels existed",
-        "text": "The hypotheses, baselines, metrics and decision rule were committed first, and the command refuses to label sealed data without a matching freeze.",
-    })
-    reuse = run["reuse_speedup"]
-    rows.append({
-        "tag": "Path reuse",
-        "title": f"{_multiple(reuse['speedup'])} faster per query after one sort",
-        "text": f"A query is a prefix-sum lookup instead of a pass over the paths. Measured on {reuse['requests']} requests at 2^{reuse['log2_units']} antithetic pairs.",
     })
     return rows
 
 
-def _heat_note(summary) -> str:
-    """The map shows one seed, so say how far the seeds moved."""
-    neural = _find(summary["primary"], "nn_diff", "hybrid")
-    return (
-        f"Network maps show run 0 only. Across runs, Neural sent {neural['fallback_min']:.0%} to "
-        f"{neural['fallback_max']:.0%} of book requests to simulation."
-    )
+def _limits(summary, runs: int) -> list[str]:
+    """The map's own scope comes first, then the assumptions behind every number."""
+    neural = _find(summary["primary"], COMPARED["neural"], "hybrid")
+    return [
+        (
+            f"The map shows the first of {runs} recorded runs. Across runs, Neural sent "
+            f"{neural['fallback_min']:.0%} to {neural['fallback_max']:.0%} of book requests to simulation."
+        ),
+        (
+            "Errors in the map are for the whole book, against the reference, with longs and "
+            "shorts netted, in bp of gross notional. The gate is per request, in bp of strike, "
+            "so the two are not on one scale."
+        ),
+        *ASSUMPTIONS,
+    ]
 
 
 def build_data(run_dir: Path) -> dict:
@@ -248,26 +225,6 @@ def build_data(run_dir: Path) -> dict:
     summary = write_report(run_dir)
     book = run["book_primary"]
     tolerance = summary["tolerance"]
-    bench = [
-        {
-            "route": _route_name(row),
-            "seconds": _seconds(row["seconds_mean"]),
-            "price": f"{row['price_p99_bp']:.3f}",
-            "delta": f"{row['delta_p99']:.5f}",
-            "passes": "pass" if passes(row, tolerance) else "miss",
-            "fallback": f"{row['fallback_rate']:.1%}",
-        }
-        for row in summary["primary"]
-    ]
-    points = [
-        {
-            "route": _route_name(row), "family": _family(row), "seconds": row["seconds_mean"],
-            "seconds_text": _seconds(row["seconds_mean"]), "price": row["price_p99_bp"],
-            "delta": row["delta_p99"], "passes": passes(row, tolerance),
-        }
-        for row in summary["primary"]
-    ]
-    heatmap = run["points"]["heatmap"]
     outcome = summary["verdict"]
     primary = outcome["primary"]
     if outcome["comparator"]:
@@ -283,57 +240,40 @@ def build_data(run_dir: Path) -> dict:
         )
     supported = primary["supported"] or outcome["secondary"]["supported"]
     answer = "A frozen test says yes." if supported else "A frozen test says no."
-    manifest = run["manifest"]
+    runs = summary["primary"][0]["runs"]
+    scenarios = _scenarios(book)
     return {
-        "headline": (
+        "question": (
             "Can a small neural network with simulation fallback beat the fastest numerical "
             f"baseline on a whole portfolio job? {answer}"
         ),
-        "stats": _headline_stats(run, summary),
-        "chips": list(CHIPS),
-        "scenarios": _scenarios(book),
-        "routes": list(ROUTES),
-        "heat_routes": list(HEAT_ROUTES),
-        "heat_note": _heat_note(summary),
-        "route_names": ROUTE_NAMES,
-        "contracts": book["contracts"],
-        "gross": book["gross_notional"],
         "verdict": verdict,
-        "findings": _findings(run, summary) + _exploratory(run, summary),
-        "rigor": _rigor(run, tolerance),
-        "bench": bench,
-        "bench_note": (
-            f"{book['requests']:,} requests per job, {summary['primary'][0]['runs']} runs on one machine. "
-            f"The gate is p99 price within {tolerance['price_bp']:g} bp of strike and p99 delta within {tolerance['delta']:g}."
+        "gate": (
+            f"The gate is p99 price within {tolerance['price_bp']:g} bp of strike and p99 delta "
+            f"within {tolerance['delta']:g}, on {book['requests']:,} requests per job."
         ),
-        "tolerance_bp": tolerance["price_bp"],
-        "chart": {
-            "points": points,
-            "ladder": [
-                {"seconds": row["seconds"], "price": row["price_p99_bp"]}
-                for row in book["simulation_ladder"]
-            ],
-        },
-        "heatmap": {
-            "moneyness": np.exp(np.array(heatmap["log_moneyness"])).tolist(),
-            "maturity": heatmap["maturity"],
-            "rates": {
-                name: np.round(np.array(heatmap["rates"][name]), 3).tolist() for name in HEAT_ROUTES
-            },
-        },
-        "surface": run["surface_lines"],
-        "assumptions": list(ASSUMPTIONS),
-        "provenance": (
-            f"Generated from the run at commit {manifest['commit'][:10]}. "
-            f"Every number here traces to that run's manifest."
-        ),
+        "scenarios": scenarios,
+        "spots": sorted({row["spot"] for row in scenarios}, reverse=True),
+        "vols": sorted({row["vol"] for row in scenarios}),
+        "gap_steps": list(GAP_STEPS),
+        "positions": book["contracts"],
+        "gross": book["gross_notional"],
+        "runs": runs,
+        "results": _headline_rows(summary) + _hypothesis_rows(summary) + _exploratory_rows(run, summary),
+        "checks": _check_rows(run, summary),
+        "limits": _limits(summary, runs),
     }
 
 
 def write_demo(run_dir: Path, target: Path) -> None:
     template = (files("asianrisk") / "demo_template.html").read_text()
-    font = (files("asianrisk") / "fonts" / "GeistSerif-Regular.woff2").read_bytes()
-    template = template.replace("__FONT__", base64.b64encode(font).decode())
-    data = build_data(Path(run_dir))
+    for marker, name in (
+        ("__FONT_SERIF__", "GeistSerif-Regular.woff2"),
+        ("__FONT_SANS__", "Geist-Regular.woff2"),
+        ("__FONT_SANS_MEDIUM__", "Geist-Medium.woff2"),
+    ):
+        font = (files("asianrisk") / "fonts" / name).read_bytes()
+        template = template.replace(marker, base64.b64encode(font).decode())
+    data = json.dumps(build_data(Path(run_dir)), separators=(",", ":")).replace("</", "<\\/")
     target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_text(template.replace("__DATA__", json.dumps(data, separators=(",", ":"))))
+    target.write_text(template.replace("__DATA__", data))
