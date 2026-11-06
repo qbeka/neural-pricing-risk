@@ -5,3 +5,5 @@ Run records in this repository cite the commit that produced them. The history w
 | Cited in a record | Now |
 |---|---|
 | `cd5dd99b75f1` | `cf256eae399e` |
+| `1dc8022c8038` | `c9aaa3316d70` |
+| `322f1920be20` | `469b147e65d9` |
