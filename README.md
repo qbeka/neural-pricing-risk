@@ -31,7 +31,7 @@ Price one contract through simulation and two closed forms.
 uv run python -m asianrisk price --spot 100 --strike 100 --vol 0.2 --maturity 1
 ```
 
-[Open the live demo](https://www.qendrimbeka.com/projects/neural-pricing-risk/index.html). Pick a shock and a route to see what the benchmark recorded. `site/index.html` is the same page offline.
+[Open the live demo](https://www.qendrimbeka.com/projects/neural-pricing-risk/index.html). Pick a recorded shock to compare the Neural and Cubic grid values, errors and routes. `site/index.html` is the same page offline.
 
 ## Check it
 
@@ -110,4 +110,4 @@ Each request is one contract under one scenario. Homogeneity reduces it to three
 | `src/asianrisk/evaluate.py` | Every sealed measurement |
 | `src/asianrisk/report.py` | The verdict and the tables |
 
-Built with PyTorch, NumPy, SciPy and QuantLib. Geist Serif is under the SIL Open Font License. MIT licensed.
+Built with PyTorch, NumPy, SciPy and QuantLib. Geist and Geist Serif are under the SIL Open Font License. MIT licensed.
