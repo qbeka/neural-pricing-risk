@@ -490,7 +490,7 @@ function buildMap() {
   map.style.setProperty("--cols", DATA.vols.length);
   const grid = el("div");
   grid.setAttribute("role", "grid");
-  grid.setAttribute("aria-label", "Recorded shocks. Rows are spot shifts, columns are volatility shifts.");
+  grid.setAttribute("aria-label", "Recorded shocks. Rows are spot shifts, columns are volatility shifts. Arrow keys move one recorded shock at a time.");
   const header = el("div");
   header.setAttribute("role", "row");
   const corner = place(el("span"), 2, 1);
