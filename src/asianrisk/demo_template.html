@@ -194,7 +194,59 @@ body {
 }
 
 /* This page */
-:root { --stage-height: clamp(460px, calc(100svh - 162px), 600px); }
+:root {
+  --stage-height: clamp(460px, calc(100svh - 162px), 600px);
+  --heat-1: #e7ede8; --heat-2: #c3d3c8; --heat-3: #92b09e; --heat-4: #578068; --heat-5: #1d3a2a;
+}
+.stage { display: grid; grid-template-columns: minmax(0, 1fr) 372px; }
+.map-side { display: flex; flex-direction: column; min-width: 0; min-height: 0; padding: 16px 20px 20px 16px; }
+.map-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; height: 34px; margin-bottom: 6px; }
+.hint { margin: 0; font-size: 13px; line-height: 20px; color: var(--muted); white-space: nowrap; }
+.key { display: grid; grid-template-columns: repeat(5, 26px); column-gap: 2px; flex: none; margin: 4px 0 0; }
+.key-label { position: absolute; right: 100%; top: -4px; margin-right: 10px; font-size: 12px; line-height: 20px; color: var(--muted); white-space: nowrap; }
+.key-wrap { position: relative; flex: none; }
+.key i { display: block; height: 8px; }
+.key i:first-of-type { border-radius: 4px 0 0 4px; }
+.key i:last-of-type { border-radius: 0 4px 4px 0; }
+.key span { grid-row: 2; position: relative; left: -2px; font-size: 11px; line-height: 16px; color: var(--muted); transform: translateX(-50%); justify-self: start; }
+.map {
+  flex: 1; min-height: 0; display: grid; gap: 2px;
+  grid-template-columns: 44px repeat(var(--cols), minmax(0, 1fr));
+  grid-template-rows: 18px 18px repeat(var(--rows), minmax(0, 1fr));
+}
+.map [role='grid'], .map [role='row'] { display: contents; }
+.axis { font-size: 12px; line-height: 18px; color: var(--muted); white-space: nowrap; }
+.tick { display: flex; align-items: center; justify-content: center; font-size: 12px; line-height: 18px; color: var(--muted); }
+.tick.row { justify-content: flex-end; padding-right: 8px; }
+.tick.on { color: var(--ink); font-weight: 500; }
+.cell {
+  appearance: none; position: relative; display: block; width: 100%; height: 100%; min-width: 0; min-height: 0;
+  margin: 0; padding: 0; border: 0; border-radius: 0; cursor: pointer;
+  -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+}
+.cell[data-corner='tl'] { border-top-left-radius: var(--radius-control); }
+.cell[data-corner='tr'] { border-top-right-radius: var(--radius-control); }
+.cell[data-corner='bl'] { border-bottom-left-radius: var(--radius-control); }
+.cell[data-corner='br'] { border-bottom-right-radius: var(--radius-control); }
+.cell[data-step='0'] { background: var(--heat-1); }
+.cell[data-step='1'] { background: var(--heat-2); }
+.cell[data-step='2'] { background: var(--heat-3); }
+.cell[data-step='3'] { background: var(--heat-4); }
+.cell[data-step='4'] { background: var(--heat-5); }
+/* A selected case jumps. Nothing here may transition, because no price exists between cells. */
+.cell:active { box-shadow: inset 0 0 0 2px var(--ink); }
+.cell[aria-selected='true'] { z-index: 2; box-shadow: inset 0 0 0 2px var(--ink), inset 0 0 0 4px #fff; }
+.cell[aria-selected='true']:active { box-shadow: inset 0 0 0 3px var(--ink), inset 0 0 0 5px #fff; }
+.cell:focus-visible { z-index: 3; }
+@media (hover: hover) {
+  .cell:hover { box-shadow: inset 0 0 0 1px var(--ink), inset 0 0 0 2px #ffffffb3; }
+  .cell:active { box-shadow: inset 0 0 0 2px var(--ink); }
+  .cell[aria-selected='true']:hover { box-shadow: inset 0 0 0 2px var(--forest-hover), inset 0 0 0 4px #fff; }
+  .cell[aria-selected='true']:active { box-shadow: inset 0 0 0 3px var(--ink), inset 0 0 0 5px #fff; }
+}
+.cross { z-index: 1; pointer-events: none; background: var(--ink); box-shadow: 0 0 0 1px #ffffff8c; align-self: center; justify-self: center; }
+.cross.h { grid-column: 2 / -1; width: 100%; height: 1px; }
+.cross.v { grid-row: 3 / -1; width: 1px; height: 100%; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
@@ -218,7 +270,19 @@ body {
       <h1>Neural Pricing and Risk</h1>
       <p>Move the market. Compare the price.</p>
     </header>
-    <section class="stage" id="stage" aria-label="Recorded shocks, Neural against Cubic grid"></section>
+    <section class="stage" aria-label="Recorded shocks, Neural against Cubic grid">
+      <div class="map-side">
+        <div class="map-head">
+          <p class="hint" id="hint">Pick a recorded shock</p>
+          <div class="key-wrap">
+            <span class="key-label">Gap between the two values</span>
+            <div class="key" id="key" aria-hidden="true"></div>
+          </div>
+        </div>
+        <div class="map" id="map"></div>
+      </div>
+      <div class="compare" id="compare"></div>
+    </section>
     <section class="reading" id="details" aria-labelledby="details-title">
       <h2 id="details-title">Details</h2>
       <p class="prose" id="question"></p>
@@ -267,7 +331,133 @@ function fillDetails() {
   $("limits").replaceChildren(...DATA.limits.map(text => Object.assign(document.createElement("li"), {textContent: text})));
 }
 
+const MINUS = "\u2212";
+const percent = v => `${v > 0 ? "+" : v < 0 ? MINUS : ""}${Math.round(Math.abs(v) * 100)}%`;
+const cases = DATA.spots.map(spot => DATA.vols.map(vol => DATA.scenarios.find(s => s.spot === spot && s.vol === vol)));
+const gapOf = c => Math.abs(c.neural.value - c.grid.value);
+const stepOf = c => DATA.gap_steps.filter(edge => gapOf(c) >= edge).length;
+const nameOf = c => c.spot === 0 && c.vol === 0 ? "No shock" : `Spot ${percent(c.spot)}, vol ${percent(c.vol)}`;
+const home = {row: DATA.spots.indexOf(0), col: DATA.vols.indexOf(0)};
+const state = {...home};
+const el = (tag, className, text) => {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text !== undefined) node.textContent = text;
+  return node;
+};
+const place = (node, row, col) => { node.style.gridRow = row; node.style.gridColumn = col; return node; };
+const cells = [], rowTicks = [], colTicks = [];
+const crossH = el("div", "cross h"), crossV = el("div", "cross v");
+
+function buildKey() {
+  const key = $("key");
+  for (let step = 0; step <= DATA.gap_steps.length; step++) {
+    const swatch = el("i");
+    swatch.style.background = `var(--heat-${step + 1})`;
+    key.append(swatch);
+  }
+  DATA.gap_steps.forEach((edge, index) => {
+    const tick = el("span", "", edge);
+    tick.style.gridColumn = index + 2;
+    key.append(tick);
+  });
+}
+
+function buildMap() {
+  const map = $("map");
+  map.style.setProperty("--rows", DATA.spots.length);
+  map.style.setProperty("--cols", DATA.vols.length);
+  const grid = el("div");
+  grid.setAttribute("role", "grid");
+  grid.setAttribute("aria-label", "Recorded shocks. Rows are spot shifts, columns are volatility shifts.");
+  const header = el("div");
+  header.setAttribute("role", "row");
+  const corner = place(el("span"), 2, 1);
+  corner.setAttribute("role", "columnheader");
+  corner.setAttribute("aria-label", "Spot shift");
+  header.append(corner);
+  DATA.vols.forEach((vol, col) => {
+    const tick = place(el("span", "tick", percent(vol)), 2, col + 2);
+    tick.setAttribute("role", "columnheader");
+    tick.setAttribute("aria-label", `Volatility ${percent(vol)}`);
+    colTicks.push(tick);
+    header.append(tick);
+  });
+  grid.append(header);
+  DATA.spots.forEach((spot, row) => {
+    const line = el("div");
+    line.setAttribute("role", "row");
+    const tick = place(el("span", "tick row", percent(spot)), row + 3, 1);
+    tick.setAttribute("role", "rowheader");
+    tick.setAttribute("aria-label", `Spot ${percent(spot)}`);
+    rowTicks.push(tick);
+    line.append(tick);
+    cells.push(DATA.vols.map((vol, col) => {
+      const shock = cases[row][col];
+      const cell = place(el("button", "cell"), row + 3, col + 2);
+      cell.type = "button";
+      cell.setAttribute("role", "gridcell");
+      cell.setAttribute("aria-label", `${nameOf(shock)}. Values ${gapOf(shock).toFixed(2)} apart.`);
+      cell.dataset.step = stepOf(shock);
+      cell.dataset.row = row;
+      cell.dataset.col = col;
+      const top = row === 0, bottom = row === DATA.spots.length - 1, left = col === 0, right = col === DATA.vols.length - 1;
+      if (top && left) cell.dataset.corner = "tl";
+      if (top && right) cell.dataset.corner = "tr";
+      if (bottom && left) cell.dataset.corner = "bl";
+      if (bottom && right) cell.dataset.corner = "br";
+      line.append(cell);
+      return cell;
+    }));
+    grid.append(line);
+  });
+  const spotAxis = place(el("span", "axis", "Spot"), 1, 1), volAxis = place(el("span", "axis", "Volatility"), 1, `2 / -1`);
+  spotAxis.setAttribute("aria-hidden", "true");
+  volAxis.setAttribute("aria-hidden", "true");
+  crossH.setAttribute("aria-hidden", "true");
+  crossV.setAttribute("aria-hidden", "true");
+  map.append(spotAxis, volAxis, grid, crossH, crossV);
+}
+
+function paintSelection(previous) {
+  if (previous) {
+    const cell = cells[previous.row][previous.col];
+    cell.setAttribute("aria-selected", "false");
+    cell.tabIndex = -1;
+    rowTicks[previous.row].classList.remove("on");
+    colTicks[previous.col].classList.remove("on");
+  }
+  const cell = cells[state.row][state.col];
+  cell.setAttribute("aria-selected", "true");
+  cell.tabIndex = 0;
+  rowTicks[state.row].classList.add("on");
+  colTicks[state.col].classList.add("on");
+  crossH.style.gridRow = state.row + 3;
+  crossV.style.gridColumn = state.col + 2;
+}
+
+/* Selecting is a jump from one recorded case to another, never a move through the space between them. */
+function select(row, col) {
+  if (row === state.row && col === state.col) return;
+  const previous = {...state};
+  state.row = row;
+  state.col = col;
+  paintSelection(previous);
+}
+
+function start() {
+  cells.flat().forEach(cell => { cell.setAttribute("aria-selected", "false"); cell.tabIndex = -1; });
+  paintSelection();
+  $("map").addEventListener("click", event => {
+    const cell = event.target.closest(".cell");
+    if (cell) select(+cell.dataset.row, +cell.dataset.col);
+  });
+}
+
 fillDetails();
+buildKey();
+buildMap();
+start();
 </script>
 </body>
 </html>
