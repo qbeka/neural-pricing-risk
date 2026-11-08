@@ -31,7 +31,7 @@ Price one contract through simulation and two closed forms.
 uv run python -m asianrisk price --spot 100 --strike 100 --vol 0.2 --maturity 1
 ```
 
-[Open the live demo](https://www.qendrimbeka.com/projects/neural-pricing-risk/index.html). Pick a recorded shock to compare the Neural and Cubic grid values, errors and routes. `site/index.html` is the same page offline.
+[Open the live demo](https://www.qendrimbeka.com/projects/neural-pricing-risk/). Pick a recorded shock to compare the Neural and Cubic grid values, errors and routes. `site/index.html` is the same page offline.
 
 ## Check it
 
