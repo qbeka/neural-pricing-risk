@@ -30,7 +30,9 @@ def data(page) -> dict:
 def test_page_is_one_self_contained_file(page):
     assert not re.search(r"__[A-Z_]+__", page)
     assert page.count("data:font/woff2;base64,") == 3
-    assert not re.search(r"""(src|href)=["']/""", page)
+    # The Back link is the one root-relative address, so it lands on the site that serves the page.
+    assert not re.search(r"""src=["']/""", page)
+    assert re.findall(r"""href=["'](/[^"']*)""", page) == ["/#projects", "/#projects"]
     assert "url('/" not in page
     assert "<script src" not in page and "<link rel=\"stylesheet\"" not in page
 
@@ -75,7 +77,8 @@ def test_failed_hypotheses_stay_stated(data):
 
 
 def test_copy_rules(page):
-    assert "Move the market and compare the price</p>" in page
+    assert '<meta name="description" content="Move the market and compare the price">' in page
+    assert "compare the price</p>" not in page
     assert not re.search("[–—]", page.split("<script>")[0].split("</style>")[-1])
     assert not re.search("[–—]", page.split("<script>")[-1])
     lowered = page.lower()
