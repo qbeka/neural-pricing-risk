@@ -255,9 +255,10 @@ body {
 .compare-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; min-height: var(--control-height); }
 .case { margin: 0; font: 400 22px/28px var(--serif); letter-spacing: -0.015em; }
 .reference { margin: 2px 0 0; font-size: 14px; line-height: 20px; color: var(--muted); }
-.versus { flex: 1; width: 100%; margin-top: 18px; border-collapse: collapse; table-layout: fixed; }
+/* Rows keep their own height, so the gaps between them stay even at any stage height. */
+.versus { flex: none; width: 100%; margin-top: 18px; border-collapse: collapse; table-layout: fixed; }
 .versus col.names { width: 56px; }
-.versus th, .versus td { padding: 12px 0; text-align: left; vertical-align: top; border-top: 1px solid var(--line); font-weight: 400; }
+.versus th, .versus td { padding: 14px 0; text-align: left; vertical-align: top; border-top: 1px solid var(--line); font-weight: 400; }
 .versus thead tr { height: 1px; }
 .versus thead th, .versus thead td { padding: 0 0 10px; border-top: 0; font-size: 14px; line-height: 20px; color: var(--ink); font-weight: 500; }
 .versus thead small { display: block; font-size: 14px; font-weight: 400; color: var(--muted); }
