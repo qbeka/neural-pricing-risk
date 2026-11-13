@@ -273,9 +273,6 @@ body {
 .share .fast { background: var(--forest); }
 .share .simulated { background: #1115113d; }
 .source { margin: auto 0 0; padding-top: 12px; border-top: 1px solid var(--line); font-size: 14px; line-height: 20px; color: var(--muted); }
-.cross { z-index: 1; pointer-events: none; background: var(--ink); box-shadow: 0 0 0 1px #ffffff8c; align-self: center; justify-self: center; }
-.cross.h { grid-column: 2 / -1; width: 100%; height: 1px; }
-.cross.v { grid-row: 3 / -1; width: 1px; height: 100%; }
 @media (max-width: 1023px) {
   .stage { grid-template-columns: minmax(0, 1fr) 300px; }
   .compare { padding-right: 16px; padding-left: 16px; }
@@ -473,7 +470,6 @@ const el = (tag, className, text) => {
 const place = (node, row, col) => { node.style.gridRow = row; node.style.gridColumn = col; return node; };
 const HINT = "Pick a recorded shock";
 const cells = [], rowTicks = [], colTicks = [];
-const crossH = el("div", "cross h"), crossV = el("div", "cross v");
 
 function buildKey() {
   const key = $("key");
@@ -540,9 +536,7 @@ function buildMap() {
   const spotAxis = place(el("span", "axis", "Spot"), 1, 1), volAxis = place(el("span", "axis", "Volatility"), 1, `2 / -1`);
   spotAxis.setAttribute("aria-hidden", "true");
   volAxis.setAttribute("aria-hidden", "true");
-  crossH.setAttribute("aria-hidden", "true");
-  crossV.setAttribute("aria-hidden", "true");
-  map.append(spotAxis, volAxis, grid, crossH, crossV);
+  map.append(spotAxis, volAxis, grid);
 }
 
 function paintSelection(previous) {
@@ -558,8 +552,6 @@ function paintSelection(previous) {
   cell.tabIndex = 0;
   rowTicks[state.row].classList.add("on");
   colTicks[state.col].classList.add("on");
-  crossH.style.gridRow = state.row + 3;
-  crossV.style.gridColumn = state.col + 2;
 }
 
 const money = v => v.toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
