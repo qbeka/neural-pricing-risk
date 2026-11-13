@@ -201,23 +201,23 @@ body {
 .stage { display: grid; grid-template-columns: minmax(0, 1fr) 372px; }
 .map-side { display: flex; flex-direction: column; min-width: 0; min-height: 0; padding: 16px 20px 20px 16px; }
 .map-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; height: 34px; margin-bottom: 6px; }
-.hint { margin: 0; font-size: 13px; line-height: 20px; color: var(--muted); white-space: nowrap; }
+.hint { margin: 0; font-size: 14px; line-height: 20px; color: var(--muted); white-space: nowrap; }
 .key { display: grid; grid-template-columns: repeat(5, 26px); column-gap: 2px; flex: none; margin: 4px 0 0; }
-.key-label { position: absolute; right: 100%; top: -4px; margin-right: 10px; font-size: 12px; line-height: 20px; color: var(--muted); white-space: nowrap; }
+.key-label { position: absolute; right: 100%; top: -4px; margin-right: 10px; font-size: 14px; line-height: 20px; color: var(--muted); white-space: nowrap; }
 .key-label .short { display: none; }
 .key-wrap { position: relative; flex: none; }
 .key i { display: block; height: 8px; }
 .key i:first-of-type { border-radius: 4px 0 0 4px; }
 .key i:last-of-type { border-radius: 0 4px 4px 0; }
-.key span { grid-row: 2; position: relative; left: -2px; font-size: 11px; line-height: 16px; color: var(--muted); transform: translateX(-50%); justify-self: start; }
+.key span { grid-row: 2; position: relative; left: -2px; font-size: 12px; line-height: 16px; color: var(--muted); transform: translateX(-50%); justify-self: start; }
 .map {
   flex: 1; min-height: 0; display: grid; gap: 2px;
   grid-template-columns: 44px repeat(var(--cols), minmax(0, 1fr));
   grid-template-rows: 18px 18px repeat(var(--rows), minmax(0, 1fr));
 }
 .map [role='grid'], .map [role='row'] { display: contents; }
-.axis { font-size: 12px; line-height: 18px; color: var(--muted); white-space: nowrap; }
-.tick { display: flex; align-items: center; justify-content: center; font-size: 12px; line-height: 18px; color: var(--muted); }
+.axis { font-size: 14px; line-height: 18px; color: var(--muted); white-space: nowrap; }
+.tick { display: flex; align-items: center; justify-content: center; font-size: 14px; line-height: 18px; color: var(--muted); }
 .tick.row { justify-content: flex-end; padding-right: 8px; }
 .tick.near { color: var(--ink); }
 .tick.on { color: var(--ink); font-weight: 500; }
@@ -254,25 +254,25 @@ body {
 .compare { display: flex; flex-direction: column; min-width: 0; padding: 16px 20px 16px; border-left: 1px solid var(--line); }
 .compare-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; min-height: var(--control-height); }
 .case { margin: 0; font: 400 22px/28px var(--serif); letter-spacing: -0.015em; }
-.reference { margin: 2px 0 0; font-size: 13px; line-height: 20px; color: var(--muted); }
+.reference { margin: 2px 0 0; font-size: 14px; line-height: 20px; color: var(--muted); }
 .versus { flex: 1; width: 100%; margin-top: 18px; border-collapse: collapse; table-layout: fixed; }
 .versus col.names { width: 56px; }
 .versus th, .versus td { padding: 12px 0; text-align: left; vertical-align: top; border-top: 1px solid var(--line); font-weight: 400; }
 .versus thead tr { height: 1px; }
-.versus thead th, .versus thead td { padding: 0 0 10px; border-top: 0; font-size: 13px; line-height: 18px; color: var(--ink); font-weight: 500; }
-.versus thead small { display: block; font-size: 12px; font-weight: 400; color: var(--muted); }
-.versus tbody th { font-size: 13px; line-height: 28px; color: var(--muted); }
+.versus thead th, .versus thead td { padding: 0 0 10px; border-top: 0; font-size: 14px; line-height: 20px; color: var(--ink); font-weight: 500; }
+.versus thead small { display: block; font-size: 14px; font-weight: 400; color: var(--muted); }
+.versus tbody th { font-size: 14px; line-height: 28px; color: var(--muted); }
 .versus td + td, .versus th + th { padding-left: 12px; }
 .figure { display: block; font-size: 20px; line-height: 28px; font-weight: 500; letter-spacing: -0.01em; color: var(--ink); }
-.note { display: block; font-size: 13px; line-height: 20px; color: var(--muted); }
-.gap { display: flex; align-items: center; gap: 8px; font-size: 13px; line-height: 28px; color: var(--muted); }
+.note { display: block; font-size: 14px; line-height: 20px; color: var(--muted); }
+.gap { display: flex; align-items: center; gap: 8px; font-size: 14px; line-height: 28px; color: var(--muted); }
 .gap i { flex: none; width: 12px; height: 12px; border-radius: 3px; box-shadow: inset 0 0 0 1px var(--line); }
 .gap b { font-weight: 500; font-size: 20px; letter-spacing: -0.01em; color: var(--ink); }
 .share { display: flex; gap: 2px; height: 6px; margin: 11px 0 9px; }
 .share i { display: block; min-width: 0; border-radius: 3px; }
 .share .fast { background: var(--forest); }
 .share .simulated { background: #1115113d; }
-.source { margin: auto 0 0; padding-top: 12px; border-top: 1px solid var(--line); font-size: 12px; line-height: 18px; color: var(--muted); }
+.source { margin: auto 0 0; padding-top: 12px; border-top: 1px solid var(--line); font-size: 14px; line-height: 20px; color: var(--muted); }
 .cross { z-index: 1; pointer-events: none; background: var(--ink); box-shadow: 0 0 0 1px #ffffff8c; align-self: center; justify-self: center; }
 .cross.h { grid-column: 2 / -1; width: 100%; height: 1px; }
 .cross.v { grid-row: 3 / -1; width: 1px; height: 100%; }
@@ -292,30 +292,30 @@ body {
   .stage { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; }
   .map-side { position: relative; padding: 10px 12px 12px 8px; }
   .map-head { height: 30px; margin-bottom: 2px; }
-  .key-label { top: -6px; margin-right: 8px; font-size: 11px; }
+  .key-label { top: -6px; margin-right: 8px; }
   .key { margin-top: 2px; }
   .map { grid-template-columns: 38px repeat(var(--cols), minmax(0, 1fr)); grid-template-rows: 16px 16px repeat(var(--rows), minmax(0, 1fr)); }
   .tick.row { padding-right: 6px; }
-  .axis, .tick { font-size: 11px; line-height: 16px; }
+  .axis, .tick { font-size: 12px; line-height: 16px; }
   .compare { padding: 8px 12px 8px; border-left: 0; border-top: 1px solid var(--line); }
   .compare-head { align-items: center; }
   .case { font-size: 18px; line-height: 22px; }
-  .reference { margin-top: 0; font-size: 12px; line-height: 16px; }
+  .reference { margin-top: 0; line-height: 18px; }
   .versus { flex: none; margin-top: 6px; }
   .versus col.names { width: 46px; }
   .versus th, .versus td { padding: 4px 0; }
-  .versus thead th, .versus thead td { padding: 0 0 4px; font-size: 12px; line-height: 15px; }
-  .versus thead small { font-size: 11px; line-height: 14px; }
-  .versus tbody th { font-size: 12px; line-height: 20px; }
+  .versus thead th, .versus thead td { padding: 0 0 4px; line-height: 18px; }
+  .versus thead small { font-size: 12px; line-height: 16px; }
+  .versus tbody th { line-height: 20px; }
   .versus td + td, .versus th + th { padding-left: 10px; }
   .figure { display: inline; font-size: 14px; line-height: 20px; }
-  .note { display: block; font-size: 11px; line-height: 14px; }
+  .note { display: block; font-size: 12px; line-height: 16px; }
   .figure + .note { display: inline; margin-left: 6px; }
   .share { height: 4px; margin: 7px 0 4px; }
   .gap { line-height: 20px; }
   .gap b { font-size: 14px; }
   .gap i { width: 10px; height: 10px; }
-  .source { margin-top: 0; padding-top: 4px; font-size: 11px; line-height: 14px; }
+  .source { margin-top: 0; padding-top: 4px; line-height: 18px; }
 }
 /* A short phone keeps the map by folding the hint away. */
 @media (max-width: 767px) and (max-height: 640px) {
